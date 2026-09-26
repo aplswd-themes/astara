@@ -1,0 +1,22 @@
+/* ─── Agency / Creative Studio Theme ───────────────────────────────────── */
+:root {
+  --color-primary: #f97316;
+  --color-primary-dark: #ea580c;
+  --color-primary-light: #fed7aa;
+  --color-accent: #1e293b;
+  --color-accent-dark: #0f172a;
+
+  --color-bg: #fffbf7;
+  --color-bg-subtle: #f8f4f0;
+  --color-bg-muted: #f0ebe4;
+  --color-border: #e8e0d8;
+  --color-border-strong: #d4c9bc;
+
+  --color-text: #1a0a00;
+  --color-text-muted: #6b5a4e;
+  --color-text-subtle: #9e8878;
+  --color-text-inverse: #fffbf7;
+
+  --font-heading: 'Playfair Display', 'Georgia', serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+}

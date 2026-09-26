@@ -1,0 +1,66 @@
+﻿---
+import { PreviewNavbar } from '../components/layout/PreviewNavbar';
+import '../styles/global.css';
+
+const featuredPost = {
+  title: "Building the Next Generation of E-commerce Experiences",
+  excerpt: "The landscape of online shopping is shifting. We explore how headless architecture, personalization algorithms, and immersive 3D product views are fundamentally changing how consumers interact with brands online.",
+  category: "Engineering",
+  date: "March 20, 2024",
+  readTime: "10 min read",
+  author: { name: "David Kim" },
+  href: "/blog/future-of-ai-design",
+  imagePlaceholderColor: "#e5e5e5"
+};
+
+const blogPosts = [
+  { title: 'The Future of AI in Product Design', category: 'Design', date: 'Mar 15', href: '/blog/future-of-ai-design' },
+  { title: 'Building Scalable APIs with Node.js', category: 'Engineering', date: 'Mar 10', href: '/blog/future-of-ai-design' },
+  { title: '10 UX Principles Every Designer Should Know', category: 'Design', date: 'Mar 05', href: '/blog/future-of-ai-design' },
+  { title: 'How We Reduced Load Time by 60%', category: 'Engineering', date: 'Feb 28', href: '/blog/future-of-ai-design' }
+];
+---
+<html lang="en">
+<head><title>Blog - Minimalist</title></head>
+<body class="bg-white text-black font-sans antialiased selection:bg-black selection:text-white">
+  <PreviewNavbar client:load variationName="Minimalist v1" variations={[{label:'Blog (Main)',href:'/blog'},{label:'Minimalist v1',href:'/blog-v1'},{label:'Creative v2',href:'/blog-v2'},{label:'Dark Tech v3',href:'/blog-v3'},{label:'Editorial v4',href:'/blog-v4'}]} />
+  
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+    <header class="mb-24">
+      <h1 class="text-7xl md:text-9xl font-black uppercase tracking-tighter mb-8">Journal.</h1>
+      <p class="text-2xl font-medium max-w-2xl">Thoughts on design, engineering, and the future of the web.</p>
+    </header>
+
+    <div class="border-t-4 border-black pt-12 mb-24">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <a href={featuredPost.href} class="block aspect-square w-full bg-gray-200 group overflow-hidden border-2 border-black">
+           <div class="w-full h-full bg-black/5 group-hover:bg-black/20 transition-colors"></div>
+        </a>
+        <div class="flex flex-col justify-center">
+          <div class="flex items-center gap-4 mb-6 text-sm font-bold uppercase tracking-widest">
+            <span class="bg-black text-white px-3 py-1">{featuredPost.category}</span>
+            <span>{featuredPost.date}</span>
+          </div>
+          <a href={featuredPost.href} class="hover:underline hover:decoration-4 underline-offset-4">
+            <h2 class="text-5xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-6">{featuredPost.title}</h2>
+          </a>
+          <p class="text-xl font-medium mb-10">{featuredPost.excerpt}</p>
+          <div class="text-lg font-bold uppercase">{featuredPost.author.name}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
+      {blogPosts.map((post) => (
+        <a href={post.href} class="group block border-t-2 border-black pt-6">
+          <div class="flex justify-between items-center mb-4 text-sm font-bold uppercase tracking-widest">
+            <span>{post.category}</span>
+            <span>{post.date}</span>
+          </div>
+          <h3 class="text-3xl font-black uppercase tracking-tighter group-hover:underline decoration-4 underline-offset-4">{post.title}</h3>
+        </a>
+      ))}
+    </div>
+  </main>
+</body>
+</html>

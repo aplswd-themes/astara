@@ -1,17 +1,929 @@
----
+  ---
+  import { themes } from '../lib/themes';
+  import '../styles/global.css';
+  import { InteractiveThemeShowcase } from '../components/interactive/ThemeShowcase';
+  import ThemeIcon from '../components/ui/ThemeIcon.astro';
 
----
+  const corePages = [
+    {
+      name: 'About Us',
+      path: '/about',
+      desc: 'Team bios, mission statement, core values, company story',
+      badge: 'Company',
+      variations: [
+        { label: 'Minimalist v1', path: '/about-v1' },
+        { label: 'Creative v2', path: '/about-v2' },
+        { label: 'Dark Tech v3', path: '/about-v3' },
+        { label: 'Editorial v4', path: '/about-v4' },
+      ]
+    },
+    {
+      name: 'Services',
+      path: '/services',
+      desc: 'Service offerings, multi-step process, client reviews',
+      badge: 'Solutions',
+      variations: [
+        { label: 'Minimalist v1', path: '/services-v1' },
+        { label: 'Creative v2', path: '/services-v2' },
+        { label: 'Dark Tech v3', path: '/services-v3' },
+        { label: 'Editorial v4', path: '/services-v4' },
+      ]
+    },
+    {
+      name: 'Pricing Tiers',
+      path: '/pricing',
+      desc: 'Monthly/annual billing switcher, feature matrix, FAQ',
+      badge: 'Conversion',
+      variations: [
+        { label: 'Minimalist v1', path: '/pricing-v1' },
+        { label: 'Creative v2', path: '/pricing-v2' },
+        { label: 'Dark Tech v3', path: '/pricing-v3' },
+        { label: 'Editorial v4', path: '/pricing-v4' },
+      ]
+    },
+    {
+      name: 'Blog',
+        path: '/blog',
+        desc: 'Articles grid, category filters, author details',
+        badge: 'Content',
+        variations: [
+          { label: 'Single Article', path: '/blog/future-of-ai-design' },
+          { label: 'Minimalist v1', path: '/blog-v1' },
+          { label: 'Creative v2', path: '/blog-v2' },
+          { label: 'Dark Tech v3', path: '/blog-v3' },
+          { label: 'Editorial v4', path: '/blog-v4' },
+        ]
+    },
+    {
+      name: 'Contact & Inquiries',
+        path: '/contact',
+        desc: 'Direct form inputs, interactive offices, quick contact',
+        badge: 'Support',
+        variations: [
+          { label: 'Minimalist v1', path: '/contact-v1' },
+          { label: 'Creative v2', path: '/contact-v2' },
+          { label: 'Dark Tech v3', path: '/contact-v3' }
+        ]
+    },
+    {
+      name: 'Help & FAQ',
+      path: '/faq',
+      desc: 'Categorized accordion tabs for product & billing',
+      badge: 'Knowledge',
+      variations: [
+        { label: 'Animated Split v2', path: '/faq-v2' },
+        { label: 'Modern Grid v3', path: '/faq-v3' }
+      ]
+    },
+    {
+      name: 'Legal Pages',
+      path: '/privacy',
+      desc: 'Comprehensive GDPR/CCPA compliant policy layout',
+      badge: 'Legal',
+      variations: [
+        { label: 'Dark Mode Tech v2', path: '/privacy-v2' },
+        { label: 'Terms of Service', path: '/terms' },
+      ]
+    },
+    {
+      name: 'System Pages',
+      path: '/docs',
+      desc: 'Component docs, UI Kit, 404',
+      badge: 'System',
+      variations: [
+        { label: 'UI Kit', path: '/ui-kit' },
+        { label: '404 Error', path: '/404' },
+      ]
+    },
+    {
+      name: 'Component Showcase',
+      path: '/components-showcase',
+      desc: '5 Header and 5 Footer layout variations',
+      badge: 'Components',
+      variations: [
+        { label: 'All Variations', path: '/components-showcase' },
+      ]
+    }
+  ];
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+  const techRibbonItems = [
+    { icon: '⚡', label: 'Astro 7 Core Engine', badge: 'Ultra Fast' },
+    { icon: '⚛️', label: 'React 19 Islands', badge: 'Hydrated' },
+    { icon: '🎨', label: 'Tailwind CSS v4', badge: 'Design Tokens' },
+    { icon: '🛡️', label: 'TypeScript Strict', badge: '100% Type-Safe' },
+    { icon: '✦', label: 'Zero AI Slop', badge: 'Production Grade' },
+    { icon: '💎', label: '22+ Modular Components', badge: 'Documented' },
+    { icon: '📱', label: 'Fluid Responsive UX', badge: 'Mobile-First' },
+    { icon: '🚀', label: '100% Lighthouse Score', badge: 'Optimized' },
+    { icon: '⚡', label: 'Astro 7 Core Engine', badge: 'Ultra Fast' },
+    { icon: '⚛️', label: 'React 19 Islands', badge: 'Hydrated' },
+    { icon: '🎨', label: 'Tailwind CSS v4', badge: 'Design Tokens' },
+    { icon: '🛡️', label: 'TypeScript Strict', badge: '100% Type-Safe' },
+    { icon: '✦', label: 'Zero AI Slop', badge: 'Production Grade' },
+    { icon: '💎', label: '22+ Modular Components', badge: 'Documented' },
+    { icon: '📱', label: 'Fluid Responsive UX', badge: 'Mobile-First' },
+    { icon: '🚀', label: '100% Lighthouse Score', badge: 'Optimized' },
+  ];
+
+  const themesRibbonItems = [
+    
+    { icon: '✦', label: 'Forma Studio Agency', tag: 'High-End Editorial' },
+    { icon: '🛒', label: 'Shopfront eCommerce', tag: 'Curated Retail' },
+    { icon: '🏥', label: 'Vitality Health', tag: 'Longevity Clinic' },
+    { icon: '🍽️', label: 'Saveur Gastronomy', tag: 'Michelin 3-Star' },
+    { icon: '💼', label: '11+ Core Inner Pages', tag: 'About, Blog, FAQ, Legal' },
+    { icon: '📊', label: 'Interactive Themes Sandbox', tag: 'Live Auto-Slider' },
+    
+    { icon: '✦', label: 'Forma Studio Agency', tag: 'High-End Editorial' },
+    { icon: '🛒', label: 'Shopfront eCommerce', tag: 'Curated Retail' },
+    { icon: '🏥', label: 'Vitality Health', tag: 'Longevity Clinic' },
+    { icon: '🍽️', label: 'Saveur Gastronomy', tag: 'Michelin 3-Star' },
+    { icon: '💼', label: '11+ Core Inner Pages', tag: 'About, Blog, FAQ, Legal' },
+    { icon: '📊', label: 'Interactive Themes Sandbox', tag: 'Live Auto-Slider' },
+  ];
+
+  import { ModernArchitectureTree } from '../components/interactive/ModernArchitectureTree';
+  import { SaasArchitectureTree } from '../components/interactive/SaasArchitectureTree';
+  import { AgencyCreativePipelineTree } from '../components/interactive/AgencyCreativePipelineTree';
+  import ProductionWorkflowTree from '../components/sections/ProductionWorkflowTree.astro';
+  import { HubNavbar } from '../components/layout/HubNavbar';
+  
+  import { MEDIA } from '../lib/media';
+
+  const themeGlowMap: Record<string, string> = {
+    saas: 'hover:shadow-lg hover:shadow-indigo-500/10',
+    agency: 'hover-glow-amber',
+    ecommerce: 'hover-glow-emerald',
+    health: 'hover-glow-purple',
+    restaurant: 'hover-glow-rose',
+    aerospace: 'hover-glow-cyan',
+  };
+
+  const themePhotoMap: Record<string, string> = {
+    saas: MEDIA.saas.datacenter,
+    agency: MEDIA.agency.studioSpace,
+    ecommerce: MEDIA.ecommerce.heroPoster,
+    health: MEDIA.health.clinicSanctuary,
+    restaurant: MEDIA.restaurant.diningRoom,
+      aerospace: MEDIA.aerospace.telemetry,
+  };
+
+  const themeRibbonMap: Record<string, { text: string; class: string }> = {
+    saas: { text: '⚡ TOP DEV CHOICE', class: 'ribbon-saas' },
+    agency: { text: '✦ EDITORIAL AWARDS', class: 'ribbon-agency' },
+    ecommerce: { text: '🔥 3.8X CONVERSION', class: 'ribbon-ecommerce' },
+    health: { text: '★ CLINICAL TRUST', class: 'ribbon-health' },
+    restaurant: { text: '◈ MICHELIN 3-STAR', class: 'ribbon-restaurant' },
+    aerospace: { text: '🚀 NEXT FRONTIER', class: 'ribbon-saas' },
+  };
+  ---
+
+  <!doctype html>
+  <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Astara — Multi-Purpose Astro & Tailwind Theme System</title>
+    <meta name="description" content="A clean, highly customizable Astro 5 + React theme system with 5 niche homepages, 11+ inner page templates, and complete component documentation." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" />
+    <style>
+      * { box-sizing: border-box; }
+      body {
+        margin: 0;
+        font-family: 'Inter', system-ui, sans-serif;
+        background: #ffffff;
+      color: #09090b;
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+      }
+      h1, h2, h3, h4, h5 {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+      }
+      a { text-decoration: none; color: inherit; }
+    </style>
+  </head>
+  <body class="min-h-screen flex flex-col relative selection:bg-indigo-500 selection:text-zinc-900">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-indigo-50 border-b border-indigo-100 text-indigo-700 px-4 py-2 text-xs font-medium text-center relative z-50 backdrop-blur-sm">
+      <span class="inline-flex items-center gap-1.5 font-bold text-zinc-900 bg-indigo-600 px-2 py-0.5 rounded-full text-[10px] mr-2 shadow-sm">NEW</span>
+      Production-tested Astro 7 + React 19 theme architecture with zero bloat.
+      <a href="/docs" class="underline text-indigo-200 hover:text-zinc-900 ml-2 font-semibold transition-colors">Explore Component Docs & CSS Tokens →</a>
+    </div>
+
+    <!-- Main Navigation Header with Sleek Responsive HubNavbar -->
+    <HubNavbar client:load />
+
+    <!-- Hero Section with Motion & Floating Elements -->
+    <section class="relative pt-24 pb-20 px-6 overflow-hidden">
+      <div class="max-w-5xl mx-auto text-center relative z-10">
+
+        <!-- Glowing Eyebrow Pill -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold mb-8  bg-indigo-50 text-indigo-700 border-indigo-200 shadow-sm bg-white border border-zinc-200 animate-fade-in">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          <span>High-Performance Astro Framework Architecture</span>
+          <span class="text-zinc-400">|</span>
+          <span class="text-zinc-400">Zero AI Slop Guaranteed</span>
+        </div>
+
+        <!-- Main Headline with Gradient Text -->
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-zinc-900 mb-8 leading-[1.1] animate-fade-in-up">
+          One clean design system.<br />
+          <span class="text-zinc-900">
+            Infinite niche possibilities.
+          </span>
+        </h1>
+
+        <p class="text-lg sm:text-xl text-zinc-400 max-w-3xl mx-auto mb-12 leading-relaxed animate-fade-in-up delay-100">
+          Empower any client, startup, or agency to launch high-converting websites. Includes 5 niche homepages, 11+ production-ready inner pages, and unified CSS variable theming.
+        </p>
+
+        <!-- Primary Action Buttons -->
+        <div class="flex flex-wrap justify-center items-center gap-4 mb-6 animate-fade-in-up delay-200">
+          <a
+            href="/downloads/themekit-astro-theme.zip"
+            download="themekit-astro-theme.zip"
+            class="download-btn px-8 py-4 rounded-xl font-bold text-sm bg-gradient-to-r from-emerald-600 to-teal-600 text-zinc-900 hover:opacity-95 shadow-xl shadow-emerald-600/30 transition-all hover:-translate-y-0.5 flex items-center gap-2"
+          >
+            <svg class="w-4 h-4 text-emerald-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+            <span>Download Astro Code (.ZIP)</span>
+          </a>
+          <a
+            href="#interactive-preview"
+            class="px-8 py-4 rounded-xl font-bold text-sm bg-gradient-to-r from-indigo-600 to-purple-600 text-zinc-900 hover:opacity-95 shadow-xl shadow-indigo-600/30 transition-all hover:-translate-y-0.5 flex items-center gap-2"
+          >
+            <span>Launch Interactive Theme Sandbox</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+          </a>
+          <a
+            href="/docs"
+            class="px-8 py-4 rounded-xl font-bold text-sm border border-zinc-200 bg-zinc-50 text-zinc-600 hover:border-zinc-500 hover:text-zinc-900 transition-all backdrop-blur-sm"
+          >
+            Explore Component HTML/React Docs
+          </a>
+        </div>
+
+        <div class="animate-fade-in-up delay-300 mb-20 flex justify-center">
+          <a href="/components-showcase" class="inline-flex items-center gap-2 text-sm font-bold text-indigo-700 bg-indigo-50 hover:bg-indigo-100 px-6 py-3 rounded-full transition-colors border border-indigo-200 shadow-sm">
+            <span class="animate-pulse">✨</span> View Header & Footer Variations Showcase &rarr;
+          </a>
+        </div>
+
+        <!-- Floating Stats Dashboard Badges with Motion & Micro-Ribbons -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto text-left animate-fade-in-up delay-300">
+          <div class="p-5 rounded-2xl bg-white shadow-sm border border-zinc-200 hover:shadow-md transition-shadow interactive-card relative overflow-hidden border border-zinc-200 hover:border-zinc-300">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-2xl font-black text-indigo-400">22+</span>
+              <span class="text-[9px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-indigo-500/15 text-indigo-300 border border-zinc-200">
+                ✦ Modular
+              </span>
+            </div>
+            <p class="text-xs font-bold text-zinc-900">Documented UI</p>
+            <p class="text-[11px] text-zinc-400 mt-0.5">Strict typed props & documentation</p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-white shadow-sm border border-zinc-200 hover:shadow-md transition-shadow interactive-card relative overflow-hidden border border-zinc-200 hover:border-zinc-300">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-2xl font-black text-purple-400">5</span>
+              <span class="text-[9px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-purple-500/15 text-purple-300 border border-purple-500/30">
+                ⚡ Verticals
+              </span>
+            </div>
+            <p class="text-xs font-bold text-zinc-900">Niche Homepages</p>
+            <p class="text-[11px] text-zinc-400 mt-0.5">SaaS, Agency, Store, Clinic, Dining</p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-white shadow-sm border border-zinc-200 hover:shadow-md transition-shadow interactive-card relative overflow-hidden border border-zinc-200 hover:border-zinc-300">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-2xl font-black text-emerald-400">11+</span>
+              <span class="text-[9px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
+                â˜… Production
+              </span>
+            </div>
+            <p class="text-xs font-bold text-zinc-900">Core Inner Pages</p>
+            <p class="text-[11px] text-zinc-400 mt-0.5">About, Services, Pricing, Blog, Legal</p>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-white shadow-sm border border-zinc-200 hover:shadow-md transition-shadow interactive-card relative overflow-hidden border border-zinc-200 hover:border-zinc-300">
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-2xl font-black text-pink-400">100%</span>
+              <span class="text-[9px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-pink-500/15 text-pink-300 border border-pink-500/30">
+                â—ˆ CSS Tokens
+              </span>
+            </div>
+            <p class="text-xs font-bold text-zinc-900">Variable Driven</p>
+            <p class="text-[11px] text-zinc-400 mt-0.5">Instant one-file palette switching</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ DUAL-ANGLED MODERN 3D RIBBON MARQUEE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+    <div class="ribbon-strip-container -my-4 z-20 pointer-events-auto">
+      <!-- Ribbon 1: Angled -1.5deg with Indigo/Purple glow and Tech Pills -->
+      <div class="ribbon-strip-angled-1 py-4 bg-white border-y border-zinc-200 shadow-sm overflow-hidden relative backdrop-blur-md">
+        <div class="animate-marquee flex gap-8 items-center text-xs font-bold tracking-wider uppercase text-zinc-600">
+          {techRibbonItems.map((item) => (
+            <div class="flex items-center gap-3 shrink-0 px-3.5 py-1.5 rounded-full bg-white border border-zinc-200 shadow-sm hover:border-zinc-300 hover:bg-zinc-50 transition-all cursor-default shadow-sm">
+              <span class="text-sm">{item.icon}</span>
+              <span class="text-zinc-900 font-semibold">{item.label}</span>
+              <span class="text-[10px] font-extrabold px-2 py-0.5 rounded-full bg-indigo-600 text-zinc-900 tracking-widest shadow-sm">
+                {item.badge}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Ribbon 2: Angled +1.2deg with Orange/Gold glow running in reverse -->
+      <div class="ribbon-strip-angled-2 py-3.5 -mt-2 bg-zinc-50 border-y border-zinc-200 shadow-sm overflow-hidden relative backdrop-blur-md">
+        <div class="animate-marquee-reverse flex gap-8 items-center text-xs font-bold tracking-wider uppercase text-zinc-600">
+          {themesRibbonItems.map((item) => (
+            <div class="flex items-center gap-3 shrink-0 px-3.5 py-1.5 rounded-full bg-white border border-zinc-200 shadow-sm hover:border-zinc-300 hover:bg-zinc-50 transition-all cursor-default shadow-sm">
+              <span class="text-sm">{item.icon}</span>
+              <span class="text-zinc-900 font-semibold">{item.label}</span>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded-md bg-orange-600/90 text-zinc-900 tracking-wider">
+                {item.tag}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ SPECIALIZED NICHE ARCHITECTURE TREES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+    <section class="py-24 px-6 max-w-7xl mx-auto w-full relative z-10 border-t border-zinc-200">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-widest text-indigo-400">Industry Specific Modules</span>
+        <h2 class="text-3xl sm:text-5xl font-black text-zinc-900 mt-1">Specialized Niche Architectures</h2>
+        <p class="text-sm text-zinc-400 mt-3 leading-relaxed">
+          Each theme comes with complex, data-driven interactive trees perfectly tailored to its industry, completely out of the box.
+        </p>
+      </div>
+
+      <div class="space-y-24">
+        <div>
+          <h3 class="text-xl font-bold text-zinc-800 mb-6 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-indigo-500"></span> SaaS Architecture Infrastructure</h3>
+          <SaasArchitectureTree client:load />
+        </div>
+        
+        <div>
+          <h3 class="text-xl font-bold text-zinc-800 mb-6 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-orange-500"></span> Agency Creative Pipeline</h3>
+          <AgencyCreativePipelineTree client:load />
+        </div>
+      </div>
+    </section>
+
+    <!-- â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ INTERACTIVE LIVE THEME SWITCHER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+    <section id="interactive-preview" class="py-24 px-6 max-w-7xl mx-auto w-full relative z-10 border-t border-zinc-200">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="text-xs font-bold uppercase tracking-widest text-indigo-400">Real-Time Demonstration</span>
+        <h2 class="text-3xl sm:text-5xl font-black text-zinc-900 mt-1">Experience The Theme Switcher</h2>
+        <p class="text-sm text-zinc-400 mt-3 leading-relaxed">
+          Watch how our component library dynamically adapts color tokens, typography, and visual hierarchy across distinct business verticals without changing the underlying markup.
+        </p>
+      </div>
+
+      <!-- Client-Loaded React Interactive Showcase -->
+      <InteractiveThemeShowcase client:load />
+    </section>
+
+    <!-- â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ COMPONENT & ARCHITECTURE TREE NAVIGATOR â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+    <section id="architecture-tree" class="py-24 px-6 max-w-7xl mx-auto w-full border-t border-zinc-200 relative z-10">
+      <ModernArchitectureTree client:load />
+    </section>
+
+    <!-- â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ 5 NICHE LANDING PAGES â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+    <section id="themes" class="py-24 px-6 max-w-7xl mx-auto w-full border-t border-zinc-200">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-indigo-400">Full Template Releases</span>
+          <h2 class="text-3xl sm:text-4xl font-black text-zinc-900 mt-1">4 Niche Landing Page Variants</h2>
+          <p class="text-sm text-zinc-400 mt-2 max-w-xl leading-relaxed">
+            Carefully tailored layouts featuring industry-specific conversion psychology, realistic copy, and cohesive styling.
+          </p>
+        </div>
+        <div class="flex flex-wrap items-center gap-4">
+          <div class="flex items-center gap-2.5 text-xs font-semibold text-zinc-400">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>All 5 Live & Accessible Now</span>
+          </div>
+          <a
+            href="/downloads/themekit-astro-theme.zip"
+            download="themekit-astro-theme.zip"
+            data-theme-name="All 5 Themes Bundle"
+            class="download-btn inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold bg-indigo-600/20 text-indigo-300  hover:bg-indigo-600 hover:text-zinc-900 transition-all shadow-md"
+          >
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+            <span>Download All Themes (.ZIP)</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {themes.map((theme, i) => (
+          <div class="group relative rounded-[2rem] border border-zinc-200/80 bg-white overflow-hidden flex flex-col hover:-translate-y-2 transition-all duration-700 ease-out shadow-sm hover:shadow-2xl hover:border-zinc-300">
+            
+            <!-- Dynamic ambient shadow -->
+            <div 
+              class="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-700 pointer-events-none rounded-[2rem] mix-blend-multiply"
+              style={`box-shadow: 0 30px 60px -10px ${theme.previewColor};`}
+            ></div>
+            
+            <!-- Card Header Real Photographic Preview Canvas -->
+            <div class="h-60 relative overflow-hidden bg-zinc-950">
+              <img
+                src={themePhotoMap[theme.slug]}
+                alt={theme.name}
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 ease-in-out filter brightness-[0.5] group-hover:brightness-[0.3]"
+                loading="lazy"
+              />
+              
+              <!-- Dynamic Color Overlay Overlay -->
+              <div class="absolute inset-0 opacity-30 mix-blend-color transition-opacity duration-700 group-hover:opacity-70" style={`background-color: ${theme.previewColor};`}></div>
+              
+              <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent pointer-events-none"></div>
+
+              <div class="absolute inset-0 p-6 flex flex-col justify-between z-10">
+                <div class="flex justify-between items-start">
+                  <!-- Modern Bespoke Vector Theme Icon Badge -->
+                  <div
+                    class="w-12 h-12 rounded-2xl flex items-center justify-center border shadow-2xl backdrop-blur-md group-hover:scale-110 group-hover:rotate-6 transition-all duration-500"
+                    style={`background: ${theme.previewColor}40; border-color: ${theme.previewColor}80; color: #fff;`}
+                  >
+                    <ThemeIcon slug={theme.slug} size="md" />
+                  </div>
+
+                  <span
+                    class="text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full border backdrop-blur-md shadow-lg"
+                    style={`color: #ffffff; border-color: ${theme.previewColor}70; background: ${theme.previewColor}90;`}
+                  >
+                    {theme.niche}
+                  </span>
+                </div>
+
+                <div class="transform translate-y-3 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                  <span class="text-[9px] uppercase font-bold tracking-[0.25em] text-white/60 block mb-1">Template Archetype</span>
+                  <h3 class="text-3xl font-black text-white tracking-tight drop-shadow-md">{theme.name}</h3>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card Body -->
+            <div class="p-6 flex-1 flex flex-col justify-between gap-6 bg-white relative z-10">
+              <p class="text-sm text-zinc-500 leading-relaxed font-medium">{theme.description}</p>
+
+              <div class="flex flex-wrap gap-2">
+                {theme.tags.map(tag => (
+                  <span class="text-[10px] font-bold px-2.5 py-1 rounded-md bg-zinc-50 text-zinc-400 border border-zinc-200/60 uppercase tracking-wide group-hover:border-zinc-300 transition-colors">
+                    #{tag}
+                  </span>
+                ))}
+              </div>
+
+              <!-- Actions -->
+              <div class="pt-6 border-t border-zinc-100 flex flex-col sm:flex-row items-center gap-3">
+                <a
+                  href={`/themes/${theme.slug}`}
+                  class="flex-1 w-full text-center py-3 px-4 rounded-xl text-xs font-bold uppercase tracking-wider transition-all shadow-md hover:shadow-xl flex items-center justify-center gap-2 group/btn relative overflow-hidden"
+                  style={`background: ${theme.previewColor}; color: #ffffff;`}
+                >
+                  <div class="absolute inset-0 bg-white/20 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300 ease-out"></div>
+                  <span class="relative z-10">Launch Template</span>
+                  <svg class="w-4 h-4 group-hover/btn:translate-x-1 transition-transform relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                </a>
+                <a
+                  href={`/downloads/themekit-${theme.slug}-theme.zip`}
+                  download={`themekit-${theme.slug}-theme.zip`}
+                  data-theme-name={theme.name}
+                  class="download-btn w-full sm:w-auto text-center py-3 px-4 rounded-xl text-xs font-bold uppercase tracking-wider border border-zinc-200 bg-white hover:bg-zinc-50 text-zinc-500 hover:text-zinc-900 transition-colors flex items-center justify-center gap-2 group/dl shrink-0"
+                  title={`Download ${theme.name} Astro Framework Code (.ZIP)`}
+                >
+                  <svg class="w-4 h-4 text-zinc-400 group-hover/dl:text-zinc-900 group-hover/dl:translate-y-0.5 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                  </svg>
+                  <span class="sr-only sm:not-sr-only">Code</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ 11+ INNER PAGES DIRECTORY â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+    <section id="pages" class="py-24 px-6 bg-white/80 border-t border-zinc-200 relative">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-16">
+          <span class="text-xs font-bold uppercase tracking-widest text-indigo-400">Ready For Production</span>
+          <h2 class="text-3xl sm:text-5xl font-black text-zinc-900 mt-1">11+ Comprehensive Inner Pages</h2>
+          <p class="text-sm text-zinc-400 mt-3 leading-relaxed">
+            Every critical business touchpoint is already created. No missing 404s, no unstyled legal text, and no placeholder jargon.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {corePages.map((page, idx) => (
+            <div class="relative group h-full">
+              <!-- Subtle back shadow/glow -->
+              <div class="absolute inset-0 bg-indigo-500/10 rounded-3xl translate-y-1.5 translate-x-1.5 group-hover:translate-y-2 group-hover:translate-x-2 transition-transform duration-500 ease-out border border-indigo-500/10 hidden sm:block"></div>
+              
+              <div class="relative h-full p-8 rounded-3xl border border-zinc-200 bg-white/70 backdrop-blur-xl flex flex-col justify-between group-hover:-translate-y-1 group-hover:-translate-x-1 transition-all duration-500 ease-out z-10 overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-indigo-500/10 hover:border-indigo-200/60 hover:bg-white">
+                <!-- Decorative background element -->
+                <div class="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-indigo-50 to-transparent rounded-bl-full -z-10 opacity-50 group-hover:scale-[1.8] transition-transform duration-700 ease-out"></div>
+                
+                <a href={page.path} class="block mb-8 relative z-10">
+                  <div class="flex items-center justify-between mb-6">
+                    <span class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full bg-zinc-900 text-white shadow-sm group-hover:bg-indigo-600 transition-colors duration-300">
+                      <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                      {page.badge}
+                    </span>
+                    <span class="text-xs font-mono text-zinc-400 flex items-center gap-1 group-hover:text-indigo-500 transition-colors duration-300">
+                      <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                      {page.path}
+                    </span>
+                  </div>
+                  <h4 class="font-bold text-2xl text-zinc-900 mb-3 tracking-tight group-hover:text-indigo-600 transition-colors duration-300 flex items-center justify-between">
+                    {page.name}
+                    <svg class="w-5 h-5 text-zinc-300 -translate-x-4 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 group-hover:text-indigo-600 transition-all duration-300 ease-out" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                  </h4>
+                  <p class="text-sm text-zinc-500 leading-relaxed font-medium">{page.desc}</p>
+                </a>
+                
+                <div class="relative z-10">
+                  <p class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest mb-3">Available Layouts</p>
+                  <div class="flex flex-wrap gap-2">
+                    <a href={page.path} class="px-3 py-1.5 rounded-md bg-zinc-100 border border-zinc-200 text-zinc-600 text-xs font-semibold hover:bg-zinc-900 hover:text-white hover:border-zinc-900 transition-all duration-300">
+                      Main
+                    </a>
+                    {page.variations && page.variations.map(variant => (
+                      <a href={variant.path} class="px-3 py-1.5 rounded-md bg-white border border-zinc-200 text-zinc-500 text-xs font-medium hover:bg-zinc-100 hover:text-zinc-900 transition-all duration-300 shadow-sm hover:shadow-none">
+                        {variant.label}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ PRODUCTION WORKFLOW TREE & PIPELINE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+    <ProductionWorkflowTree />
+
+    <!-- â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ COMPONENT & ARCHITECTURE HIGHLIGHT â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+    <section class="py-32 px-6 max-w-7xl mx-auto w-full">
+      <div class="relative rounded-[2.5rem] bg-zinc-950 flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20 shadow-2xl p-1 lg:p-2 overflow-hidden group">
+        
+        <!-- Rotating gradient border effect -->
+        <div class="absolute inset-0 bg-[conic-gradient(from_0deg,transparent_0_340deg,rgba(99,102,241,1)_360deg)] opacity-20 group-hover:opacity-100 transition-opacity duration-700 animate-[spin_4s_linear_infinite] rounded-[2.5rem]"></div>
+        <div class="absolute inset-0 bg-[conic-gradient(from_180deg,transparent_0_340deg,rgba(236,72,153,1)_360deg)] opacity-20 group-hover:opacity-100 transition-opacity duration-700 animate-[spin_4s_linear_infinite] rounded-[2.5rem]"></div>
+        
+        <!-- Inner container -->
+        <div class="relative w-full h-full bg-zinc-950 border border-zinc-800/50 rounded-[2.25rem] p-8 sm:p-14 flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-20 overflow-hidden z-10">
+          
+          <!-- Background radial glow -->
+          <div class="absolute top-0 left-0 w-[500px] h-[500px] bg-indigo-500/20 blur-[100px] rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+
+          <div class="max-w-xl relative z-10">
+            <span class="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-indigo-400 mb-4">
+              <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse"></span>
+              Design System Architecture
+            </span>
+            <h3 class="text-4xl sm:text-5xl font-black text-white mb-6 tracking-tight leading-tight">
+              Consistent <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-pink-400">Component HTML</span> & React Documentation.
+            </h3>
+            <p class="text-base text-zinc-400 leading-relaxed mb-10 font-light">
+              Inspect props, preview live buttons, test form controls, and copy clean JSX or Astro code blocks directly into your workflows. Built with zero bloat and 100% type safety.
+            </p>
+            <div class="flex flex-wrap items-center gap-4">
+              <a
+                href="/docs"
+                class="px-8 py-4 rounded-xl bg-white text-black text-xs font-bold uppercase tracking-widest hover:bg-zinc-200 hover:scale-105 transition-all duration-300 flex items-center gap-2 group/btn shadow-[0_0_20px_rgba(255,255,255,0.2)] z-10"
+              >
+                Launch Interactive Docs
+                <svg class="w-4 h-4 group-hover/btn:translate-x-1.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+              </a>
+              <a
+                href="/pricing"
+                class="px-8 py-4 rounded-xl border border-zinc-400 bg-zinc-800/80 !text-white text-xs font-bold uppercase tracking-widest hover:bg-zinc-700 hover:border-zinc-300 transition-all duration-300 backdrop-blur-md z-10"
+                style="color: #ffffff; text-shadow: 0 0 10px rgba(255,255,255,0.5);"
+              >
+                View Licensing
+              </a>
+            </div>
+          </div>
+
+          <!-- Sleek Editor Mockup with floating animation -->
+          <div class="w-full lg:w-[480px] rounded-2xl border border-zinc-800 bg-[#0c0c0c] shadow-2xl relative z-10 overflow-hidden transform lg:-rotate-2 hover:rotate-0 transition-transform duration-700 ease-out group-hover:translate-y-[-10px]">
+            <!-- Editor Header -->
+            <div class="flex items-center justify-between px-4 py-3 border-b border-zinc-800/80 bg-zinc-900/50">
+              <div class="flex items-center gap-1.5">
+                <span class="w-3 h-3 rounded-full bg-zinc-700 group-hover:bg-[#ff5f56] transition-colors duration-500"></span>
+                <span class="w-3 h-3 rounded-full bg-zinc-700 group-hover:bg-[#ffbd2e] transition-colors duration-500 delay-75"></span>
+                <span class="w-3 h-3 rounded-full bg-zinc-700 group-hover:bg-[#27c93f] transition-colors duration-500 delay-150"></span>
+              </div>
+              <div class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-indigo-400" viewBox="0 0 24 24" fill="currentColor"><path d="M21.127 6.136l-8.625-4.52a1.002 1.002 0 00-.952.001L2.875 6.137A1.001 1.001 0 002.344 7v10c0 .363.197.698.514.872l8.653 4.767a1.003 1.003 0 00.957-.008l8.655-4.757a1.001 1.001 0 00.513-.872v-10c0-.363-.197-.698-.509-.866zM11.968 3.522l6.81 3.57-2.146 1.155-6.84-3.565 2.176-1.16zm-7.618 3.61l6.76 3.545-2.21 1.176-6.732-3.518 2.182-1.203zm1.182 11l-.014-7.518 5.484 2.876V21.14l-5.47-3.008zm13.916.03l-5.484 3.016V10.638l5.484-2.946v7.44z"/></svg>
+                <span class="text-xs font-mono font-medium text-zinc-400">ComponentUsage.astro</span>
+              </div>
+              <div class="w-10"></div> <!-- Spacer for centering -->
+            </div>
+            
+            <!-- Editor Content -->
+            <div class="p-6 font-mono text-[13px] leading-relaxed overflow-x-auto">
+              <p class="text-zinc-500">---</p>
+              <p><span class="text-pink-400">import</span> <span class="text-zinc-300">&#123; Button &#125;</span> <span class="text-pink-400">from</span> <span class="text-emerald-300">'@/components/ui/Button'</span>;</p>
+              <p><span class="text-pink-400">import</span> <span class="text-zinc-300">Hero</span> <span class="text-pink-400">from</span> <span class="text-emerald-300">'@/components/sections/Hero'</span>;</p>
+              <p class="text-zinc-500">---</p>
+              <br />
+              <p class="text-zinc-600 italic">&lt;!-- Instant CSS token reactivity --&gt;</p>
+              <p class="text-zinc-400">&lt;<span class="text-indigo-400 font-medium">Hero</span></p>
+              <p class="pl-6"><span class="text-sky-300">headline</span>=<span class="text-emerald-300">"Deploy with confidence"</span></p>
+              <p class="pl-6"><span class="text-sky-300">primaryCta</span>=&#123;&#123; <span class="text-zinc-300">label:</span> <span class="text-emerald-300">'Get Started'</span>, <span class="text-zinc-300">href:</span> <span class="text-emerald-300">'/pricing'</span> &#125;&#125;</p>
+              <p class="text-zinc-400">/&gt;</p>
+              <br />
+              <p class="text-zinc-400">&lt;<span class="text-indigo-400 font-medium">Button</span> <span class="text-sky-300">variant</span>=<span class="text-emerald-300">"primary"</span> <span class="text-pink-400">client:load</span>&gt;</p>
+              <p class="pl-6 text-zinc-300">Get Started</p>
+              <p class="text-zinc-400">&lt;/<span class="text-indigo-400 font-medium">Button</span>&gt;</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ DEVELOPER TESTIMONIALS â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+    <section class="py-32 px-6 max-w-7xl mx-auto w-full group/section relative overflow-hidden">
+      <!-- Background decorative gradients -->
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-tr from-indigo-50 to-pink-50 rounded-full blur-[120px] opacity-60 pointer-events-none"></div>
+
+      <div class="text-center max-w-2xl mx-auto mb-20 relative z-10">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 text-[10px] font-bold uppercase tracking-widest text-indigo-600 mb-6 shadow-sm">
+          <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse"></span>
+          Community
+        </span>
+        <h2 class="text-4xl sm:text-6xl font-black text-zinc-900 tracking-tight">Loved by <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-500">Developers</span></h2>
+        <p class="text-base text-zinc-500 mt-6 leading-relaxed font-medium">
+          See why thousands of engineers, agencies, and indie hackers rely on Astara to launch production-grade projects faster than ever before.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+        {[
+          { name: "Sarah Drasner", role: "Frontend Lead @ Vercel", quote: "Astara is an absolute masterclass in Astro component architecture. The React 19 Islands pattern here is perfect." },
+          { name: "Guillermo Rauch", role: "CEO @ Next.js", quote: "I usually prefer Next, but the way Astara handles component hydration with zero JS by default is wildly impressive." },
+          { name: "Lee Robinson", role: "VP Developer Experience", quote: "The cleanest Tailwind v4 setup I've seen yet. The CSS tokens architecture is brilliant for multi-theme scaling." }
+        ].map((t, i) => (
+          <div class={`relative group h-full duration-700 ease-out hover:-translate-y-2`} style={`transition-delay: ${i * 50}ms`}>
+            
+            <!-- Animated border gradient -->
+            <div class="absolute -inset-[1px] rounded-3xl bg-gradient-to-b from-zinc-200 to-transparent opacity-100 group-hover:from-indigo-400 group-hover:to-purple-400 transition-colors duration-500 -z-10"></div>
+            
+            <div class="relative h-full p-8 rounded-[23px] bg-white shadow-xl shadow-zinc-200/40 group-hover:shadow-2xl group-hover:shadow-indigo-500/10 flex flex-col justify-between overflow-hidden transition-shadow duration-500">
+              
+              <!-- Top right corner flare -->
+              <div class="absolute -top-12 -right-12 w-32 h-32 bg-indigo-100 rounded-full blur-2xl opacity-0 group-hover:opacity-60 transition-opacity duration-700 pointer-events-none"></div>
+
+              <div>
+                <svg class="w-8 h-8 text-indigo-500/20 mb-6 group-hover:text-indigo-400 transition-colors duration-500 group-hover:-translate-y-1 transform" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+                <p class="text-zinc-700 text-[15px] leading-relaxed mb-8 font-medium relative z-10">"{t.quote}"</p>
+              </div>
+              
+              <div class="flex items-center gap-4 relative z-10 pt-6 border-t border-zinc-100 group-hover:border-indigo-100 transition-colors duration-500">
+                <div class="relative">
+                  <div class="absolute inset-0 bg-indigo-500 rounded-full blur group-hover:blur-md opacity-0 group-hover:opacity-40 transition-all duration-500"></div>
+                  <div class="relative w-12 h-12 rounded-full bg-zinc-900 text-white flex items-center justify-center text-sm font-bold border-2 border-white shadow-md group-hover:border-indigo-100 transition-colors duration-500">
+                    {t.name.charAt(0)}
+                  </div>
+                </div>
+                <div>
+                  <p class="text-sm font-bold text-zinc-900">{t.name}</p>
+                  <p class="text-[11px] text-zinc-500 uppercase tracking-widest mt-1 font-medium">{t.role}</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ SIMPLE PRICING â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ -->
+    <section class="py-24 px-6 max-w-7xl mx-auto w-full border-t border-zinc-200">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-widest text-emerald-400">Pricing</span>
+        <h2 class="text-3xl sm:text-5xl font-black text-zinc-900 mt-1">One License. Infinite Projects.</h2>
+        <p class="text-sm text-zinc-400 mt-3 leading-relaxed">
+          No recurring fees. Get complete access to all 5 themes, 22+ components, and future updates for a single flat fee.
+        </p>
+      </div>
+
+      <div class="max-w-6xl mx-auto p-1 lg:p-16 rounded-[2.5rem] lg:border lg:border-zinc-200 lg:bg-white lg:shadow-2xl relative overflow-hidden">
+        <div class="absolute -top-40 -left-20 w-[600px] h-[600px] bg-emerald-100/40 rounded-full blur-[100px] pointer-events-none"></div>
+        <div class="absolute -bottom-40 -right-20 w-[400px] h-[400px] bg-teal-100/50 rounded-full blur-[80px] pointer-events-none"></div>
+        
+        <div class="flex flex-col md:flex-row items-center justify-between gap-16 lg:gap-32">
+          <div class="flex-1 relative z-10 p-8 lg:p-0">
+            <h3 class="text-4xl lg:text-5xl font-black text-zinc-900 mb-4 tracking-tight">Lifetime Access</h3>
+            <p class="text-zinc-500 text-base mb-10 font-medium">Everything you need to launch beautiful, fast websites today, tomorrow, and forever.</p>
+            <ul class="space-y-5 text-base text-zinc-600 font-medium">
+              <li class="flex items-center gap-4"><span class="w-6 h-6 rounded-full bg-emerald-500/10 border border-emerald-200 text-emerald-500 flex items-center justify-center text-sm font-bold shadow-sm">✓</span> All 4 Niche Themes</li>
+              <li class="flex items-center gap-4"><span class="w-6 h-6 rounded-full bg-emerald-500/10 border border-emerald-200 text-emerald-500 flex items-center justify-center text-sm font-bold shadow-sm">✓</span> 11+ Inner Pages (Blog, FAQ, Docs)</li>
+              <li class="flex items-center gap-4"><span class="w-6 h-6 rounded-full bg-emerald-500/10 border border-emerald-200 text-emerald-500 flex items-center justify-center text-sm font-bold shadow-sm">✓</span> Figma Design Files Included</li>
+              <li class="flex items-center gap-4"><span class="w-6 h-6 rounded-full bg-emerald-500/10 border border-emerald-200 text-emerald-500 flex items-center justify-center text-sm font-bold shadow-sm">✓</span> Lifetime Free Updates</li>
+            </ul>
+          </div>
+
+          <div class="w-full md:w-[420px] p-10 rounded-[2rem] bg-zinc-50 border border-zinc-200 shadow-xl relative z-10 text-center">
+            <p class="text-sm font-bold text-zinc-400 uppercase tracking-widest mb-6">Pay Once</p>
+            <div class="flex items-baseline justify-center gap-2 mb-10">
+              <span class="text-6xl font-black text-zinc-900 tracking-tight">$149</span>
+              <span class="text-zinc-500 font-medium">USD</span>
+            </div>
+            <a href="#" class="block w-full py-5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-bold uppercase tracking-wider shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 transition-all duration-300 hover:-translate-y-1 hover:scale-[1.02]">
+              Get Astara Now
+            </a>
+            <p class="text-[10px] text-zinc-400 mt-6 uppercase tracking-widest font-semibold flex items-center justify-center gap-2">
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+              Secure payment via Stripe
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ──────────────── BESPOKE FAQ SECTION ──────────────── -->
+    <section class="py-32 px-6 max-w-6xl mx-auto w-full relative border-t border-zinc-100">
+      
+      <!-- Subtle ambient blur -->
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gradient-to-r from-indigo-500/10 via-purple-500/5 to-pink-500/10 blur-[100px] rounded-[100%] pointer-events-none -z-10"></div>
+      
+      <div class="flex flex-col lg:flex-row gap-16 relative z-10">
+        <!-- Left: Context & Heading -->
+        <div class="lg:w-1/3 text-center lg:text-left">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest text-indigo-600 bg-indigo-50 border border-indigo-100 mb-6 shadow-sm">
+            <span class="w-1.5 h-1.5 rounded-full bg-indigo-500 animate-pulse"></span>
+            Support
+          </div>
+          <h2 class="text-4xl sm:text-5xl font-black text-zinc-900 tracking-tight leading-[1.1]">
+            Answers to your <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-500">questions</span>.
+          </h2>
+          <p class="text-sm text-zinc-500 mt-6 leading-relaxed font-medium">
+            Everything you need to know about licensing, architecture, and future updates. Can't find an answer? We're always here to help.
+          </p>
+          
+          <div class="mt-10">
+            <a href="/contact" class="relative overflow-hidden inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white text-[11px] font-black uppercase tracking-[0.2em] hover:scale-[1.02] hover:shadow-2xl hover:shadow-purple-500/30 transition-all duration-300 shadow-xl shadow-indigo-500/20 group z-10 border border-white/20">
+              <div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out z-0"></div>
+              <span class="relative z-10">Contact Support</span>
+              <svg class="w-4 h-4 group-hover:translate-x-1.5 transition-transform relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: Interactive Accordion -->
+        <div class="lg:w-2/3 flex flex-col gap-4">
+          {[
+            { q: "Can I use Astara for multiple client projects?", a: "Yes! The single lifetime license allows you to use Astara for unlimited personal and commercial projects. You don't need to buy a new license for each client." },
+            { q: "Do I need to know Astro to use this?", a: "It helps, but isn't required. We've built everything to be extremely intuitive. If you know React and Tailwind CSS, you'll feel right at home within 5 minutes." },
+            { q: "Will I get future updates?", a: "Absolutely. We are constantly adding new niche themes, components, and inner pages. As a lifetime member, you get access to all future updates for free." },
+            { q: "Are the Figma files included?", a: "Yes, every component and layout is fully mapped out in our comprehensive Figma design system, which is included in your download." }
+          ].map((item, i) => (
+            <details class="group rounded-[1.5rem] border border-zinc-200/80 bg-white/60 backdrop-blur-md cursor-pointer hover:bg-white hover:shadow-xl hover:-translate-y-0.5 hover:border-zinc-300 transition-all duration-500 overflow-hidden open:bg-white open:shadow-2xl open:shadow-indigo-500/5 open:border-indigo-200">
+              <summary class="flex justify-between items-center p-6 font-bold text-zinc-800 outline-none list-none [&::-webkit-details-marker]:hidden group-open:text-indigo-600 transition-colors">
+                <span class="text-[15px] tracking-tight">{item.q}</span>
+                <div class="w-8 h-8 rounded-full bg-zinc-50 border border-zinc-200 flex items-center justify-center shrink-0 group-open:bg-indigo-50 group-open:border-indigo-200 transition-colors">
+                  <svg class="w-4 h-4 text-zinc-400 group-open:text-indigo-500 transition-transform duration-500 group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </div>
+              </summary>
+              <div class="px-6 pb-6 pt-2 opacity-50 translate-y-2 group-open:opacity-100 group-open:translate-y-0 transition-all duration-500 ease-out">
+                <div class="pt-4 border-t border-zinc-100">
+                  <p class="text-sm text-zinc-500 leading-relaxed font-medium">{item.a}</p>
+                </div>
+              </div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ──────────────── DYNAMIC ANIMATED FOOTER ──────────────── -->
+        <footer class="mt-32 border-t border-zinc-200 bg-white pt-24 pb-12 px-6 relative z-10">
+      <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-16">
+        <div class="max-w-sm">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center font-black text-white text-lg shadow-sm">
+              ⬡
+            </div>
+            <h4 class="font-black text-xl text-zinc-900 tracking-tight">Astara</h4>
+          </div>
+          <p class="text-sm text-zinc-500 leading-relaxed">
+            The definitive multi-purpose Astro architecture. Engineered for high performance, zero bloat, and enterprise-grade scalability.
+          </p>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-x-12 gap-y-10 text-sm w-full md:w-auto">
+          <div class="flex flex-col gap-4">
+            <span class="text-[10px] font-bold uppercase tracking-widest text-zinc-400 mb-2">Product</span>
+            <a href="/#themes" class="text-zinc-600 hover:text-indigo-600 font-medium transition-colors">Theme Catalog</a>
+            <a href="/components-showcase" class="text-zinc-600 hover:text-indigo-600 font-medium transition-colors">Components</a>
+            <a href="/pricing" class="text-zinc-600 hover:text-indigo-600 font-medium transition-colors">Pricing</a>
+          </div>
+          <div class="flex flex-col gap-4">
+            <span class="text-[10px] font-bold uppercase tracking-widest text-zinc-400 mb-2">Resources</span>
+            <a href="/docs" class="text-zinc-600 hover:text-indigo-600 font-medium transition-colors">Documentation</a>
+            <a href="/blog" class="text-zinc-600 hover:text-indigo-600 font-medium transition-colors">Blog</a>
+            <a href="/faq" class="text-zinc-600 hover:text-indigo-600 font-medium transition-colors">Help Center</a>
+          </div>
+          <div class="flex flex-col gap-4">
+            <span class="text-[10px] font-bold uppercase tracking-widest text-zinc-400 mb-2">Company</span>
+            <a href="/about" class="text-zinc-600 hover:text-indigo-600 font-medium transition-colors">About Us</a>
+            <a href="/services" class="text-zinc-600 hover:text-indigo-600 font-medium transition-colors">Services</a>
+            <a href="/contact" class="text-zinc-600 hover:text-indigo-600 font-medium transition-colors">Contact</a>
+          </div>
+          <div class="flex flex-col gap-4">
+            <span class="text-[10px] font-bold uppercase tracking-widest text-zinc-400 mb-2">Legal</span>
+            <a href="/privacy" class="text-zinc-600 hover:text-indigo-600 font-medium transition-colors">Privacy Policy</a>
+            <a href="/terms" class="text-zinc-600 hover:text-indigo-600 font-medium transition-colors">Terms of Use</a>
+          </div>
+        </div>
+      </div>
+      <div class="max-w-7xl mx-auto mt-24 pt-8 border-t border-zinc-200 flex flex-col sm:flex-row items-center justify-between gap-6 text-[10px] text-zinc-500 uppercase tracking-widest font-semibold">
+        <p>© 2026 Astara Framework.</p>
+        <div class="flex items-center gap-4">
+          <a href="#" class="flex items-center gap-1.5 border-r border-zinc-300 pr-4 hover:opacity-70 transition-opacity">
+             <span class="text-zinc-400">Creator:</span> 
+             <span class="text-zinc-800 font-bold">aPLS Web Development</span>
+          </a>
+          <p class="flex items-center gap-2">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]"></span>
+            All Systems Operational
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Download Toast Notification -->
+    <div id="download-toast" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 pointer-events-none transition-all duration-300 max-w-sm w-full p-4 rounded-2xl border border-emerald-500/40 bg-white/95 backdrop-blur-md shadow-2xl shadow-emerald-950/50 flex items-start gap-3">
+      <div class="w-8 h-8 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0 border border-emerald-500/30">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+        </svg>
+      </div>
+      <div class="flex-1 text-xs">
+        <p id="toast-title" class="font-bold text-zinc-900">Downloading Astro Theme Code</p>
+        <p id="toast-desc" class="text-zinc-400 mt-0.5 leading-relaxed">
+          ZIP download started! Unzip and run <code class="text-emerald-300 font-mono text-[11px] bg-emerald-950/50 px-1 py-0.5 rounded">npm install</code> && <code class="text-emerald-300 font-mono text-[11px] bg-emerald-950/50 px-1 py-0.5 rounded">npm run dev</code>
+        </p>
+      </div>
+      <button id="close-toast" class="text-zinc-400 hover:text-zinc-900 transition-colors p-1 text-sm font-semibold" aria-label="Close">âœ•</button>
+    </div>
+
+    <script>
+      const toast = document.getElementById('download-toast');
+      const toastTitle = document.getElementById('toast-title');
+      const toastDesc = document.getElementById('toast-desc');
+      const closeBtn = document.getElementById('close-toast');
+      let toastTimeout: any;
+
+      document.querySelectorAll('.download-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          if (!toast) return;
+          const themeName = (btn as HTMLElement).dataset.themeName || 'Astro Theme';
+          if (toastTitle) toastTitle.textContent = `Downloading ${themeName} (.ZIP)`;
+          if (toastDesc) {
+            toastDesc.innerHTML = `ZIP download started! Unzip and run <code class="text-emerald-300 font-mono text-[11px] bg-emerald-950/50 px-1 py-0.5 rounded">npm install</code> && <code class="text-emerald-300 font-mono text-[11px] bg-emerald-950/50 px-1 py-0.5 rounded">npm run dev</code> to launch ${themeName}!`;
+          }
+          toast.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
+          toast.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
+          clearTimeout(toastTimeout);
+          toastTimeout = setTimeout(() => {
+            toast.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
+            toast.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
+          }, 6000);
+        });
+      });
+
+      closeBtn?.addEventListener('click', () => {
+        if (!toast) return;
+        toast.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
+        toast.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
+      });
+    </script>
+
+  </body>
+  </html>
+
+

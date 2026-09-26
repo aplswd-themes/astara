@@ -1,0 +1,55 @@
+﻿---
+import { PreviewNavbar } from '../components/layout/PreviewNavbar';
+import LogoCloud from '../components/sections/LogoCloud.astro';
+import { FAQ } from '../components/sections/FAQ';
+import CTABanner from '../components/sections/CTABanner.astro';
+import '../styles/global.css';
+
+const clientLogos = [{ name: 'Vercel' }, { name: 'Stripe' }, { name: 'Linear' }, { name: 'GitHub' }, { name: 'Figma' }];
+const pricingFaqs = [
+  { question: 'What is included in the free trial?', answer: 'The free trial gives you full access to all Pro features for 14 days.' },
+  { question: 'Can I cancel my subscription?', answer: 'Yes, cancel anytime directly from your dashboard.' },
+];
+---
+<html lang="en">
+<head><title>Pricing - Editorial</title></head>
+<body class="bg-[#f4f4f0] text-zinc-900 font-serif antialiased selection:bg-orange-200">
+  <PreviewNavbar client:load variationName="Editorial v4" variations={[{label:'Pricing (Main)',href:'/pricing'},{label:'Minimalist v1',href:'/pricing-v1'},{label:'Creative v2',href:'/pricing-v2'},{label:'Dark Tech v3',href:'/pricing-v3'},{label:'Editorial v4',href:'/pricing-v4'}]} />
+    
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24 pb-16">
+        <div class="text-center mb-24">
+            <h1 class="text-6xl md:text-8xl font-normal tracking-tight text-zinc-900 mb-6 italic">The Membership</h1>
+            <p class="text-xl text-zinc-600 font-sans max-w-2xl mx-auto">Join a curated group of writers, thinkers, and publishers reading the world differently.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 mb-24">
+            <div class="border-t border-b border-zinc-300 py-12 flex flex-col hover:bg-[#eaeae5] transition-colors px-8 rounded-3xl">
+                <h3 class="text-4xl font-normal text-zinc-900 mb-2">Digital</h3>
+                <div class="text-5xl font-normal text-zinc-900 my-6 italic">$15<span class="text-xl text-zinc-500 font-sans not-italic">/mo</span></div>
+                <p class="text-zinc-600 font-sans mb-8 leading-relaxed">Full access to our digital archive, daily newsletters, and exclusive podcasts.</p>
+                <ul class="space-y-3 mb-10 font-sans text-sm text-zinc-700">
+                    <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-zinc-900"></span> Unlimited articles</li>
+                    <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-zinc-900"></span> Daily newsletter</li>
+                </ul>
+                <button class="mt-auto w-full bg-transparent border border-zinc-900 text-zinc-900 font-sans font-bold py-4 rounded-full hover:bg-zinc-900 hover:text-[#f4f4f0] transition-colors">Subscribe Digital</button>
+            </div>
+
+            <div class="border border-zinc-900 bg-zinc-900 text-[#f4f4f0] py-12 flex flex-col px-8 rounded-3xl shadow-2xl hover:-translate-y-2 transition-transform duration-500">
+                <h3 class="text-4xl font-normal mb-2 text-white">All Access</h3>
+                <div class="text-5xl font-normal my-6 italic text-white">$45<span class="text-xl text-zinc-400 font-sans not-italic">/mo</span></div>
+                <p class="text-zinc-300 font-sans mb-8 leading-relaxed">The ultimate subscription. Includes print delivery and VIP event access.</p>
+                <ul class="space-y-3 mb-10 font-sans text-sm text-zinc-300">
+                    <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-orange-400"></span> Everything in Digital</li>
+                    <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-orange-400"></span> Monthly print magazine</li>
+                    <li class="flex items-center gap-3"><span class="w-1.5 h-1.5 rounded-full bg-orange-400"></span> Event invitations</li>
+                </ul>
+                <button class="mt-auto w-full bg-[#f4f4f0] text-zinc-900 font-sans font-bold py-4 rounded-full hover:bg-white transition-colors">Subscribe All Access</button>
+            </div>
+        </div>
+    </main>
+
+    <LogoCloud label="Read by authors at" logos={clientLogos} dark={false} />
+    <FAQ client:load title="Membership FAQ" items={pricingFaqs} dark={false} />
+    <CTABanner headline="Begin your journey." primaryCta={{ label: 'Subscribe Now', href: '/contact' }} />
+</body>
+</html>

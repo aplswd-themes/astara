@@ -1,0 +1,110 @@
+---
+import { Button } from '../components/ui/Button';
+import { Input } from '../components/ui/Input';
+import Badge from '../components/ui/Badge.astro';
+import Card from '../components/ui/Card.astro';
+import CodePreview from '../components/ui/CodePreview.astro';
+import { Alert } from '../components/ui/Alert.tsx';
+import Avatar from '../components/ui/Avatar.astro';
+
+import HeaderV1 from '../components/layout/HeaderV1.astro';
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UI Components Kit</title>
+    <link rel="stylesheet" href="/global.css" /> <!-- fallback -->
+  </head>
+  <body class="bg-[var(--color-bg-muted)] min-h-screen text-[var(--color-text)]">
+    <HeaderV1 />
+    
+    <div class="max-w-5xl mx-auto px-4 py-12">
+      <div class="mb-12">
+        <h1 class="text-4xl font-extrabold tracking-tight mb-4">UI Components Kit</h1>
+        <p class="text-lg text-[var(--color-text-muted)]">
+          Ready to use UI components for your Astro projects. Just click "Copy Code" and paste it directly into your project.
+        </p>
+      </div>
+
+      <div class="space-y-16">
+        
+        <section id="buttons">
+          <h2 class="text-2xl font-bold mb-6 pb-2 border-b">Buttons</h2>
+          <CodePreview componentPath="src/components/ui/Button.tsx" lang="tsx" title="Button.tsx">
+            <Button variant="primary">Primary Button</Button>
+            <Button variant="secondary">Secondary Button</Button>
+            <Button variant="outline">Outline Button</Button>
+            <Button variant="ghost">Ghost Button</Button>
+            <Button variant="danger">Danger Button</Button>
+          </CodePreview>
+        </section>
+
+        <section id="inputs">
+          <h2 class="text-2xl font-bold mb-6 pb-2 border-b">Inputs</h2>
+          <CodePreview componentPath="src/components/ui/Input.tsx" lang="tsx" title="Input.tsx">
+            <div class="flex flex-col gap-6 w-full max-w-sm">
+              <Input label="Email address" type="email" placeholder="you@example.com" />
+              <Input label="Password" type="password" error="Password must be at least 8 characters" />
+              <Input label="Username" success={true} helperText="This username is available!" />
+            </div>
+          </CodePreview>
+        </section>
+
+        <section id="badges">
+          <h2 class="text-2xl font-bold mb-6 pb-2 border-b">Badges</h2>
+          <CodePreview componentPath="src/components/ui/Badge.astro" lang="astro" title="Badge.astro">
+            <Badge variant="default">Default</Badge>
+            <Badge variant="primary">Primary</Badge>
+            <Badge variant="success">Success</Badge>
+            <Badge variant="warning">Warning</Badge>
+            <Badge variant="danger">Danger</Badge>
+            <Badge variant="outline">Outline</Badge>
+          </CodePreview>
+        </section>
+
+        <section id="cards">
+          <h2 class="text-2xl font-bold mb-6 pb-2 border-b">Cards</h2>
+          <CodePreview componentPath="src/components/ui/Card.astro" lang="astro" title="Card.astro">
+            <Card title="Example Card" description="This is an example card component" class="max-w-sm w-full">
+              <p class="text-sm text-[var(--color-text-muted)]">
+                Cards are versatile containers that can hold a variety of content like images, text, and actions.
+              </p>
+              <div class="mt-4 pt-4 border-t flex justify-end gap-2">
+                <Button variant="ghost" size="sm">Cancel</Button>
+                <Button variant="primary" size="sm">Action</Button>
+              </div>
+            </Card>
+          </CodePreview>
+        </section>
+        
+        <section id="alerts">
+          <h2 class="text-2xl font-bold mb-6 pb-2 border-b">Alerts</h2>
+          <CodePreview componentPath="src/components/ui/Alert.tsx" lang="tsx" title="Alert.tsx">
+            <div class="flex flex-col gap-4 w-full max-w-lg">
+              <Alert variant="info" title="Information">This is an informational alert.</Alert>
+              <Alert variant="success" title="Success!">Your changes have been saved successfully.</Alert>
+              <Alert variant="warning" title="Warning">Please check your configuration before proceeding.</Alert>
+              <Alert variant="error" title="Error">Something went wrong. Please try again later.</Alert>
+            </div>
+          </CodePreview>
+        </section>
+
+        <section id="avatars">
+          <h2 class="text-2xl font-bold mb-6 pb-2 border-b">Avatars</h2>
+          <CodePreview componentPath="src/components/ui/Avatar.astro" lang="astro" title="Avatar.astro">
+            <div class="flex items-center gap-6">
+              <Avatar size="sm" fallback="SM" />
+              <Avatar size="md" fallback="MD" />
+              <Avatar size="lg" fallback="LG" />
+              <Avatar size="xl" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="User" />
+            </div>
+          </CodePreview>
+        </section>
+        
+      </div>
+    </div>
+  </body>
+</html>

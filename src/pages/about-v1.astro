@@ -1,0 +1,59 @@
+---
+import { PreviewNavbar } from '../components/layout/PreviewNavbar';
+---
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About v1 - Brutalist</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-black font-sans antialiased selection:bg-black selection:text-white">
+  <PreviewNavbar client:load variationName="Minimalist v1" />
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+    <header class="mb-32">
+      <h1 class="text-7xl md:text-9xl font-black uppercase tracking-tighter leading-none mb-8">
+        We build<br/>software.
+      </h1>
+      <p class="text-2xl md:text-3xl font-medium max-w-3xl leading-snug">
+        No distractions. Just performance, reliability, and scale. We write code that works, so you can focus on your business.
+      </p>
+    </header>
+
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-16 mb-32 border-t-4 border-black pt-16">
+      <div>
+        <h2 class="text-4xl font-bold uppercase mb-4">Our Method</h2>
+        <p class="text-lg">
+          We strip away the unnecessary. Every feature, every line of code must justify its existence. This ruthless prioritization results in faster, more resilient systems.
+        </p>
+      </div>
+      <div>
+        <h2 class="text-4xl font-bold uppercase mb-4">The Team</h2>
+        <p class="text-lg">
+          Small, autonomous groups of senior engineers. We don't do middle management. You speak directly to the people building your product.
+        </p>
+      </div>
+    </section>
+
+    <section class="border-t-4 border-black pt-16">
+      <h2 class="text-6xl font-black uppercase tracking-tighter mb-12">Core Principles</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="border-2 border-black p-8 hover:bg-black hover:text-white transition-colors duration-200">
+          <h3 class="text-2xl font-bold mb-4">01. Speed</h3>
+          <p>Slow systems fail. We optimize for latency at every layer of the stack.</p>
+        </div>
+        <div class="border-2 border-black p-8 hover:bg-black hover:text-white transition-colors duration-200">
+          <h3 class="text-2xl font-bold mb-4">02. Clarity</h3>
+          <p>Complex architectures hide bugs. We favor simple, understandable designs.</p>
+        </div>
+        <div class="border-2 border-black p-8 hover:bg-black hover:text-white transition-colors duration-200">
+          <h3 class="text-2xl font-bold mb-4">03. Ownership</h3>
+          <p>You build it, you run it. Complete accountability for the software lifecycle.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
+
+

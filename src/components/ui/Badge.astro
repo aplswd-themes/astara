@@ -1,0 +1,44 @@
+---
+/**
+ * Badge.astro
+ * ────────────
+ * Inline label for status, categories, and tags.
+ *
+ * Props:
+ * @prop variant - 'default' | 'primary' | 'success' | 'warning' | 'danger' | 'outline'
+ * @prop size    - 'sm' | 'md'
+ *
+ * @example
+ * <Badge variant="primary">New</Badge>
+ * <Badge variant="success">Live</Badge>
+ * <Badge variant="outline">Beta</Badge>
+ */
+
+interface Props {
+  variant?: 'default' | 'primary' | 'success' | 'warning' | 'danger' | 'outline';
+  size?: 'sm' | 'md';
+  class?: string;
+}
+
+const { variant = 'default', size = 'md', class: className = '' } = Astro.props;
+
+const variantStyles = {
+  default: 'bg-[var(--color-bg-muted)] text-[var(--color-text-muted)]',
+  primary: 'bg-[var(--color-primary-light)] text-[var(--color-primary-dark)]',
+  success: 'bg-emerald-100 text-emerald-700',
+  warning: 'bg-amber-100 text-amber-700',
+  danger:  'bg-red-100 text-red-700',
+  outline: 'border border-[var(--color-primary)] text-[var(--color-primary)] bg-transparent',
+};
+
+const sizeStyles = {
+  sm: 'px-2 py-0.5 text-xs',
+  md: 'px-2.5 py-1 text-xs',
+};
+---
+
+<span
+  class={`inline-flex items-center gap-1 font-semibold rounded-full ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
+>
+  <slot />
+</span>

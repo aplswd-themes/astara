@@ -1,0 +1,64 @@
+﻿---
+import { PreviewNavbar } from '../components/layout/PreviewNavbar';
+import { PageVariantSwitcher } from '../components/interactive/PageVariantSwitcher';
+import '../styles/global.css';
+
+const serviceVariants = [
+  { label: 'Main', path: '/services' },
+  { label: 'Minimalist v1', path: '/services-v1' },
+  { label: 'Creative v2', path: '/services-v2' },
+  { label: 'Dark Tech v3', path: '/services-v3' },
+  { label: 'Editorial v4', path: '/services-v4' },
+];
+---
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>Services - V1</title>
+</head>
+<body class="bg-white text-black font-sans antialiased">
+  <PreviewNavbar client:load variationName="Minimalist v1" variations={[{label:'Services (Main)',href:'/services'},{label:'Minimalist v1',href:'/services-v1'},{label:'Creative v2',href:'/services-v2'},{label:'Dark Tech v3',href:'/services-v3'},{label:'Editorial v4',href:'/services-v4'}]} />
+  <PageVariantSwitcher client:load currentPath="/services-v1" variants={serviceVariants} />
+  <div class="max-w-7xl mx-auto px-6 py-24 sm:py-32 lg:px-8">
+    <header class="mb-24 border-b-8 border-black pb-8">
+      <h1 class="text-7xl sm:text-9xl font-black uppercase tracking-tighter">Services</h1>
+    </header>
+    <main>
+      <ul class="space-y-12">
+        <li class="group border-b-2 border-black pb-8 flex flex-col md:flex-row justify-between items-start md:items-center">
+          <div>
+            <h2 class="text-4xl sm:text-6xl font-bold tracking-tight mb-4">Architecture</h2>
+            <p class="text-xl max-w-xl text-neutral-600 font-medium">System design and infrastructure planning for scale.</p>
+          </div>
+          <span class="mt-4 md:mt-0 opacity-0 group-hover:opacity-100 transition-opacity text-2xl font-bold uppercase tracking-widest">â†’<br/>View</span>
+        </li>
+        <li class="group border-b-2 border-black pb-8 flex flex-col md:flex-row justify-between items-start md:items-center">
+          <div>
+            <h2 class="text-4xl sm:text-6xl font-bold tracking-tight mb-4">Development</h2>
+            <p class="text-xl max-w-xl text-neutral-600 font-medium">Core application programming and feature implementation.</p>
+          </div>
+          <span class="mt-4 md:mt-0 opacity-0 group-hover:opacity-100 transition-opacity text-2xl font-bold uppercase tracking-widest">â†’<br/>View</span>
+        </li>
+        <li class="group border-b-2 border-black pb-8 flex flex-col md:flex-row justify-between items-start md:items-center">
+          <div>
+            <h2 class="text-4xl sm:text-6xl font-bold tracking-tight mb-4">Operations</h2>
+            <p class="text-xl max-w-xl text-neutral-600 font-medium">Continuous integration, deployment pipelines, and monitoring.</p>
+          </div>
+          <span class="mt-4 md:mt-0 opacity-0 group-hover:opacity-100 transition-opacity text-2xl font-bold uppercase tracking-widest">â†’<br/>View</span>
+        </li>
+        <li class="group border-b-2 border-black pb-8 flex flex-col md:flex-row justify-between items-start md:items-center">
+          <div>
+            <h2 class="text-4xl sm:text-6xl font-bold tracking-tight mb-4">Security</h2>
+            <p class="text-xl max-w-xl text-neutral-600 font-medium">Risk assessment, compliance, and threat mitigation.</p>
+          </div>
+          <span class="mt-4 md:mt-0 opacity-0 group-hover:opacity-100 transition-opacity text-2xl font-bold uppercase tracking-widest">â†’<br/>View</span>
+        </li>
+      </ul>
+    </main>
+  </div>
+</body>
+</html>
+
+
+

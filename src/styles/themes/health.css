@@ -1,0 +1,22 @@
+/* ─── Health & Wellness / Clinic Theme ─────────────────────────────────── */
+:root {
+  --color-primary: #0891b2;
+  --color-primary-dark: #0e7490;
+  --color-primary-light: #a5f3fc;
+  --color-accent: #6ee7b7;
+  --color-accent-dark: #34d399;
+
+  --color-bg: #f0fdfa;
+  --color-bg-subtle: #e6f8f5;
+  --color-bg-muted: #ccfbf1;
+  --color-border: #99f6e4;
+  --color-border-strong: #5eead4;
+
+  --color-text: #042f2e;
+  --color-text-muted: #115e59;
+  --color-text-subtle: #0f766e;
+  --color-text-inverse: #f0fdfa;
+
+  --font-heading: 'DM Sans', 'Inter', system-ui, sans-serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+}

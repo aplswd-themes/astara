@@ -1,0 +1,236 @@
+﻿---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { PreviewNavbar } from '../components/layout/PreviewNavbar';
+import Footer from '../components/layout/Footer.astro';
+import BlogCard from '../components/ui/BlogCard.astro';
+import Badge from '../components/ui/Badge.astro';
+import { Input } from '../components/ui/Input';
+import { Button } from '../components/ui/Button';
+import '../styles/global.css';
+
+const navLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'About', href: '/about' },
+  { label: 'Services', href: '/services' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Contact', href: '/contact' },
+];
+
+const featuredPost = {
+  title: "Building the Next Generation of E-commerce Experiences",
+  excerpt: "The landscape of online shopping is shifting. We explore how headless architecture, personalization algorithms, and immersive 3D product views are fundamentally changing how consumers interact with brands online.",
+  category: "Engineering",
+  date: "March 20, 2024",
+  readTime: "10 min read",
+  author: { name: "David Kim" },
+  href: "/blog/future-of-ai-design", // Using the same dummy link
+  imagePlaceholderColor: "var(--color-primary-light)"
+};
+
+const blogPosts = [
+  {
+    title: 'The Future of AI in Product Design',
+    excerpt: 'How generative AI is augmenting the design process, from automated wireframing to intelligent color palette generation.',
+    category: 'Design',
+    date: 'March 15, 2024',
+    readTime: '8 min read',
+    author: { name: 'Sarah Chen' },
+    href: '/blog/future-of-ai-design'
+  },
+  {
+    title: 'Building Scalable APIs with Node.js',
+    excerpt: 'Best practices for structuring your backend services to handle millions of requests without sacrificing performance.',
+    category: 'Engineering',
+    date: 'March 10, 2024',
+    readTime: '12 min read',
+    author: { name: 'Marcus Johnson' },
+    href: '/blog/future-of-ai-design'
+  },
+  {
+    title: '10 UX Principles Every Designer Should Know',
+    excerpt: 'A comprehensive guide to the foundational psychological principles that drive intuitive and accessible user interfaces.',
+    category: 'Design',
+    date: 'March 05, 2024',
+    readTime: '6 min read',
+    author: { name: 'Elena Rodriguez' },
+    href: '/blog/future-of-ai-design'
+  },
+  {
+    title: 'How We Reduced Load Time by 60%',
+    excerpt: 'A technical deep-dive into the caching strategies, bundle optimizations, and edge computing techniques we used to speed up our app.',
+    category: 'Engineering',
+    date: 'February 28, 2024',
+    readTime: '10 min read',
+    author: { name: 'James Wilson' },
+    href: '/blog/future-of-ai-design'
+  },
+  {
+    title: 'Remote Work: Lessons from 5 Years',
+    excerpt: 'Reflections on maintaining company culture, combating isolation, and building strong asynchronous communication habits.',
+    category: 'Culture',
+    date: 'February 20, 2024',
+    readTime: '5 min read',
+    author: { name: 'Aisha Patel' },
+    href: '/blog/future-of-ai-design'
+  },
+  {
+    title: 'Introduction to Design Systems',
+    excerpt: 'Why your growing team needs a single source of truth for UI components, and how to start building one today.',
+    category: 'Design',
+    date: 'February 12, 2024',
+    readTime: '7 min read',
+    author: { name: 'Thomas Mueller' },
+    href: '/blog/future-of-ai-design'
+  }
+];
+---
+
+<BaseLayout themeSlug="ecommerce">
+    <PreviewNavbar client:load variationName="Blog (Main)" variations={[{label:'Blog (Main)',href:'/blog'},{label:'Minimalist v1',href:'/blog-v1'},{label:'Creative v2',href:'/blog-v2'},{label:'Dark Tech v3',href:'/blog-v3'},{label:'Editorial v4',href:'/blog-v4'}]} />
+  
+  <main class="flex-1 bg-zinc-50 overflow-hidden font-sans selection:bg-indigo-500/30">
+    <!-- Modern Hero Section with Layout Switcher Embedded -->
+    <section class="relative pt-32 pb-24 px-6 border-b border-zinc-200/50">
+      <div class="absolute inset-0 bg-gradient-to-br from-indigo-50/50 via-white to-purple-50/30 -z-10"></div>
+      
+      <div class="max-w-7xl mx-auto relative z-10">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-12">
+          
+          <div class="max-w-3xl">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-zinc-200 text-indigo-700 text-[11px] font-bold uppercase tracking-widest mb-8 shadow-sm ring-1 ring-black/5">
+              <span class="w-2 h-2 rounded-full bg-indigo-500 animate-pulse"></span>
+              The Journal
+            </div>
+            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tighter text-zinc-900 mb-6 leading-[1.05]">
+              Insights from the <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">frontier</span>
+            </h1>
+            <p class="text-xl sm:text-2xl font-medium text-zinc-500 leading-relaxed max-w-2xl">
+              Tutorials, engineering stories, and design strategies from the core team at Nexus.
+            </p>
+          </div>
+          
+          <!-- Variations Nav Card within Header -->
+          <div class="flex-shrink-0 w-full md:w-72 bg-white/80 backdrop-blur-xl p-6 rounded-3xl border border-zinc-200/80 shadow-2xl shadow-indigo-900/5 ring-1 ring-black/5">
+            <h3 class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest mb-4 px-1">Layout Variations</h3>
+            <div class="flex flex-col gap-2">
+              <a href="/blog" class="px-4 py-3 rounded-xl bg-zinc-900 text-white text-xs font-bold transition-all shadow-md shadow-zinc-900/20 flex justify-between items-center group border border-zinc-800">
+                Blog (Main) <span class="group-hover:translate-x-1 transition-transform">→</span>
+              </a>
+              <a href="/blog-v1" class="px-4 py-3 rounded-xl bg-white border border-zinc-200 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 text-xs font-bold transition-all flex justify-between items-center group">
+                Minimalist v1 <span class="group-hover:translate-x-1 transition-transform text-zinc-300">→</span>
+              </a>
+              <a href="/blog-v2" class="px-4 py-3 rounded-xl bg-white border border-zinc-200 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 text-xs font-bold transition-all flex justify-between items-center group">
+                Creative v2 <span class="group-hover:translate-x-1 transition-transform text-zinc-300">→</span>
+              </a>
+              <a href="/blog-v3" class="px-4 py-3 rounded-xl bg-white border border-zinc-200 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 text-xs font-bold transition-all flex justify-between items-center group">
+                Dark Tech v3 <span class="group-hover:translate-x-1 transition-transform text-zinc-300">→</span>
+              </a>
+              <a href="/blog-v4" class="px-4 py-3 rounded-xl bg-white border border-zinc-200 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 text-xs font-bold transition-all flex justify-between items-center group">
+                Editorial v4 <span class="group-hover:translate-x-1 transition-transform text-zinc-300">→</span>
+              </a>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+        <!-- Featured Post -->
+    <section class="py-20 md:py-32 px-6">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex items-center gap-4 mb-12">
+          <h2 class="text-3xl font-black text-zinc-900 tracking-tight">Featured Article</h2>
+          <div class="h-px bg-zinc-200 flex-1"></div>
+        </div>
+        
+        <article class="group flex flex-col lg:flex-row overflow-hidden rounded-[40px] bg-white border border-zinc-200 shadow-2xl shadow-indigo-900/5 hover:shadow-indigo-500/10 hover:border-indigo-500/30 transition-all duration-500 hover:-translate-y-2">
+          <a href={featuredPost.href} class="block lg:w-1/2 min-h-[300px] lg:min-h-full overflow-hidden relative" style={`background-color: ${featuredPost.imagePlaceholderColor}`}>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10"></div>
+            {/* Abstract geometric graphic */}
+            <div class="absolute inset-0 flex items-center justify-center opacity-10 group-hover:scale-110 transition-transform duration-700">
+              <svg class="w-48 h-48 text-zinc-900" fill="currentColor" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10" />
+              </svg>
+            </div>
+          </a>
+          
+          <div class="flex flex-col justify-center p-10 lg:p-16 lg:w-1/2 relative z-20 bg-white">
+            <div class="mb-8 flex items-center gap-4">
+              <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-indigo-50 text-indigo-700 text-xs font-bold uppercase tracking-widest border border-indigo-100 shadow-sm">
+                {featuredPost.category}
+              </div>
+              <div class="flex items-center space-x-2 text-xs font-bold text-zinc-400 uppercase tracking-widest">
+                <time datetime={featuredPost.date}>{featuredPost.date}</time>
+                <span class="text-zinc-300">&bull;</span>
+                <span>{featuredPost.readTime}</span>
+              </div>
+            </div>
+            
+            <a href={featuredPost.href} class="block mb-6 group-hover:text-indigo-600 transition-colors duration-300">
+              <h3 class="text-4xl md:text-5xl font-black text-zinc-900 leading-[1.1] tracking-tighter">
+                {featuredPost.title}
+              </h3>
+            </a>
+            
+            <p class="text-zinc-500 text-lg md:text-xl mb-10 leading-relaxed font-medium">
+              {featuredPost.excerpt}
+            </p>
+            
+            <div class="flex items-center gap-4 mt-auto pt-6 border-t border-zinc-100">
+              <div class="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-100 to-purple-100 text-indigo-700 flex items-center justify-center text-lg font-black shadow-sm">
+                {featuredPost.author.name.charAt(0).toUpperCase()}
+              </div>
+              <div>
+                <p class="font-black text-zinc-900">{featuredPost.author.name}</p>
+                <p class="text-xs font-bold text-zinc-400 uppercase tracking-wider mt-0.5">Author</p>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Post Grid -->
+    <section class="py-20 md:py-32 px-6 bg-zinc-50 border-t border-zinc-200/50">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex items-center gap-4 mb-16">
+          <h2 class="text-3xl font-black text-zinc-900 tracking-tight">Latest Posts</h2>
+          <div class="h-px bg-zinc-200 flex-1"></div>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {blogPosts.map(post => (
+            <BlogCard {...post} />
+          ))}
+        </div>
+        
+        <div class="mt-16 text-center">
+          <Button variant="outline" size="lg" className="mx-auto" client:load>
+            Load More Posts
+          </Button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-24 relative overflow-hidden">
+      <div class="absolute inset-0 bg-[var(--color-primary)] opacity-10"></div>
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl relative z-10 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold font-heading text-[var(--color-text)] mb-4">
+          Subscribe to our Newsletter
+        </h2>
+        <p class="text-lg text-[var(--color-text-subtle)] mb-8">
+          Get the latest articles, tutorials, and insights delivered straight to your inbox every week. No spam.
+        </p>
+        <form class="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
+          <Input type="email" placeholder="Enter your email address" className="flex-1" required client:load />
+          <Button type="submit" variant="primary" size="lg" client:load>
+            Subscribe Now
+          </Button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <Footer dark={false} />
+</BaseLayout>

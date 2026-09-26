@@ -1,0 +1,61 @@
+---
+export interface Props {
+  slug: string;
+  size?: 'sm' | 'md' | 'lg';
+  class?: string;
+}
+
+const { slug, size = 'md', class: className = '' } = Astro.props;
+
+const sizeMap = {
+  sm: 'w-5 h-5',
+  md: 'w-6 h-6',
+  lg: 'w-8 h-8',
+};
+
+const iconClass = `${sizeMap[size]} ${className}`;
+---
+
+{slug === 'saas' && (
+  <svg class={iconClass} viewBox="0 0 24 24" fill="none" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 2v2m0 16v2" class="text-indigo-400 stroke-current" />
+    <circle cx="8" cy="8" r="1" fill="currentColor" />
+    <circle cx="8" cy="16" r="1" fill="currentColor" />
+  </svg>
+)}
+
+{slug === 'agency' && (
+  <svg class={iconClass} viewBox="0 0 24 24" fill="none" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+    <circle cx="12" cy="12" r="2" fill="currentColor" class="text-orange-400" />
+  </svg>
+)}
+
+{slug === 'ecommerce' && (
+  <svg class={iconClass} viewBox="0 0 24 24" fill="none" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14v3m-1.5-1.5h3" class="text-emerald-400 stroke-current" />
+  </svg>
+)}
+
+{slug === 'health' && (
+  <svg class={iconClass} viewBox="0 0 24 24" fill="none" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h2l1-2 2 4 1-2h2" class="text-cyan-400 stroke-current" />
+  </svg>
+)}
+
+{slug === 'restaurant' && (
+  <svg class={iconClass} viewBox="0 0 24 24" fill="none" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 4v2m-8 9a8 8 0 0116 0H4zm-1 3h18a1 1 0 011 1v1H2v-1a1 1 0 011-1z" />
+    <circle cx="12" cy="3" r="1" fill="currentColor" class="text-amber-400" />
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 9v3m-3-1l3 3 3-3" class="text-rose-400 stroke-current" />
+  </svg>
+)}
+
+{slug === 'aerospace' && (
+  <svg class={iconClass} viewBox="0 0 24 24" fill="none" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+  </svg>
+)}

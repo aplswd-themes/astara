@@ -1,0 +1,93 @@
+---
+/**
+ * @prop {string} title - The section heading.
+ * @prop {string} subtitle - A short subtitle or eyebrow text.
+ * @prop {Array<{number: string, title: string, description: string}>} steps - The steps to display.
+ * @prop {boolean} [dark] - Whether the section should use dark mode styling.
+ * @prop {string} [class] - Additional CSS classes.
+ *
+ * @example
+ * <ProcessSteps
+ *   title="How We Work"
+ *   subtitle="Our Process"
+ *   steps={[
+ *     { number: "01", title: "Discovery", description: "We learn about your business." }
+ *   ]}
+ * />
+ */
+
+import { cn } from '../../lib/utils';
+
+interface Step {
+  number: string;
+  title: string;
+  description: string;
+}
+
+interface Props {
+  title: string;
+  subtitle: string;
+  steps: Step[];
+  dark?: boolean;
+  class?: string;
+}
+
+const { title, subtitle, steps, dark = false, class: className } = Astro.props;
+---
+
+<section class={cn(
+  "py-20 md:py-32 relative overflow-hidden",
+  dark ? "bg-gray-900 text-white" : "bg-[var(--color-bg-subtle)] text-[var(--color-text)]",
+  className
+)}>
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl relative z-10">
+    <div class="text-center max-w-3xl mx-auto mb-16 md:mb-24">
+      <span class="text-sm font-bold uppercase tracking-widest text-[var(--color-primary)] mb-4 block">
+        {subtitle}
+      </span>
+      <h2 class={cn(
+        "text-3xl md:text-5xl font-extrabold tracking-tight font-heading mb-6",
+        dark ? "text-white" : "text-[var(--color-text)]"
+      )}>
+        {title}
+      </h2>
+    </div>
+
+    <div class="relative">
+      <!-- Connecting Line -->
+      <div class={cn(
+        "hidden md:block absolute top-12 left-0 w-full h-[2px]",
+        dark ? "bg-gray-800" : "bg-[var(--color-border)]"
+      )}></div>
+
+      <div class="grid grid-cols-1 md:grid-cols-auto-fit gap-10 md:gap-8 relative z-10" style={`grid-template-columns: repeat(${steps.length}, minmax(0, 1fr))`}>
+        {steps.map((step, index) => (
+          <div class="relative flex flex-col items-center text-center group">
+            <div class={cn(
+              "w-24 h-24 rounded-full flex items-center justify-center text-2xl font-bold font-heading mb-6 transition-transform duration-[var(--transition-base)] group-hover:scale-110",
+              dark 
+                ? "bg-gray-800 text-white border-4 border-gray-900" 
+                : "bg-[var(--color-bg)] text-[var(--color-primary)] border-4 border-[var(--color-bg-subtle)] shadow-[var(--shadow-md)]"
+            )}>
+              {step.number}
+            </div>
+            
+            <h3 class={cn(
+              "text-xl font-bold mb-3 font-heading",
+              dark ? "text-gray-100" : "text-[var(--color-text)]"
+            )}>
+              {step.title}
+            </h3>
+            
+            <p class={cn(
+              "text-base leading-relaxed max-w-xs mx-auto",
+              dark ? "text-gray-400" : "text-[var(--color-text-subtle)]"
+            )}>
+              {step.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

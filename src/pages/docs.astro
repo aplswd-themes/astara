@@ -1,0 +1,308 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { HubNavbar } from '../components/layout/HubNavbar';
+import Footer from '../components/layout/Footer.astro';
+import { Button } from '../components/ui/Button';
+import Badge from '../components/ui/Badge.astro';
+import Card from '../components/ui/Card.astro';
+import { Input } from '../components/ui/Input';
+import HeroMotionGraphic from '../components/sections/HeroMotionGraphic.astro';
+import ModernVisualShowcase from '../components/sections/ModernVisualShowcase.astro';
+import { PortfolioSlider } from '../components/interactive/PortfolioSlider';
+import { AutoCardSlider } from '../components/interactive/AutoCardSlider';
+import CodePreview from '../components/ui/CodePreview.astro';
+
+---
+
+<BaseLayout
+  title="Component Docs — Nexus Theme System"
+  description="Comprehensive interactive documentation and code snippets for all reusable Astro & React components."
+  themeSlug="ecommerce"
+>
+  <HubNavbar client:load />
+
+  <div class="flex flex-col md:flex-row min-h-screen bg-[var(--color-bg)] relative overflow-hidden">
+    <!-- Modern Ambient Animated Background -->
+    <div class="fixed inset-0 pointer-events-none z-0">
+      <div class="absolute -top-[20%] -left-[10%] w-[50%] h-[50%] rounded-full bg-[var(--color-primary)]/5 blur-[120px] mix-blend-multiply animate-pulse" style="animation-duration: 8s;"></div>
+      <div class="absolute top-[40%] -right-[10%] w-[40%] h-[60%] rounded-full bg-indigo-500/5 blur-[120px] mix-blend-multiply animate-pulse" style="animation-duration: 10s; animation-delay: 2s;"></div>
+    </div>
+
+    <!-- Sidebar Navigation -->
+    <aside class="w-full md:w-72 border-r border-zinc-200 bg-[var(--color-bg)]/60 backdrop-blur-2xl shrink-0 hidden md:block relative z-20">
+      <div class="sticky top-16 p-8 max-h-[calc(100vh-4rem)] overflow-y-auto custom-scrollbar">
+        <h3 class="text-[10px] font-black uppercase tracking-widest text-[var(--color-primary)] mb-6">Documentation</h3>
+        <nav class="flex flex-col gap-1.5 text-sm font-medium">
+          <a href="#introduction" class="px-3 py-2 rounded-lg text-[var(--color-text)] hover:text-[var(--color-primary)] hover:bg-[var(--color-primary)]/10 transition-all duration-200">Introduction</a>
+          
+          <div class="mt-6 mb-2 px-3 text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">Primitives</div>
+          <a href="#button" class="px-3 py-2 rounded-lg text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-bg-muted)] transition-all duration-200">Button</a>
+          <a href="#badge" class="px-3 py-2 rounded-lg text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-bg-muted)] transition-all duration-200">Badge</a>
+          <a href="#input" class="px-3 py-2 rounded-lg text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-bg-muted)] transition-all duration-200">Input</a>
+          <a href="#card" class="px-3 py-2 rounded-lg text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-bg-muted)] transition-all duration-200">Card</a>
+
+          <div class="mt-6 mb-2 px-3 text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">Sections</div>
+          <a href="#hero-motion" class="px-3 py-2 rounded-lg text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-bg-muted)] transition-all duration-200">Hero Motion</a>
+          <a href="#visual-showcase" class="px-3 py-2 rounded-lg text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-bg-muted)] transition-all duration-200">Visual Showcase</a>
+          <a href="#portfolio-slider" class="px-3 py-2 rounded-lg text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-bg-muted)] transition-all duration-200">Portfolio Slider</a>
+          <a href="#auto-slider" class="px-3 py-2 rounded-lg text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-bg-muted)] transition-all duration-200">Auto Marquee</a>
+          
+          <div class="mt-6 mb-2 px-3 text-[10px] font-bold uppercase tracking-wider text-[var(--color-text-muted)]">Architecture</div>
+          <a href="#theme-tokens" class="px-3 py-2 rounded-lg text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-bg-muted)] transition-all duration-200">CSS Tokens</a>
+        </nav>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 max-w-5xl w-full px-6 md:px-16 py-16 md:py-24 mx-auto relative z-10">
+      
+      <section id="introduction" class="mb-24 animate-fade-in-up">
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold mb-8 bg-[var(--color-primary)]/10 text-[var(--color-primary)] border border-[var(--color-primary)]/20 shadow-sm transition-transform hover:scale-105">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" /></svg>
+          Design System v2.0
+        </div>
+        <h1 class="text-5xl md:text-7xl font-black text-[var(--color-text)] tracking-tighter mb-6 leading-tight">
+          Architecture Docs.
+        </h1>
+        <p class="text-xl md:text-2xl text-[var(--color-text-muted)] max-w-3xl leading-relaxed font-medium">
+          Every component is designed with strict CSS custom properties for instant re-theming. Built with Astro for zero-JS speed by default and interactive React 19 islands where required.
+        </p>
+      </section>
+
+      <div class="space-y-32">
+        
+        <!-- ================= UI PRIMITIVES ================= -->
+        <div class="space-y-24">
+          <div class="border-b-2 border-zinc-200 pb-6 animate-fade-in-up" style="animation-delay: 100ms;">
+            <h2 class="text-4xl font-black text-[var(--color-text)] tracking-tight mb-2">UI Primitives</h2>
+            <p class="text-lg text-[var(--color-text-muted)]">Core interactive building blocks with multiple visual states.</p>
+          </div>
+
+          <section id="button" class="animate-fade-in-up scroll-mt-32" style="animation-delay: 200ms;">
+            <div class="group">
+              <h3 class="text-3xl font-bold text-[var(--color-text)] mb-3 flex items-center gap-3">
+                Button
+                <div class="opacity-0 group-hover:opacity-100 transition-opacity w-8 h-8 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center text-[var(--color-primary)] text-sm">#</div>
+              </h3>
+              <p class="text-lg text-[var(--color-text-muted)] mb-8">Supports 5 visual variants, 4 sizes, loading spinners, and full-width triggers.</p>
+            </div>
+            <div class="shadow-2xl shadow-[var(--color-primary)]/5 rounded-2xl overflow-hidden border border-zinc-200 hover:border-[var(--color-primary)]/30 transition-colors duration-500">
+              <CodePreview 
+                title="Button Usage" 
+                codeString={`import { Button } from '../components/ui/Button';\n\n<Button variant="primary" size="lg" client:load>\n  Get Started Now\n</Button>\n\n<Button as="a" href="/pricing" variant="outline">\n  View Pricing\n</Button>`}
+              >
+                <div class="flex flex-wrap gap-4 items-center justify-center p-8 bg-[var(--color-bg-subtle)]/50">
+                  <Button variant="primary" size="md" client:load>Primary Button</Button>
+                  <Button variant="secondary" size="md" client:load>Secondary</Button>
+                  <Button variant="outline" size="md" client:load>Outline</Button>
+                  <Button variant="ghost" size="md" client:load>Ghost</Button>
+                  <Button variant="danger" size="md" client:load>Danger</Button>
+                  <Button variant="primary" size="md" loading client:load>Processing</Button>
+                </div>
+              </CodePreview>
+            </div>
+          </section>
+
+          <section id="badge" class="animate-fade-in-up scroll-mt-32" style="animation-delay: 100ms;">
+            <div class="group">
+              <h3 class="text-3xl font-bold text-[var(--color-text)] mb-3 flex items-center gap-3">
+                Badge
+                <div class="opacity-0 group-hover:opacity-100 transition-opacity w-8 h-8 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center text-[var(--color-primary)] text-sm">#</div>
+              </h3>
+              <p class="text-lg text-[var(--color-text-muted)] mb-8">Inline label for status, categories, and tags.</p>
+            </div>
+            <div class="shadow-2xl shadow-zinc-500/5 rounded-2xl overflow-hidden border border-zinc-200 hover:border-[var(--color-primary)]/30 transition-colors duration-500">
+              <CodePreview 
+                title="Badge Usage" 
+                codeString={`import Badge from '../components/ui/Badge.astro';\n\n<Badge variant="primary">Primary Tag</Badge>\n<Badge variant="success">Active</Badge>`}
+              >
+                <div class="flex flex-wrap gap-3 items-center justify-center p-8 bg-[var(--color-bg-subtle)]/50">
+                  <Badge variant="default">Default</Badge>
+                  <Badge variant="primary">Primary Tag</Badge>
+                  <Badge variant="success">Active / Live</Badge>
+                  <Badge variant="warning">Attention</Badge>
+                  <Badge variant="danger">Critical</Badge>
+                  <Badge variant="outline">Outline</Badge>
+                </div>
+              </CodePreview>
+            </div>
+          </section>
+
+          <section id="input" class="animate-fade-in-up scroll-mt-32" style="animation-delay: 100ms;">
+            <div class="group">
+              <h3 class="text-3xl font-bold text-[var(--color-text)] mb-3 flex items-center gap-3">Input Control</h3>
+              <p class="text-lg text-[var(--color-text-muted)] mb-8">Accessible form input with validation states and fluid animations.</p>
+            </div>
+            <div class="shadow-2xl shadow-zinc-500/5 rounded-2xl overflow-hidden border border-zinc-200">
+              <CodePreview 
+                title="Input Usage" 
+                codeString={`import { Input } from '../components/ui/Input';\n\n<Input \n  label="Email address" \n  placeholder="alex@domain.com" \n  helperText="We'll never share your data." \n/>`}
+              >
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full max-w-3xl mx-auto p-8 bg-[var(--color-bg-subtle)]/50">
+                  <Input label="Email address" placeholder="alex@domain.com" helperText="We'll never share your data." client:load />
+                  <Input label="Validation Example" error="Please enter a valid format." value="invalid-entry" client:load />
+                </div>
+              </CodePreview>
+            </div>
+          </section>
+
+          <section id="card" class="animate-fade-in-up scroll-mt-32" style="animation-delay: 100ms;">
+            <div class="group">
+              <h3 class="text-3xl font-bold text-[var(--color-text)] mb-3 flex items-center gap-3">Card Surface</h3>
+              <p class="text-lg text-[var(--color-text-muted)] mb-8">Container for displaying structured content with modern glass aesthetics.</p>
+            </div>
+            <div class="shadow-2xl shadow-zinc-500/5 rounded-2xl overflow-hidden border border-zinc-200">
+              <CodePreview 
+                title="Card Usage" 
+                codeString={`import Card from '../components/ui/Card.astro';\n\n<Card padding="md" hover>\n  <h4>Interactive Card</h4>\n  <p>Content goes here.</p>\n</Card>`}
+              >
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-3xl mx-auto p-8 bg-[var(--color-bg-subtle)]/50">
+                  <Card padding="md" hover>
+                    <h4 class="font-bold text-lg text-[var(--color-text)] mb-2">Hoverable Card</h4>
+                    <p class="text-[var(--color-text-muted)]">Includes smooth translateY animations and subtle drop-shadows on hover.</p>
+                  </Card>
+                  <Card padding="md">
+                    <h4 class="font-bold text-lg text-[var(--color-text)] mb-2">Standard Surface</h4>
+                    <p class="text-[var(--color-text-muted)]">Clean, understated borders conforming strictly to border tokens.</p>
+                  </Card>
+                </div>
+              </CodePreview>
+            </div>
+          </section>
+        </div>
+
+        <!-- ================= MARKETING SECTIONS ================= -->
+        <div class="space-y-24">
+          <div class="border-b-2 border-zinc-200 pb-6 animate-fade-in-up">
+            <h2 class="text-4xl font-black text-[var(--color-text)] tracking-tight mb-2">Marketing Sections</h2>
+            <p class="text-lg text-[var(--color-text-muted)]">High-conversion sections ready to drop into any landing page.</p>
+          </div>
+
+          <section id="hero-motion" class="animate-fade-in-up scroll-mt-32">
+            <div class="group">
+              <h3 class="text-3xl font-bold text-[var(--color-text)] mb-3 flex items-center gap-3">Hero Motion Graphic</h3>
+              <p class="text-lg text-[var(--color-text-muted)] mb-8">Modular niche graphics for hero sections.</p>
+            </div>
+            <div class="shadow-2xl shadow-zinc-500/5 rounded-2xl overflow-hidden border border-zinc-200">
+              <CodePreview 
+                title="HeroMotionGraphic Usage" 
+                codeString={`import HeroMotionGraphic from '../components/sections/HeroMotionGraphic.astro';\n\n<HeroMotionGraphic variant="saas" />`}
+              >
+                <div class="w-full flex gap-8 justify-center p-8 bg-[var(--color-bg-subtle)]/50">
+                  <HeroMotionGraphic variant="saas" />
+                </div>
+              </CodePreview>
+            </div>
+          </section>
+
+          <section id="visual-showcase" class="animate-fade-in-up scroll-mt-32">
+            <div class="group">
+              <h3 class="text-3xl font-bold text-[var(--color-text)] mb-3 flex items-center gap-3">Visual Showcase</h3>
+              <p class="text-lg text-[var(--color-text-muted)] mb-8">Imagery block for architectural and premium product displays.</p>
+            </div>
+            <div class="shadow-2xl shadow-zinc-500/5 rounded-2xl overflow-hidden border border-zinc-200">
+              <CodePreview 
+                title="ModernVisualShowcase Usage" 
+                codeString={`import ModernVisualShowcase from '../components/sections/ModernVisualShowcase.astro';\n\n<ModernVisualShowcase\n  variant="ecommerce"\n  title="Materials & Durability"\n  subtitle="Our Standards"\n/>`}
+              >
+                <div class="w-full max-w-4xl border border-zinc-200 rounded-xl overflow-hidden mx-auto shadow-lg">
+                  <ModernVisualShowcase variant="ecommerce" title="Architectural Materials" subtitle="In-Doc Preview" />
+                </div>
+              </CodePreview>
+            </div>
+          </section>
+          
+          <section id="portfolio-slider" class="animate-fade-in-up scroll-mt-32">
+            <div class="group">
+              <h3 class="text-3xl font-bold text-[var(--color-text)] mb-3 flex items-center gap-3">Portfolio Slider</h3>
+              <p class="text-lg text-[var(--color-text-muted)] mb-8">Interactive drag-enabled carousel for showcasing work.</p>
+            </div>
+            <div class="shadow-2xl shadow-zinc-500/5 rounded-2xl overflow-hidden border border-zinc-200">
+              <CodePreview 
+                title="PortfolioSlider Usage" 
+                codeString={`import { PortfolioSlider } from '../components/interactive/PortfolioSlider';\n\n<PortfolioSlider \n  client:load \n  title="Recent Work" \n  subtitle="Selected Projects" \n/>`}
+              >
+                <div class="w-full max-w-4xl border border-zinc-200 rounded-xl overflow-hidden bg-[var(--color-bg-subtle)] mx-auto shadow-lg">
+                  <PortfolioSlider client:load title="Interactive Portfolio Carousel" subtitle="Live Preview" />
+                </div>
+              </CodePreview>
+            </div>
+          </section>
+
+        </div>
+        
+        <!-- ================= CSS VARIABLES ================= -->
+        <div class="space-y-24">
+          <section id="theme-tokens" class="animate-fade-in-up scroll-mt-32">
+            <div class="border-b-2 border-zinc-200 pb-6 mb-12">
+              <h2 class="text-4xl font-black text-[var(--color-text)] tracking-tight mb-2">CSS Tokens Guide</h2>
+              <p class="text-lg text-[var(--color-text-muted)]">Core variables for instant re-theming and token management.</p>
+            </div>
+            
+            <div class="overflow-hidden rounded-2xl border border-zinc-200 bg-white/50 backdrop-blur-md shadow-2xl shadow-[var(--color-primary)]/5">
+              <table class="w-full text-left text-sm">
+                <thead class="bg-[var(--color-bg-muted)]/80 text-[var(--color-text)] uppercase text-xs tracking-wider">
+                  <tr>
+                    <th class="p-5 font-bold">Token Name</th>
+                    <th class="p-5 font-bold">Default Value</th>
+                    <th class="p-5 font-bold">Purpose</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-[var(--color-border)] text-[var(--color-text-muted)] bg-white/30">
+                  <tr class="hover:bg-[var(--color-bg-muted)]/50 transition-colors">
+                    <td class="p-5 font-mono text-[var(--color-primary)] font-semibold">--color-primary</td>
+                    <td class="p-5 font-mono bg-zinc-100/50 rounded inline-block m-4">#6366f1</td>
+                    <td class="p-5 font-medium">Brand focal color for CTAs, highlights</td>
+                  </tr>
+                  <tr class="hover:bg-[var(--color-bg-muted)]/50 transition-colors">
+                    <td class="p-5 font-mono text-[var(--color-primary)] font-semibold">--color-bg</td>
+                    <td class="p-5 font-mono bg-zinc-100/50 rounded inline-block m-4">#ffffff / #0a0a0f</td>
+                    <td class="p-5 font-medium">Primary viewport background</td>
+                  </tr>
+                  <tr class="hover:bg-[var(--color-bg-muted)]/50 transition-colors">
+                    <td class="p-5 font-mono text-[var(--color-primary)] font-semibold">--color-bg-subtle</td>
+                    <td class="p-5 font-mono bg-zinc-100/50 rounded inline-block m-4">#f8fafc / #111118</td>
+                    <td class="p-5 font-medium">Card surfaces, section bands</td>
+                  </tr>
+                  <tr class="hover:bg-[var(--color-bg-muted)]/50 transition-colors">
+                    <td class="p-5 font-mono text-[var(--color-primary)] font-semibold">--color-border</td>
+                    <td class="p-5 font-mono bg-zinc-100/50 rounded inline-block m-4">#e2e8f0 / #1e1e2e</td>
+                    <td class="p-5 font-medium">Dividers, outline boundaries</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </div>
+
+      </div>
+    </main>
+  </div>
+
+  <Footer
+    logo="Nexus"
+    tagline="Clean, production-grade web architecture built with Astro, React, and Tailwind CSS."
+  />
+</BaseLayout>
+
+<style>
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+  }
+  
+  /* Custom scrollbar for sidebar */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--color-border);
+    border-radius: 4px;
+  }
+  .custom-scrollbar:hover::-webkit-scrollbar-thumb {
+    background: var(--color-primary);
+  }
+</style>

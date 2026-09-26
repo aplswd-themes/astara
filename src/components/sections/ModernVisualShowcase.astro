@@ -1,0 +1,398 @@
+---
+/**
+ * ModernVisualShowcase.astro
+ * ──────────────────────────
+ * A modern, visual feature showcase with responsive photographic imagery,
+ * metrics overlays, and design accents. Built to bring photographic and high-end
+ * UI designs into each home page.
+ *
+ * Props:
+ * @prop variant - 'saas' | 'agency' | 'ecommerce' | 'health' | 'restaurant'
+ * @prop title   - Section headline
+ * @prop subtitle - Eyebrow category tag
+ * @prop dark    - Dark background mode
+ */
+
+import { MEDIA } from '../../lib/media';
+
+interface Props {
+  variant: 'saas' | 'agency' | 'ecommerce' | 'health' | 'restaurant';
+  title?: string;
+  subtitle?: string;
+  dark?: boolean;
+}
+
+const {
+  variant,
+  title,
+  subtitle,
+  dark = false,
+} = Astro.props;
+---
+
+<section class={`section ${dark ? 'bg-[var(--color-bg-subtle)]' : 'bg-[var(--color-bg)]'} border-y border-[var(--color-border)] relative overflow-hidden`}>
+  <div class="container mx-auto px-4">
+
+    {/* Section Header */}
+    {(title || subtitle) && (
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        {subtitle && (
+          <span class="text-xs font-bold uppercase tracking-widest text-[var(--color-primary)] mb-2 block">
+            {subtitle}
+          </span>
+        )}
+        {title && (
+          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[var(--color-text)] tracking-tight">
+            {title}
+          </h2>
+        )}
+      </div>
+    )}
+
+    {/* ────────────────── SAAS VISUAL SHOWCASE: Infrastructure & Edge Telemetry ────────────────── */}
+    {variant === 'saas' && (
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <!-- Main Graphic Display with High-Res Datacenter Hardware -->
+        <div class="lg:col-span-7 rounded-3xl border border-zinc-800 bg-zinc-950 p-6 md:p-8 shadow-2xl relative overflow-hidden group">
+          <div class="absolute -top-20 -left-20 w-72 h-72 rounded-full bg-indigo-600/20 blur-3xl pointer-events-none"></div>
+
+          <!-- Top Status Bar -->
+          <div class="flex items-center justify-between pb-4 mb-6 border-b border-zinc-800 text-xs text-zinc-400">
+            <span class="font-mono text-indigo-400 font-bold flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-indigo-400 animate-ping"></span>
+              EDGE_GLOBAL_MESH_v2
+            </span>
+            <span class="text-emerald-400 flex items-center gap-1.5 font-semibold">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span> 312 PoPs Operating
+            </span>
+          </div>
+
+          <!-- Photographic Datacenter Canvas with HUD Overlay -->
+          <div class="relative rounded-2xl overflow-hidden border border-zinc-800/80 mb-6 group/img">
+            <img
+              src={MEDIA.saas.datacenter}
+              alt="Global Datacenter Infrastructure"
+              class="w-full h-64 object-cover filter brightness-[0.75] group-hover/img:scale-105 transition-transform duration-700"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent"></div>
+
+            <!-- Floating In-Image Metric Badges -->
+            <div class="absolute bottom-4 left-4 right-4 flex flex-wrap gap-2 justify-between items-end">
+              <div class="glass-card px-3.5 py-2 rounded-xl text-xs backdrop-blur-md bg-black/60 border border-white/10 text-white">
+                <span class="text-zinc-400 block text-[10px] uppercase font-bold">Throughput</span>
+                <span class="font-mono font-bold text-emerald-400 text-sm">4.8 Tbps / sec</span>
+              </div>
+              <div class="glass-card px-3.5 py-2 rounded-xl text-xs backdrop-blur-md bg-black/60 border border-white/10 text-white">
+                <span class="text-zinc-400 block text-[10px] uppercase font-bold">Cold Start</span>
+                <span class="font-mono font-bold text-indigo-400 text-sm">&lt; 0.8ms (V8 Isolate)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Interactive Latency Benchmarks -->
+          <div class="rounded-2xl border border-zinc-800/80 bg-zinc-900/60 p-4 space-y-3">
+            <div class="grid grid-cols-3 gap-3 text-center">
+              <div class="p-3 rounded-xl bg-zinc-950 border border-zinc-800">
+                <p class="text-[10px] uppercase text-zinc-400 font-bold">North America</p>
+                <p class="text-lg font-black text-indigo-400 mt-0.5">11ms</p>
+                <p class="text-[10px] text-zinc-500">120 Locations</p>
+              </div>
+              <div class="p-3 rounded-xl bg-zinc-950 border border-zinc-800">
+                <p class="text-[10px] uppercase text-zinc-400 font-bold">Europe West</p>
+                <p class="text-lg font-black text-purple-400 mt-0.5">14ms</p>
+                <p class="text-[10px] text-zinc-500">98 Locations</p>
+              </div>
+              <div class="p-3 rounded-xl bg-zinc-950 border border-zinc-800">
+                <p class="text-[10px] uppercase text-zinc-400 font-bold">Asia-Pacific</p>
+                <p class="text-lg font-black text-emerald-400 mt-0.5">22ms</p>
+                <p class="text-[10px] text-zinc-500">94 Locations</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accompanying Narrative Cards -->
+        <div class="lg:col-span-5 space-y-5">
+          <div class="p-6 rounded-2xl border border-zinc-800 bg-zinc-900/50 hover:border-indigo-500/50 transition-all">
+            <div class="w-10 h-10 rounded-xl bg-indigo-600/20 text-indigo-400 flex items-center justify-center font-bold text-lg mb-3">
+              ⚡
+            </div>
+            <h3 class="text-lg font-bold text-white mb-1">Instant Cold-Start Elimination</h3>
+            <p class="text-xs text-zinc-400 leading-relaxed">
+              Edge functions execute inside isolated V8 isolates worldwide, eliminating container boot latency completely.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl border border-zinc-800 bg-zinc-900/50 hover:border-purple-500/50 transition-all">
+            <div class="w-10 h-10 rounded-xl bg-purple-600/20 text-purple-400 flex items-center justify-center font-bold text-lg mb-3">
+              🛡️
+            </div>
+            <h3 class="text-lg font-bold text-white mb-1">Automatic DDoS Mitigation</h3>
+            <p class="text-xs text-zinc-400 leading-relaxed">
+              Volumetric attack filtering at layer 3, 4, and 7 absorbs malicious floods before they reach your origin.
+            </p>
+          </div>
+
+          <div class="p-6 rounded-2xl border border-zinc-800 bg-zinc-900/50 hover:border-emerald-500/50 transition-all">
+            <div class="w-10 h-10 rounded-xl bg-emerald-600/20 text-emerald-400 flex items-center justify-center font-bold text-lg mb-3">
+              🚀
+            </div>
+            <h3 class="text-lg font-bold text-white mb-1">Astro Island Hydro-Static Caching</h3>
+            <p class="text-xs text-zinc-400 leading-relaxed">
+              Zero JavaScript shipping for static content, with React 19 interactive telemetry hydrated on-demand.
+            </p>
+          </div>
+        </div>
+      </div>
+    )}
+
+    {/* ────────────────── AGENCY VISUAL SHOWCASE: Case Studies & Art Direction ────────────────── */}
+    {variant === 'agency' && (
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {[
+          {
+            title: 'Aerospace Re-Positioning',
+            client: 'Altitude Global',
+            year: '2024',
+            tag: 'Identity & Web',
+            image: MEDIA.agency.meridian,
+            desc: 'Complete brand overhaul, typographic design system, and multi-region Astro application.',
+          },
+          {
+            title: 'Modern Architecture Journal',
+            client: 'Monolith Spatial',
+            year: '2024',
+            tag: 'Editorial & CMS',
+            image: MEDIA.agency.otera,
+            desc: 'Bespoke grid layout showcasing high-resolution architectural photography with zero layout shift.',
+          },
+          {
+            title: 'Regenerative Science App',
+            client: 'Otera Longevity',
+            year: '2023',
+            tag: 'Product Architecture',
+            image: MEDIA.agency.kinetic,
+            desc: 'Mobile-first UX design system with clinical data dashboards and seamless client onboarding.',
+          },
+        ].map(item => (
+          <div class="group rounded-3xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col justify-between">
+            <div class="h-64 relative overflow-hidden">
+              <img
+                src={item.image}
+                alt={item.title}
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 filter brightness-90"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/20"></div>
+
+              <div class="absolute inset-0 p-6 flex flex-col justify-between text-white z-10">
+                <div class="flex justify-between items-center">
+                  <span class="text-[10px] uppercase font-bold tracking-widest px-2.5 py-1 rounded-full bg-white/20 backdrop-blur-md border border-white/20">
+                    {item.tag}
+                  </span>
+                  <span class="text-xs font-mono font-semibold text-stone-200">{item.year}</span>
+                </div>
+                <div>
+                  <p class="text-[11px] uppercase tracking-wider text-orange-400 font-semibold">{item.client}</p>
+                  <h4 class="text-xl font-bold mt-0.5 text-white" style="font-family: var(--font-heading);">{item.title}</h4>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-6 flex-1 flex flex-col justify-between gap-4">
+              <p class="text-xs text-stone-600 dark:text-stone-400 leading-relaxed">{item.desc}</p>
+              <div class="pt-4 border-t border-stone-100 dark:border-stone-800 flex items-center justify-between text-xs font-bold text-orange-600">
+                <span>View Case Architecture</span>
+                <span class="group-hover:translate-x-1.5 transition-transform">→</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    )}
+
+    {/* ────────────────── ECOMMERCE VISUAL SHOWCASE: Material Craft & Precision ────────────────── */}
+    {variant === 'ecommerce' && (
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {[
+          {
+            title: 'Precision Horology Chronograph',
+            feature: 'Grade 5 Titanium',
+            desc: 'Machined casing with double-domed sapphire crystal and anti-reflective internal coating.',
+            image: MEDIA.ecommerce.chronograph,
+            badge: 'Limited Run',
+          },
+          {
+            title: 'Hand-Welted Derby Footwear',
+            feature: 'Tuscan Calfskin',
+            desc: 'Vegetable-tanned leather hand-stitched over ergonomic wooden lasts with Vibram half-soles.',
+            image: MEDIA.ecommerce.derbyShoes,
+            badge: 'Artisanal',
+          },
+          {
+            title: 'Sculptural Cast Table Lamp',
+            feature: 'Solid Anodized Brass',
+            desc: 'Warm dimmable 2700K integrated LED module with sand-cast bronze weighted base.',
+            image: MEDIA.ecommerce.lamp,
+            badge: 'Interior Design',
+          },
+        ].map(item => (
+          <div class="rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 overflow-hidden hover:border-emerald-500/50 hover:shadow-2xl transition-all duration-500 flex flex-col justify-between group hover:-translate-y-2">
+            <div class="h-60 relative overflow-hidden bg-zinc-950">
+              <img
+                src={item.image}
+                alt={item.title}
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+              <div class="absolute top-4 left-4 z-10">
+                <span class="text-[10px] uppercase font-extrabold tracking-widest px-2.5 py-1 rounded-md bg-emerald-600 text-white shadow-md">
+                  {item.badge}
+                </span>
+              </div>
+              <div class="absolute bottom-4 left-4 right-4 z-10">
+                <span class="text-[10px] uppercase font-extrabold tracking-widest text-emerald-400 block mb-0.5">
+                  {item.feature}
+                </span>
+                <h3 class="text-base font-bold text-white">{item.title}</h3>
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between gap-4">
+              <p class="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">{item.desc}</p>
+              <div class="pt-4 border-t border-zinc-100 dark:border-zinc-800 flex items-center justify-between text-xs font-bold text-zinc-900 dark:text-white group-hover:text-emerald-500 transition-colors">
+                <span>View Material Blueprint</span>
+                <span class="group-hover:translate-x-1.5 transition-transform">→</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    )}
+
+    {/* ────────────────── HEALTH VISUAL SHOWCASE: Modern Clinical Facility ────────────────── */}
+    {variant === 'health' && (
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- Visual Clinic Sanctuary Photography -->
+        <div class="rounded-3xl border border-cyan-100 dark:border-zinc-800 bg-white dark:bg-zinc-900 overflow-hidden shadow-2xl group">
+          <div class="h-72 relative overflow-hidden">
+            <img
+              src={MEDIA.health.clinicSanctuary}
+              alt="Vitality Health Sanctuary"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-cyan-950/80 via-cyan-950/30 to-transparent"></div>
+            <div class="absolute top-4 left-4">
+              <span class="text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-full bg-cyan-600 text-white shadow-md">
+                LEED Platinum Facility
+              </span>
+            </div>
+            <div class="absolute bottom-4 left-4 right-4 text-white">
+              <h3 class="text-xl font-bold">Circadian Biophilic Sanctuary</h3>
+              <p class="text-xs text-cyan-200 mt-1">Engineered to reduce cortisol through natural acoustic dampening and daylighting</p>
+            </div>
+          </div>
+
+          <div class="p-6 grid grid-cols-2 gap-4 bg-cyan-50/50 dark:bg-zinc-800/40 border-t border-cyan-100 dark:border-zinc-800">
+            <div class="p-3.5 rounded-xl bg-white dark:bg-zinc-900 border border-cyan-100 dark:border-zinc-700">
+              <span class="text-[10px] uppercase font-bold text-cyan-700 dark:text-cyan-400 block">Air Filtration</span>
+              <span class="text-base font-black text-zinc-900 dark:text-white mt-0.5 block">HEPA 14 / UV-C</span>
+              <span class="text-[10px] text-zinc-500">Zero particulate recirc</span>
+            </div>
+            <div class="p-3.5 rounded-xl bg-white dark:bg-zinc-900 border border-cyan-100 dark:border-zinc-700">
+              <span class="text-[10px] uppercase font-bold text-cyan-700 dark:text-cyan-400 block">Diagnostic Turnaround</span>
+              <span class="text-base font-black text-cyan-600 mt-0.5 block">&lt; 24 Hours</span>
+              <span class="text-[10px] text-zinc-500">Direct portal sync</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Care Inclusions List -->
+        <div class="space-y-6">
+          <span class="text-xs font-bold uppercase tracking-widest text-cyan-700 dark:text-cyan-400">Integrative Diagnostics</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-zinc-900 dark:text-white leading-tight">
+            Designed for calm, <br class="hidden sm:inline" />engineered for clinical precision.
+          </h2>
+          <p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+            Medical appointments should never feel hurried or intimidating. Vitality pairs world-class board physicians with a tranquil environment that prioritizes your peace of mind.
+          </p>
+
+          <div class="grid grid-cols-2 gap-4 pt-2">
+            <div class="p-4 rounded-2xl bg-cyan-50/50 dark:bg-zinc-800/50 border border-cyan-100 dark:border-zinc-700">
+              <p class="text-3xl font-black text-cyan-700 dark:text-cyan-400">100%</p>
+              <p class="text-xs font-bold text-zinc-800 dark:text-zinc-200 mt-1">Private Acoustic Consultation Chambers</p>
+            </div>
+            <div class="p-4 rounded-2xl bg-cyan-50/50 dark:bg-zinc-800/50 border border-cyan-100 dark:border-zinc-700">
+              <p class="text-3xl font-black text-cyan-700 dark:text-cyan-400">15 min</p>
+              <p class="text-xs font-bold text-zinc-800 dark:text-zinc-200 mt-1">Average Wait Time Guarantee</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    )}
+
+    {/* ────────────────── RESTAURANT VISUAL SHOWCASE: Sommelier Cellar & Terroir ────────────────── */}
+    {variant === 'restaurant' && (
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {[
+          {
+            title: 'The Burgundy Reserve',
+            tag: 'Premier Cru Selection',
+            desc: 'Cellared vintages from Domaine Romanée-Conti and Meursault, decanted at optimal temperature.',
+            note: '450+ Vintages',
+            image: MEDIA.restaurant.sommelier,
+          },
+          {
+            title: 'Artisanal Foraged Terroir',
+            tag: 'Organic Provenance',
+            desc: 'Périgord winter truffles, Brittany coastal samphire, and line-caught seafood sourced within 48 hours.',
+            note: '100% Biodynamic',
+            image: MEDIA.restaurant.wagyu,
+          },
+          {
+            title: 'The Pastry Atelier',
+            tag: 'Haute Pâtisserie',
+            desc: 'Single-origin Madagascar cacao soufflé and Tahitian vanilla bean compositions prepared à la minute.',
+            note: 'Bespoke Desserts',
+            image: MEDIA.restaurant.souffle,
+          },
+        ].map(card => (
+          <div class="rounded-3xl border border-stone-800 bg-stone-950 overflow-hidden shadow-2xl flex flex-col justify-between hover:border-amber-500/50 transition-all duration-500 hover:-translate-y-2 group">
+            <div class="h-64 relative overflow-hidden">
+              <img
+                src={card.image}
+                alt={card.title}
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 filter brightness-90"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/40 to-black/30"></div>
+
+              <div class="absolute inset-0 p-6 flex flex-col justify-between text-stone-200 z-10">
+                <div class="flex justify-between items-center">
+                  <span class="text-[10px] uppercase font-bold tracking-[0.25em] text-amber-400 bg-stone-950/70 backdrop-blur-md px-2.5 py-1 rounded-md border border-amber-500/30">
+                    {card.tag}
+                  </span>
+                  <span class="text-xs font-mono font-semibold text-stone-300">{card.note}</span>
+                </div>
+                <h4 class="text-2xl font-bold text-white" style="font-family: var(--font-heading);">
+                  {card.title}
+                </h4>
+              </div>
+            </div>
+
+            <div class="p-6 flex-1 flex flex-col justify-between gap-4 bg-stone-950">
+              <p class="text-xs text-stone-400 leading-relaxed">{card.desc}</p>
+              <div class="pt-4 border-t border-stone-850 flex items-center justify-between text-xs font-bold text-amber-500">
+                <span>View Sommelier Tasting Notes</span>
+                <span class="group-hover:translate-x-1.5 transition-transform">→</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    )}
+
+  </div>
+</section>

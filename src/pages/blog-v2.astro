@@ -1,0 +1,64 @@
+﻿---
+import { PreviewNavbar } from '../components/layout/PreviewNavbar';
+import '../styles/global.css';
+
+const featuredPost = {
+  title: "Building the Next Generation of E-commerce Experiences",
+  excerpt: "The landscape of online shopping is shifting. We explore how headless architecture, personalization algorithms, and immersive 3D product views are fundamentally changing how consumers interact with brands online.",
+  category: "Engineering",
+  date: "March 20, 2024",
+  readTime: "10 min read",
+  author: { name: "David Kim" },
+  href: "/blog/future-of-ai-design",
+};
+
+const blogPosts = [
+  { title: 'The Future of AI in Product Design', excerpt: 'How generative AI is augmenting the design process.', category: 'Design', date: 'March 15, 2024', href: '/blog/future-of-ai-design', color: 'from-pink-400 to-rose-400' },
+  { title: 'Building Scalable APIs with Node.js', excerpt: 'Best practices for structuring your backend services.', category: 'Engineering', date: 'March 10, 2024', href: '/blog/future-of-ai-design', color: 'from-indigo-400 to-purple-400' },
+  { title: '10 UX Principles Every Designer Should Know', excerpt: 'A comprehensive guide to foundational psychology.', category: 'Design', date: 'March 05, 2024', href: '/blog/future-of-ai-design', color: 'from-emerald-400 to-teal-400' }
+];
+---
+<html lang="en">
+<head><title>Blog - Creative</title></head>
+<body class="bg-indigo-50/50 text-slate-800 font-sans antialiased overflow-x-hidden">
+  <PreviewNavbar client:load variationName="Creative v2" variations={[{label:'Blog (Main)',href:'/blog'},{label:'Minimalist v1',href:'/blog-v1'},{label:'Creative v2',href:'/blog-v2'},{label:'Dark Tech v3',href:'/blog-v3'},{label:'Editorial v4',href:'/blog-v4'}]} />
+  
+  <div class="absolute top-0 right-0 w-96 h-96 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+  <div class="absolute top-0 left-0 w-96 h-96 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-32 relative z-10">
+    <div class="text-center mb-24">
+      <h1 class="text-6xl md:text-8xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 mb-6">Our Stories.</h1>
+      <p class="text-xl text-slate-600 font-medium">Creative thoughts from the design and engineering team.</p>
+    </div>
+
+    <!-- Featured -->
+    <a href={featuredPost.href} class="block relative rounded-[3rem] bg-white p-8 md:p-12 shadow-xl shadow-indigo-900/5 hover:-translate-y-2 hover:shadow-2xl hover:shadow-indigo-900/10 transition-all duration-500 mb-32 group">
+      <div class="absolute top-0 right-0 p-8">
+        <span class="px-4 py-2 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white font-bold text-sm shadow-md">{featuredPost.category}</span>
+      </div>
+      <div class="max-w-2xl pt-16">
+        <div class="text-indigo-400 font-bold mb-4">{featuredPost.date} &bull; {featuredPost.readTime}</div>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6 group-hover:text-indigo-600 transition-colors leading-tight">{featuredPost.title}</h2>
+        <p class="text-lg text-slate-600 mb-8 leading-relaxed">{featuredPost.excerpt}</p>
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold">{featuredPost.author.name.charAt(0)}</div>
+          <span class="font-bold text-slate-800">{featuredPost.author.name}</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {blogPosts.map((post) => (
+        <a href={post.href} class="block rounded-[2.5rem] bg-white p-8 shadow-lg shadow-indigo-900/5 hover:-translate-y-2 hover:shadow-xl transition-all duration-300 group">
+          <div class={`w-full h-48 rounded-[2rem] mb-8 bg-gradient-to-br ${post.color} opacity-80 group-hover:opacity-100 transition-opacity`}></div>
+          <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">{post.category} &bull; {post.date}</span>
+          <h3 class="text-2xl font-bold text-slate-900 mt-3 mb-4 group-hover:text-indigo-600 transition-colors">{post.title}</h3>
+          <p class="text-slate-600 text-sm line-clamp-2">{post.excerpt}</p>
+        </a>
+      ))}
+    </div>
+  </main>
+</body>
+</html>

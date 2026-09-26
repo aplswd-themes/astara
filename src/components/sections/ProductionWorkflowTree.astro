@@ -1,0 +1,103 @@
+---
+/**
+ * ProductionWorkflowTree.astro
+ * ────────────────────────────
+ * Modern sequential tree & pipeline visualization showing how Astara goes
+ * from download to production in 3 frictionless steps.
+ */
+
+const workflowSteps = [
+  {
+    step: '01',
+    name: 'Select & Extract Archetype',
+    tag: 'Step 1: Ingestion',
+    color: '#6366f1',
+    glowClass: '',
+    desc: 'Download the all-in-one theme suite or your single favorite vertical ZIP. Unpack into your workspace.',
+    command: 'unzip themekit-saas-theme.zip && cd theme',
+    features: ['5 Standalone Packages', 'Zero External Bloat', 'Clean Directory Layout'],
+  },
+  {
+    step: '02',
+    name: 'Tweak CSS Tokens & Media',
+    tag: 'Step 2: Customization',
+    color: '#10b981',
+    glowClass: '',
+    desc: 'Modify brand colors, typography, and image URLs in a single file (src/lib/themes.ts and src/lib/media.ts).',
+    command: '// Edit src/lib/themes.ts\n--color-primary: #6366f1;\n--radius-lg: 0.75rem;',
+    features: ['Unified CSS Variables', 'Centralized Media Registry', 'Zero Hardcoded Colors'],
+  },
+  {
+    step: '03',
+    name: 'Build & Deploy at Edge',
+    tag: 'Step 3: Distribution',
+    color: '#f59e0b',
+    glowClass: '',
+    desc: 'Run astro build to output pure static HTML with selective React 19 island hydration. Deploy to Vercel, Cloudflare, or AWS.',
+    command: 'npm run build  # Finished in ~2.3s\nastro preview',
+    features: ['100% Lighthouse Score', 'V8 Edge Compatible', 'Zero-JS Core Pages'],
+  },
+];
+---
+
+<section class="py-24 px-6 max-w-7xl mx-auto w-full relative z-10 border-t border-zinc-200">
+  <div class="text-center max-w-3xl mx-auto mb-16">
+    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold mb-4 border border-emerald-500/40 bg-emerald-950/60 text-emerald-300">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+      <span>Production Pipeline Tree</span>
+    </div>
+    <h2 class="text-3xl sm:text-5xl font-black text-zinc-900 tracking-tight">
+      From Code Download to Live Edge Deployment
+    </h2>
+    <p class="text-sm text-zinc-600 mt-4 leading-relaxed max-w-2xl mx-auto">
+      Three steps to turn any Astara archive into a production-grade web application for clients or your own startup.
+    </p>
+  </div>
+
+  <!-- Connected Workflow Tree Cards -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+    {workflowSteps.map((step, idx) => (
+      <div
+        class={`group p-8 rounded-3xl border border-zinc-200 bg-white shadow-sm hover:shadow-lg flex flex-col justify-between interactive-hover-lift  ${step.glowClass} transition-all duration-500 relative overflow-hidden`}
+      >
+        <!-- Top Number & Tag -->
+        <div>
+          <div class="flex items-center justify-between mb-6 pb-4 border-b border-zinc-200">
+            <span class="text-3xl font-black font-mono text-zinc-600 group-hover:text-zinc-900 transition-colors">
+              {step.step}
+            </span>
+            <span
+              class="text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-md border"
+              style={`color: ${step.color}; border-color: ${step.color}50; background: ${step.color}15;`}
+            >
+              {step.tag}
+            </span>
+          </div>
+
+          <h3 class="text-xl font-black text-zinc-900 group-hover:text-zinc-100 transition-colors">
+            {step.name}
+          </h3>
+          <p class="text-xs text-zinc-600 mt-2 leading-relaxed">
+            {step.desc}
+          </p>
+
+          <!-- CLI Mockup Box -->
+          <div class="mt-5 p-3.5 rounded-xl bg-zinc-50 border border-zinc-200 font-mono text-[11px] text-zinc-700">
+            <span class="text-zinc-500 block text-[10px] uppercase font-bold mb-1">Terminal</span>
+            <pre class="overflow-x-auto text-emerald-400"><code>{step.command}</code></pre>
+          </div>
+        </div>
+
+        <!-- Checklist -->
+        <div class="mt-6 pt-5 border-t border-zinc-200 space-y-2">
+          {step.features.map(feat => (
+            <div class="flex items-center gap-2 text-xs text-zinc-600 font-medium">
+              <span class="text-emerald-400">✓</span>
+              <span>{feat}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

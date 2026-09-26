@@ -1,0 +1,22 @@
+/* ─── Restaurant / Food & Beverage Theme ───────────────────────────────── */
+:root {
+  --color-primary: #dc2626;
+  --color-primary-dark: #b91c1c;
+  --color-primary-light: #fca5a5;
+  --color-accent: #d97706;
+  --color-accent-dark: #b45309;
+
+  --color-bg: #0c0a09;
+  --color-bg-subtle: #1c1917;
+  --color-bg-muted: #292524;
+  --color-border: #3c3330;
+  --color-border-strong: #57534e;
+
+  --color-text: #faf5f0;
+  --color-text-muted: #d6ccc2;
+  --color-text-subtle: #a8998e;
+  --color-text-inverse: #0c0a09;
+
+  --font-heading: 'Cormorant Garamond', 'Georgia', serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+}

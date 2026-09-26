@@ -1,0 +1,108 @@
+﻿---
+import { PreviewNavbar } from '../components/layout/PreviewNavbar';
+import { PageVariantSwitcher } from '../components/interactive/PageVariantSwitcher';
+import '../styles/global.css';
+
+const serviceVariants = [
+  { label: 'Main', path: '/services' },
+  { label: 'Minimalist v1', path: '/services-v1' },
+  { label: 'Creative v2', path: '/services-v2' },
+  { label: 'Dark Tech v3', path: '/services-v3' },
+  { label: 'Editorial v4', path: '/services-v4' },
+];
+---
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>Services - V3</title>
+</head>
+<body class="bg-zinc-950 text-zinc-300 font-mono antialiased selection:bg-emerald-500/30">
+  <PreviewNavbar client:load variationName="Dark Tech v3" variations={[{label:'Services (Main)',href:'/services'},{label:'Minimalist v1',href:'/services-v1'},{label:'Creative v2',href:'/services-v2'},{label:'Dark Tech v3',href:'/services-v3'},{label:'Editorial v4',href:'/services-v4'}]} />
+  <div class="max-w-6xl mx-auto px-6 py-24">
+    <div class="mb-16 border-b border-zinc-800 pb-8 flex justify-between items-end">
+      <div>
+        <p class="text-emerald-400 text-sm font-semibold tracking-widest uppercase mb-2">/ capabilities</p>
+        <h1 class="text-4xl sm:text-5xl font-medium text-zinc-100">System Modules</h1>
+      </div>
+      <div class="text-right text-xs text-zinc-600 hidden sm:block">
+        <p>STATUS: OPERATIONAL</p>
+        <p>LATENCY: 12ms</p>
+      </div>
+    </div>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-px bg-zinc-800 border border-zinc-800 rounded-lg overflow-hidden">
+      <!-- Card 1 -->
+      <div class="bg-zinc-950 p-8 hover:bg-zinc-900/50 transition-colors group relative">
+        <div class="absolute inset-0 border border-emerald-500/0 group-hover:border-emerald-500/50 transition-colors rounded-lg z-10 pointer-events-none"></div>
+        <div class="flex justify-between items-start mb-6">
+          <div class="p-2 bg-zinc-900 rounded border border-zinc-800 text-zinc-400 group-hover:text-emerald-400 transition-colors">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" /></svg>
+          </div>
+          <span class="text-xs text-zinc-600 font-mono">01</span>
+        </div>
+        <h3 class="text-lg font-medium text-zinc-100 mb-2">Distributed Systems</h3>
+        <p class="text-sm text-zinc-500 mb-6 leading-relaxed">Microservices architecture, fault tolerance mechanisms, and state replication protocols.</p>
+        <div class="flex gap-2">
+          <span class="text-xs px-2 py-1 bg-zinc-900 border border-zinc-800 rounded text-zinc-400">gRPC</span>
+          <span class="text-xs px-2 py-1 bg-zinc-900 border border-zinc-800 rounded text-zinc-400">Kafka</span>
+        </div>
+      </div>
+      
+      <!-- Card 2 -->
+      <div class="bg-zinc-950 p-8 hover:bg-zinc-900/50 transition-colors group relative">
+        <div class="absolute inset-0 border border-emerald-500/0 group-hover:border-emerald-500/50 transition-colors rounded-lg z-10 pointer-events-none"></div>
+        <div class="flex justify-between items-start mb-6">
+          <div class="p-2 bg-zinc-900 rounded border border-zinc-800 text-zinc-400 group-hover:text-emerald-400 transition-colors">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+          </div>
+          <span class="text-xs text-zinc-600 font-mono">02</span>
+        </div>
+        <h3 class="text-lg font-medium text-zinc-100 mb-2">Security Infrastructure</h3>
+        <p class="text-sm text-zinc-500 mb-6 leading-relaxed">Zero-trust network access, identity provision, and cryptographic asset management.</p>
+        <div class="flex gap-2">
+          <span class="text-xs px-2 py-1 bg-zinc-900 border border-zinc-800 rounded text-zinc-400">OAuth2</span>
+          <span class="text-xs px-2 py-1 bg-zinc-900 border border-zinc-800 rounded text-zinc-400">mTLS</span>
+        </div>
+      </div>
+      
+      <!-- Card 3 -->
+      <div class="bg-zinc-950 p-8 hover:bg-zinc-900/50 transition-colors group relative">
+        <div class="absolute inset-0 border border-blue-500/0 group-hover:border-blue-500/50 transition-colors rounded-lg z-10 pointer-events-none"></div>
+        <div class="flex justify-between items-start mb-6">
+          <div class="p-2 bg-zinc-900 rounded border border-zinc-800 text-zinc-400 group-hover:text-blue-400 transition-colors">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4" /></svg>
+          </div>
+          <span class="text-xs text-zinc-600 font-mono">03</span>
+        </div>
+        <h3 class="text-lg font-medium text-zinc-100 mb-2">Data Processing</h3>
+        <p class="text-sm text-zinc-500 mb-6 leading-relaxed">Batch and stream processing pipelines, warehouse modeling, and analytical engines.</p>
+        <div class="flex gap-2">
+          <span class="text-xs px-2 py-1 bg-zinc-900 border border-zinc-800 rounded text-zinc-400">PostgreSQL</span>
+          <span class="text-xs px-2 py-1 bg-zinc-900 border border-zinc-800 rounded text-zinc-400">Redis</span>
+        </div>
+      </div>
+      
+      <!-- Card 4 -->
+      <div class="bg-zinc-950 p-8 hover:bg-zinc-900/50 transition-colors group relative">
+        <div class="absolute inset-0 border border-purple-500/0 group-hover:border-purple-500/50 transition-colors rounded-lg z-10 pointer-events-none"></div>
+        <div class="flex justify-between items-start mb-6">
+          <div class="p-2 bg-zinc-900 rounded border border-zinc-800 text-zinc-400 group-hover:text-purple-400 transition-colors">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" /></svg>
+          </div>
+          <span class="text-xs text-zinc-600 font-mono">04</span>
+        </div>
+        <h3 class="text-lg font-medium text-zinc-100 mb-2">Machine Learning</h3>
+        <p class="text-sm text-zinc-500 mb-6 leading-relaxed">Model training, feature store setup, and inference API deployment.</p>
+        <div class="flex gap-2">
+          <span class="text-xs px-2 py-1 bg-zinc-900 border border-zinc-800 rounded text-zinc-400">TensorFlow</span>
+          <span class="text-xs px-2 py-1 bg-zinc-900 border border-zinc-800 rounded text-zinc-400">CUDA</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
+
+

@@ -1,0 +1,187 @@
+---
+/**
+ * MichelinCarteMenu.astro
+ * ───────────────────────
+ * Editorial luxury menu layout designed specifically for fine dining restaurants.
+ * Features typographic dotted leaders, sommelier pairing tags, and chef tasting notes.
+ */
+
+import { MEDIA } from '../../lib/media';
+
+const signatureDishes = [
+  {
+    name: 'Butter-Poached Brittany Lobster',
+    tag: 'Signature Course',
+    image: MEDIA.restaurant.lobster,
+    desc: 'Served with compressed melon, saffron coral emulsion, and ocean herbs.',
+  },
+  {
+    name: 'A5 Miyazaki Wagyu Ribeye',
+    tag: 'Wood-Fired Robata',
+    image: MEDIA.restaurant.wagyu,
+    desc: '28-day aged with foraged morels, glazed cipollini, and bone marrow reduction.',
+  },
+  {
+    name: 'Grand Cru Madagascar Soufflé',
+    tag: 'Haute Pâtisserie',
+    image: MEDIA.restaurant.souffle,
+    desc: 'Single-origin 72% cacao ganache, fior di latte gelato, and edible gold leaf.',
+  },
+];
+
+const menuSections = [
+  {
+    category: 'Les Entrées & Premières Découvertes',
+    subtitle: 'Prelude of seasonal land and coastal terroir',
+    items: [
+      {
+        name: 'Black Winter Truffle & Carnaroli Arancini',
+        desc: '36-month aged Parmigiano Reggiano crisp, saffron velouté, shaved Périgord melanosporum',
+        wine: 'Pairing: 2018 Domaine Leflaive Puligny-Montrachet',
+        price: '$28',
+      },
+      {
+        name: 'Line-Caught Yellowfin Tuna Crudo',
+        desc: 'Citrus ponzu gelee, Hass avocado mousse, toasted sesame tuile, finger lime caviar pearls',
+        wine: 'Pairing: 2020 Sancerre Blanc, Domaine Vacheron',
+        price: '$34',
+      },
+      {
+        name: 'Heirloom Burrata di Puglia & Charred Mission Figs',
+        desc: 'Cold-pressed Sicilian olive oil, 25-year aged Modena balsamico, toasted sourdough levain',
+        wine: 'Pairing: 2019 Franciacorta Brut Rosé, Bellavista',
+        price: '$26',
+      },
+    ],
+  },
+  {
+    category: 'Les Plats Principaux & Signature Creátions',
+    subtitle: 'Master courses prepared upon artisanal charcoal embers',
+    items: [
+      {
+        name: 'A5 Miyazaki Wagyu Ribeye & Robuchon Mousseline',
+        desc: '28-day dry aged tenderloin, foraged forest morels, glazed cipollini onions, marrow reduction jus',
+        wine: 'Pairing: 2015 Château Pichon Baron, Pauillac',
+        price: '$96',
+      },
+      {
+        name: 'Wild Atlantic Halibut Poached in Saffron Champagne',
+        desc: 'Brittany sea samphire, confit baby leeks, sea urchin emulsion, crispy potato mille-feuille',
+        wine: 'Pairing: 2017 Meursault Premier Cru, Comtes Lafon',
+        price: '$68',
+      },
+      {
+        name: 'Forest Cèpes & Morel Wellington en Croûte',
+        desc: 'Golden laminated puff pastry, black garlic glaze, parsnip silk, watercress essence',
+        wine: 'Pairing: 2018 Gevrey-Chambertin, Denis Mortet',
+        price: '$52',
+      },
+    ],
+  },
+  {
+    category: 'Les Douceurs & Haute Pâtisserie',
+    subtitle: 'Confections orchestrated by our master pâtissier',
+    items: [
+      {
+        name: 'Warm Grand Cru Madagascar Chocolate Soufflé',
+        desc: 'Fior di latte gelato, 72% single-origin cacao ganache, fleur de sel gold leaf',
+        wine: 'Pairing: 20-Year Aged Tawny Port, Taylor Fladgate',
+        price: '$24',
+      },
+      {
+        name: 'Tahitian Vanilla Bean Pavlova & Wild Raspberries',
+        desc: 'Crisp French meringue, yuzu curd, candied mint, raspberry coulis',
+        wine: 'Pairing: 2019 Château d\'Yquem, Sauternes',
+        price: '$22',
+      },
+    ],
+  },
+];
+---
+
+<section id="menu" class="section py-24 bg-stone-950 text-stone-200 border-t border-stone-850">
+  <div class="container mx-auto px-4 max-w-4xl">
+    <div class="text-center mb-20">
+      <span class="text-xs font-bold uppercase tracking-[0.35em] text-amber-500 block mb-3">
+        Artisanal Gastronomy
+      </span>
+      <h2 class="text-4xl sm:text-6xl font-bold text-white tracking-tight" style="font-family: var(--font-heading);">
+        The Seasonal Carte
+      </h2>
+      <p class="text-sm text-stone-400 mt-4 max-w-xl mx-auto leading-relaxed">
+        Ingredients arrive daily from biodynamic farms and independent fishermen. Courses subject to seasonal harvest.
+      </p>
+    </div>
+
+    <!-- Visual Signature Plates Gallery -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
+      {signatureDishes.map(plate => (
+        <div class="rounded-2xl overflow-hidden border border-stone-800 bg-stone-900/60 shadow-xl group hover:border-amber-500/50 transition-all duration-300">
+          <div class="h-48 overflow-hidden relative">
+            <img
+              src={plate.image}
+              alt={plate.name}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 filter brightness-90"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-stone-950 via-transparent to-transparent"></div>
+            <div class="absolute top-3 left-3">
+              <span class="text-[9px] uppercase tracking-widest font-bold px-2 py-0.5 rounded bg-black/70 backdrop-blur-md text-amber-400 border border-amber-500/30">
+                {plate.tag}
+              </span>
+            </div>
+          </div>
+          <div class="p-4">
+            <h4 class="font-bold text-sm text-white group-hover:text-amber-300 transition-colors" style="font-family: var(--font-heading);">
+              {plate.name}
+            </h4>
+            <p class="text-xs text-stone-400 mt-1 leading-relaxed">{plate.desc}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Haute Cuisine Menu Sections -->
+    <div class="space-y-20">
+      {menuSections.map(sec => (
+        <div class="space-y-8">
+          <div class="border-b border-stone-800 pb-4">
+            <h3 class="text-2xl font-bold text-amber-400" style="font-family: var(--font-heading);">
+              {sec.category}
+            </h3>
+            <p class="text-xs text-stone-400 mt-1 italic">{sec.subtitle}</p>
+          </div>
+
+          <div class="space-y-8">
+            {sec.items.map(dish => (
+              <div class="group">
+                <div class="flex items-baseline justify-between gap-4">
+                  <h4 class="text-lg font-bold text-white group-hover:text-amber-300 transition-colors" style="font-family: var(--font-heading);">
+                    {dish.name}
+                  </h4>
+                  <div class="flex-1 border-b border-dotted border-stone-800 mx-2 hidden sm:block"></div>
+                  <span class="font-extrabold text-base text-amber-400 shrink-0 font-mono">{dish.price}</span>
+                </div>
+                <p class="text-xs text-stone-400 mt-1 max-w-2xl leading-relaxed">{dish.desc}</p>
+                <p class="text-[11px] text-amber-500/90 mt-1.5 font-medium flex items-center gap-1.5">
+                  <span>🍷</span>
+                  <span>{dish.wine}</span>
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="text-center mt-20 pt-10 border-t border-stone-850">
+      <a
+        href="#reserve"
+        class="inline-flex items-center gap-3 px-10 py-4 text-xs font-bold uppercase tracking-widest rounded-xl bg-amber-500 text-stone-950 hover:bg-amber-400 transition-all shadow-xl hover:-translate-y-0.5"
+      >
+        <span>Reserve Sommelier Tasting Table</span>
+        <span>→</span>
+      </a>
+    </div>
+  </div>
+</section>

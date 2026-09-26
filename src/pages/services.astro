@@ -1,0 +1,213 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { PreviewNavbar } from '../components/layout/PreviewNavbar';
+import Footer from '../components/layout/Footer.astro';
+import FeatureGrid from '../components/sections/FeatureGrid.astro';
+import ProcessSteps from '../components/sections/ProcessSteps.astro';
+import { PricingTable } from '../components/sections/PricingTable';
+import Testimonials from '../components/sections/Testimonials.astro';
+import CTABanner from '../components/sections/CTABanner.astro';
+import { PageVariantSwitcher } from '../components/interactive/PageVariantSwitcher';
+import '../styles/global.css';
+
+import { globalNavLinks as navLinks } from '../lib/nav';
+
+const serviceVariants = [
+  { label: 'Main', path: '/services' },
+  { label: 'Minimalist v1', path: '/services-v1' },
+  { label: 'Creative v2', path: '/services-v2' },
+  { label: 'Dark Tech v3', path: '/services-v3' },
+  { label: 'Editorial v4', path: '/services-v4' },
+];
+
+const services = [
+  {
+    title: 'Web Development',
+    description: 'We build high-performance, accessible, and scalable web applications using modern frameworks like Astro, React, and Next.js. Focus on robust architecture and SEO best practices.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-layout"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><line x1="3" x2="21" y1="9" y2="9"/><line x1="9" x2="9" y1="21" y2="9"/></svg>`
+  },
+  {
+    title: 'Mobile Apps',
+    description: 'Native and cross-platform mobile solutions that deliver seamless experiences on iOS and Android. We prioritize intuitive interactions and smooth performance.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-smartphone"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg>`
+  },
+  {
+    title: 'UI/UX Design',
+    description: 'User-centered design processes encompassing research, wireframing, prototyping, and final high-fidelity interfaces. Creating products people love to use.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pen-tool"><path d="m12 19 7-7 3 3-7 7-3-3z"/><path d="m18 13-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="m2 2 7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>`
+  },
+  {
+    title: 'Cloud Infrastructure',
+    description: 'Secure, scalable, and cost-effective cloud architectures deployed on AWS, Google Cloud, or Azure. Automated CI/CD pipelines for rapid delivery.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cloud"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>`
+  },
+  {
+    title: 'Data Analytics',
+    description: 'Transforming raw data into actionable insights through custom dashboards, data warehousing, and advanced reporting pipelines.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-bar-chart-3"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-3"/></svg>`
+  },
+  {
+    title: 'AI & Machine Learning',
+    description: 'Integrating predictive models, natural language processing, and computer vision to automate processes and unlock new business capabilities.',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cpu"><rect width="16" height="16" x="4" y="4" rx="2" ry="2"/><rect width="6" height="6" x="9" y="9" rx="1" ry="1"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/></svg>`
+  }
+];
+
+const processSteps = [
+  { number: '01', title: 'Discovery', description: 'We start by deeply understanding your business, users, and core objectives.' },
+  { number: '02', title: 'Strategy', description: 'Defining the roadmap, technology stack, and project architecture.' },
+  { number: '03', title: 'Design', description: 'Creating intuitive user flows and beautiful, brand-aligned interfaces.' },
+  { number: '04', title: 'Development', description: 'Writing clean, scalable code with rigorous testing and quality assurance.' },
+  { number: '05', title: 'Launch & Support', description: 'Smooth deployment to production and ongoing maintenance.' }
+];
+
+const pricingPlans = [
+  {
+    name: 'Starter',
+    description: 'Perfect for small businesses needing a solid digital presence.',
+    price: '$2,500',
+    period: '/mo',
+    features: ['Custom Web Design', 'Up to 5 Pages', 'Basic SEO Setup', 'Mobile Responsive', '1 Month Support'],
+    ctaText: 'Get Started',
+    ctaHref: '/contact',
+    isPopular: false
+  },
+  {
+    name: 'Growth',
+    description: 'Ideal for growing companies requiring complex functionality.',
+    price: '$5,000',
+    period: '/mo',
+    features: ['Full Stack Development', 'Custom Web Application', 'Advanced SEO & Analytics', 'CMS Integration', '3 Months Support', 'Performance Optimization'],
+    ctaText: 'Start Growing',
+    ctaHref: '/contact',
+    isPopular: true
+  },
+  {
+    name: 'Enterprise',
+    description: 'Custom solutions for large-scale operations and unique needs.',
+    price: 'Custom',
+    period: '',
+    features: ['Dedicated Development Team', 'Custom Cloud Architecture', 'AI & Machine Learning Integrations', 'SLA Guarantees', '24/7 Priority Support', 'Security Audits'],
+    ctaText: 'Contact Sales',
+    ctaHref: '/contact',
+    isPopular: false
+  }
+];
+
+const testimonials = [
+  {
+    quote: "Their web development team transformed our digital presence. Load times decreased by 40% and our conversion rates doubled within the first month.",
+    author: "Amanda Reyes",
+    role: "VP of Marketing, TechFlow",
+    avatar: "https://i.pravatar.cc/150?u=amanda"
+  },
+  {
+    quote: "The UI/UX design phase was incredibly collaborative. They didn't just make it look good; they profoundly improved how users navigate our application.",
+    author: "Jonathan Pierce",
+    role: "Product Manager, InnovateInc",
+    avatar: "https://i.pravatar.cc/150?u=jonathan"
+  },
+  {
+    quote: "Migrating to their custom cloud infrastructure setup saved us thousands in monthly hosting fees while drastically improving our uptime and reliability.",
+    author: "Dr. Sarah Lin",
+    role: "CTO, DataCorp",
+    avatar: "https://i.pravatar.cc/150?u=sarah"
+  }
+];
+---
+
+<BaseLayout themeSlug="ecommerce">
+  <PreviewNavbar client:load variationName="Services (Main)" variations={serviceVariants} />
+  
+  <main class="flex-1 bg-zinc-50 font-sans antialiased">
+    <!-- Modern Hero Header Section -->
+    <section class="relative pt-32 pb-24 px-6 overflow-hidden border-b border-zinc-200/50">
+      <div class="absolute inset-0 bg-gradient-to-br from-indigo-50/50 via-white to-emerald-50/30 -z-10"></div>
+      
+      <div class="max-w-7xl mx-auto relative z-10">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-12">
+          
+          <div class="max-w-3xl">
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-zinc-200 text-indigo-700 text-[11px] font-bold uppercase tracking-widest mb-8 shadow-sm ring-1 ring-black/5">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              Current Layout
+            </div>
+            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-black tracking-tighter text-zinc-900 mb-6 leading-[1.05]">
+              Our Services <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-emerald-500">(Main)</span>
+            </h1>
+            <p class="text-xl sm:text-2xl font-medium text-zinc-500 leading-relaxed max-w-2xl">
+              Comprehensive digital solutions designed to accelerate your growth, streamline operations, and deliver exceptional experiences.
+            </p>
+          </div>
+          
+          {/* Variations Nav Card within Header */}
+          <div class="flex-shrink-0 w-full md:w-72 bg-white/80 backdrop-blur-xl p-6 rounded-3xl border border-zinc-200/80 shadow-2xl shadow-indigo-900/5 ring-1 ring-black/5">
+            <h3 class="text-[10px] font-bold text-zinc-400 uppercase tracking-widest mb-4 px-1">Layout Variations</h3>
+            <div class="flex flex-col gap-2">
+              <a href="/services" class="px-4 py-3 rounded-xl bg-zinc-900 text-white text-xs font-bold transition-all shadow-md shadow-zinc-900/20 flex justify-between items-center group border border-zinc-800">
+                Services (Main) <span class="group-hover:translate-x-1 transition-transform">→</span>
+              </a>
+              <a href="/services-v1" class="px-4 py-3 rounded-xl bg-white border border-zinc-200 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 text-xs font-bold transition-all flex justify-between items-center group">
+                Minimalist v1 <span class="group-hover:translate-x-1 transition-transform text-zinc-300">→</span>
+              </a>
+              <a href="/services-v2" class="px-4 py-3 rounded-xl bg-white border border-zinc-200 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 text-xs font-bold transition-all flex justify-between items-center group">
+                Creative v2 <span class="group-hover:translate-x-1 transition-transform text-zinc-300">→</span>
+              </a>
+              <a href="/services-v3" class="px-4 py-3 rounded-xl bg-white border border-zinc-200 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 text-xs font-bold transition-all flex justify-between items-center group">
+                Dark Tech v3 <span class="group-hover:translate-x-1 transition-transform text-zinc-300">→</span>
+              </a>
+              <a href="/services-v4" class="px-4 py-3 rounded-xl bg-white border border-zinc-200 text-zinc-600 hover:text-zinc-900 hover:bg-zinc-50 text-xs font-bold transition-all flex justify-between items-center group">
+                Editorial v4 <span class="group-hover:translate-x-1 transition-transform text-zinc-300">→</span>
+              </a>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Grid -->
+    <FeatureGrid 
+      title="Our Expertise" 
+      subtitle="Services" 
+      features={services}
+      columns={3}
+    />
+
+    <!-- Process Steps -->
+    <ProcessSteps 
+      title="How We Work" 
+      subtitle="Our Process" 
+      steps={processSteps}
+      dark={true}
+    />
+
+    <!-- Pricing Section -->
+    <section class="py-24">
+      <PricingTable 
+        client:load
+        title="Transparent Pricing"
+        subtitle="Retainer Packages"
+        plans={pricingPlans}
+      />
+    </section>
+
+    <!-- Testimonials -->
+    <Testimonials 
+      title="Client Success Stories"
+      subtitle="Testimonials"
+      testimonials={testimonials}
+    />
+
+    <!-- CTA -->
+    <CTABanner 
+      title="Ready to build something great?" 
+      subtitle="Let's discuss how our team can help you achieve your technical and business goals."
+      primaryCta={{ label: 'Get in Touch', href: '/contact' }}
+      secondaryCta={{ label: 'View Portfolio', href: '#' }}
+    />
+  </main>
+
+  <Footer dark={false} />
+</BaseLayout>
+

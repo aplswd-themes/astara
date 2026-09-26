@@ -1,0 +1,153 @@
+---
+/**
+ * Hero.astro
+ * ───────────
+ * Page hero section — the first thing visitors see.
+ * Supports badge, headline, subheadline, dual CTAs, and an image/slot.
+ *
+ * Props:
+ * @prop badge        - Optional eyebrow badge text
+ * @prop headline     - Main bold headline (supports HTML via set:html)
+ * @prop subheadline  - Supporting paragraph
+ * @prop primaryCta   - { label, href } for primary CTA button
+ * @prop secondaryCta - { label, href } for secondary ghost CTA (optional)
+ * @prop imageSrc     - URL to hero image (optional)
+ * @prop imageAlt     - Alt text for hero image
+ * @prop centered     - Center-align text (default: false = left aligned)
+ * @prop dark         - Dark background variant
+ *
+ * @example
+ * <Hero
+ *   badge="Now in Beta"
+ *   headline="Ship faster with <span class='text-primary'>NexaCloud</span>"
+ *   subheadline="The all-in-one platform for modern dev teams."
+ *   primaryCta={{ label: 'Start Free', href: '#signup' }}
+ *   secondaryCta={{ label: 'See Demo', href: '#demo' }}
+ *   dark
+ * />
+ */
+
+import { MotionHeroBackground, type MotionHeroVariant } from '../interactive/MotionHeroBackground';
+
+interface Cta {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  badge?: string;
+  headline: string;
+  subheadline?: string;
+  primaryCta?: Cta;
+  secondaryCta?: Cta;
+  imageSrc?: string;
+  imageAlt?: string;
+  centered?: boolean;
+  dark?: boolean;
+  minHeight?: string;
+  motionVariant?: MotionHeroVariant;
+}
+
+const {
+  badge,
+  headline,
+  subheadline,
+  primaryCta,
+  secondaryCta,
+  imageSrc,
+  imageAlt = 'Hero image',
+  centered = false,
+  dark = false,
+  minHeight = '90vh',
+  motionVariant,
+} = Astro.props;
+---
+
+<section
+  class={`relative flex items-center overflow-hidden ${dark ? 'bg-[var(--color-bg)]' : 'bg-[var(--color-bg)]'}`}
+  style={`min-height: ${minHeight};`}
+>
+  {/* MotionSites background animation if requested or on dark heros */}
+  {motionVariant && (
+    <MotionHeroBackground client:load variant={motionVariant} />
+  )}
+
+  <!-- Background gradient mesh -->
+  {dark && !motionVariant && (
+    <div
+      class="pointer-events-none absolute inset-0 opacity-30"
+      style="background: radial-gradient(ellipse 80% 60% at 50% -20%, var(--color-primary), transparent);"
+      aria-hidden="true"
+    />
+  )}
+
+  <div class="container relative z-10 py-20">
+    <div class={`grid gap-12 ${imageSrc ? 'lg:grid-cols-2 items-center' : ''} ${centered && !imageSrc ? 'text-center' : ''}`}>
+
+      <!-- Text content -->
+      <div class={`flex flex-col gap-6 ${centered && !imageSrc ? 'items-center' : ''}`}>
+
+        {badge && (
+          <div class="animate-fade-in">
+            <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold border border-[var(--color-primary)] text-[var(--color-primary)] bg-[var(--color-primary)]/10">
+              <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-primary)] animate-pulse"></span>
+              {badge}
+            </span>
+          </div>
+        )}
+
+        <h1
+          class="animate-fade-in-up text-4xl sm:text-5xl lg:text-6xl font-bold text-[var(--color-text)] leading-tight"
+          set:html={headline}
+        />
+
+        {subheadline && (
+          <p class="animate-fade-in-up delay-100 text-lg text-[var(--color-text-muted)] max-w-xl leading-relaxed">
+            {subheadline}
+          </p>
+        )}
+
+        {(primaryCta || secondaryCta) && (
+          <div class={`animate-fade-in-up delay-200 flex flex-wrap gap-3 ${centered && !imageSrc ? 'justify-center' : ''}`}>
+            {primaryCta && (
+              <a
+                href={primaryCta.href}
+                class="inline-flex items-center gap-2 px-7 py-3 text-base font-semibold rounded-[var(--radius-lg)] bg-[var(--color-primary)] text-[var(--color-text-inverse)] hover:bg-[var(--color-primary-dark)] transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+              >
+                {primaryCta.label}
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            )}
+            {secondaryCta && (
+              <a
+                href={secondaryCta.href}
+                class="inline-flex items-center gap-2 px-7 py-3 text-base font-semibold rounded-[var(--radius-lg)] border border-[var(--color-border-strong)] text-[var(--color-text-muted)] hover:border-[var(--color-primary)] hover:text-[var(--color-primary)] transition-all"
+              >
+                {secondaryCta.label}
+              </a>
+            )}
+          </div>
+        )}
+
+        <!-- Extra slot for trust signals, social proof, etc. -->
+        <slot name="below-cta" />
+      </div>
+
+      <!-- Image / slot -->
+      {imageSrc ? (
+        <div class="animate-fade-in delay-300 relative">
+          <img
+            src={imageSrc}
+            alt={imageAlt}
+            class="w-full rounded-[var(--radius-2xl)] shadow-[var(--shadow-xl)] object-cover"
+            loading="eager"
+          />
+        </div>
+      ) : (
+        <slot name="visual" />
+      )}
+    </div>
+  </div>
+</section>

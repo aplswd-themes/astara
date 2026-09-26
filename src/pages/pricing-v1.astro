@@ -1,0 +1,110 @@
+﻿---
+import { PreviewNavbar } from '../components/layout/PreviewNavbar';
+import LogoCloud from '../components/sections/LogoCloud.astro';
+import { FAQ } from '../components/sections/FAQ';
+import CTABanner from '../components/sections/CTABanner.astro';
+import '../styles/global.css';
+
+const clientLogos = [
+  { name: 'Vercel' },
+  { name: 'Stripe' },
+  { name: 'Linear' },
+  { name: 'GitHub' },
+  { name: 'Figma' },
+];
+
+const pricingFaqs = [
+  { question: 'Can I switch plans later?', answer: 'Yes, you can upgrade or downgrade your plan at any time.' },
+  { question: 'Is there a long-term contract?', answer: 'No, all our plans are month-to-month unless you choose annual billing.' },
+  { question: 'What payment methods do you accept?', answer: 'We accept all major credit cards and PayPal.' },
+];
+---
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - Minimalist Elegance</title>
+</head>
+<body class="bg-zinc-50 text-zinc-900 font-sans antialiased selection:bg-indigo-500/30">
+  <PreviewNavbar client:load variationName="Minimalist v1" variations={[{label:'Pricing (Main)',href:'/pricing'},{label:'Minimalist v1',href:'/pricing-v1'},{label:'Creative v2',href:'/pricing-v2'},{label:'Dark Tech v3',href:'/pricing-v3'},{label:'Editorial v4',href:'/pricing-v4'}]} />
+  
+  <main class="overflow-hidden pb-20">
+    {/* Hero Section */}
+    <section class="pt-32 pb-20 px-6 relative">
+      <div class="absolute inset-0 bg-gradient-to-b from-white to-transparent -z-10"></div>
+      <div class="max-w-7xl mx-auto text-center flex flex-col items-center">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-100 border border-zinc-200 mb-8 shadow-sm">
+          <span class="w-1.5 h-1.5 rounded-full bg-zinc-900 animate-pulse"></span>
+          <span class="text-[10px] font-bold uppercase tracking-widest text-zinc-600">Minimalist Theme</span>
+        </div>
+        <h1 class="text-6xl md:text-8xl font-black tracking-tighter mb-6 text-zinc-900">
+          Clear Pricing.
+        </h1>
+        <p class="text-xl md:text-2xl text-zinc-500 font-medium max-w-2xl">
+          Everything you need. Nothing you don't. Simple and predictable.
+        </p>
+      </div>
+    </section>
+
+    {/* Pricing Cards */}
+    <section class="px-6 max-w-7xl mx-auto mb-32 relative z-10">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+        <!-- Basic -->
+        <div class="bg-white rounded-[32px] p-10 border border-zinc-200 shadow-xl shadow-zinc-200/50 hover:-translate-y-2 transition-all duration-500">
+          <h2 class="text-xl font-bold tracking-tight text-zinc-900 mb-2">Basic</h2>
+          <p class="text-sm text-zinc-500 font-medium mb-8">For personal projects.</p>
+          <div class="text-5xl font-black tracking-tighter mb-8 text-zinc-900">$0<span class="text-xl text-zinc-400 font-bold">/mo</span></div>
+          <ul class="space-y-5 mb-10">
+            <li class="flex items-center gap-3 text-zinc-600 font-medium"><svg class="w-5 h-5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> 1 Project</li>
+            <li class="flex items-center gap-3 text-zinc-600 font-medium"><svg class="w-5 h-5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Basic Support</li>
+            <li class="flex items-center gap-3 text-zinc-600 font-medium"><svg class="w-5 h-5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Community Access</li>
+          </ul>
+          <button class="w-full bg-zinc-100 text-zinc-900 py-4 rounded-2xl font-bold hover:bg-zinc-200 transition-colors">Start Free</button>
+        </div>
+        
+        <!-- Pro -->
+        <div class="bg-zinc-950 rounded-[32px] p-10 shadow-2xl shadow-zinc-900/20 md:scale-105 relative z-10 hover:-translate-y-2 transition-all duration-500 border border-zinc-800">
+          <div class="absolute top-0 inset-x-0 h-1 bg-gradient-to-r from-zinc-500 to-zinc-300 rounded-t-full"></div>
+          <h2 class="text-xl font-bold tracking-tight text-white mb-2">Pro</h2>
+          <p class="text-sm text-zinc-400 font-medium mb-8">For professionals.</p>
+          <div class="text-5xl font-black tracking-tighter mb-8 text-white">$29<span class="text-xl text-zinc-500 font-bold">/mo</span></div>
+          <ul class="space-y-5 mb-10">
+            <li class="flex items-center gap-3 text-zinc-300 font-medium"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Unlimited Projects</li>
+            <li class="flex items-center gap-3 text-zinc-300 font-medium"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Priority Support</li>
+            <li class="flex items-center gap-3 text-zinc-300 font-medium"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Advanced Analytics</li>
+            <li class="flex items-center gap-3 text-zinc-300 font-medium"><svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Custom Domains</li>
+          </ul>
+          <button class="w-full bg-white text-zinc-900 py-4 rounded-2xl font-bold hover:bg-zinc-200 hover:scale-105 transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)]">Get Pro</button>
+        </div>
+        
+        <!-- Enterprise -->
+        <div class="bg-white rounded-[32px] p-10 border border-zinc-200 shadow-xl shadow-zinc-200/50 hover:-translate-y-2 transition-all duration-500">
+          <h2 class="text-xl font-bold tracking-tight text-zinc-900 mb-2">Enterprise</h2>
+          <p class="text-sm text-zinc-500 font-medium mb-8">For large teams.</p>
+          <div class="text-5xl font-black tracking-tighter mb-8 text-zinc-900">$99<span class="text-xl text-zinc-400 font-bold">/mo</span></div>
+          <ul class="space-y-5 mb-10">
+            <li class="flex items-center gap-3 text-zinc-600 font-medium"><svg class="w-5 h-5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Custom Solutions</li>
+            <li class="flex items-center gap-3 text-zinc-600 font-medium"><svg class="w-5 h-5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> 24/7 SLA</li>
+            <li class="flex items-center gap-3 text-zinc-600 font-medium"><svg class="w-5 h-5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Dedicated Manager</li>
+            <li class="flex items-center gap-3 text-zinc-600 font-medium"><svg class="w-5 h-5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> SSO Integration</li>
+          </ul>
+          <button class="w-full bg-zinc-100 text-zinc-900 py-4 rounded-2xl font-bold hover:bg-zinc-200 transition-colors">Contact Us</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Moving Logos Component -->
+    <LogoCloud label="Trusted worldwide" logos={clientLogos} dark={false} />
+
+    <!-- Modern FAQ Component -->
+    <FAQ client:load title="Minimalist FAQ" subtitle="Answers" items={pricingFaqs} dark={false} />
+
+    <!-- Deep Dark CTA -->
+    <CTABanner
+      headline="Upgrade to Minimalist Elegance."
+      subheadline="Start building faster with a clean, sophisticated UI kit today."
+      primaryCta={{ label: 'Start Free Trial', href: '/contact' }}
+    />
+  </main>
+</body>
+</html>

@@ -1,0 +1,450 @@
+---
+/**
+ * HeroMotionGraphic.astro
+ * ───────────────────────
+ * Cinematic Hero visual component featuring real high-resolution photography,
+ * HTML5 motion video integration with autoplay assurance, interactive 60fps
+ * edge particle canvas, rotating MotionSites border beam, and floating glass HUD badges.
+ */
+import { MEDIA } from '../../lib/media';
+import { HeroParticleCanvas } from '../interactive/HeroParticleCanvas';
+import { MotionBorderBeam } from '../interactive/MotionBorderBeam';
+
+interface Props {
+  variant?: 'saas' | 'agency' | 'ecommerce' | 'health' | 'restaurant';
+  class?: string;
+}
+
+const { variant = 'saas', class: className = '' } = Astro.props;
+---
+
+<div class={`relative w-full max-w-lg lg:max-w-none mx-auto select-none ${className}`}>
+
+  {/* ────────────────── SAAS VARIANT: Edge Network & Telemetry HUD ────────────────── */}
+  {variant === 'saas' && (
+    <div class="relative group">
+      {/* Ambient glowing aura */}
+      <div class="absolute -inset-4 bg-gradient-to-r from-indigo-500/30 via-purple-500/20 to-pink-500/20 rounded-3xl blur-2xl opacity-70 animate-pulse-glow"></div>
+
+      {/* Main Glass Visual Frame */}
+      <div class="relative rounded-3xl border border-indigo-500/40 bg-zinc-950/90 backdrop-blur-2xl overflow-hidden shadow-2xl shadow-indigo-950/70">
+        <MotionBorderBeam client:load colorFrom="#6366f1" colorTo="#ec4899" duration={8} />
+
+        <!-- Visual Media Canvas with high-res photo, video overlay & 60fps particle mesh -->
+        <div class="relative h-64 sm:h-72 w-full overflow-hidden bg-black">
+          <video
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="auto"
+            poster={MEDIA.saas.heroPoster}
+            class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700 ease-out"
+          >
+            <source src={MEDIA.saas.heroVideo} type="video/mp4" />
+            <img
+              src={MEDIA.saas.heroPoster}
+              alt="NexaCloud Edge Datacenter"
+              class="w-full h-full object-cover opacity-60"
+              loading="eager"
+            />
+          </video>
+
+          <!-- 60FPS Interactive Neural Particle Canvas Layer -->
+          <HeroParticleCanvas client:load accentColor="#818cf8" particleCount={36} />
+
+          <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent pointer-events-none"></div>
+
+          <!-- Top Window Controls on Media -->
+          <div class="absolute top-4 left-4 right-4 flex items-center justify-between text-xs text-white pointer-events-none">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-red-500/90 shadow-sm"></span>
+              <span class="w-3 h-3 rounded-full bg-yellow-500/90 shadow-sm"></span>
+              <span class="w-3 h-3 rounded-full bg-emerald-500/90 shadow-sm"></span>
+              <span class="font-mono text-xs text-zinc-300 ml-1.5 font-semibold bg-black/40 px-2 py-0.5 rounded backdrop-blur-md border border-white/10">
+                nexacloud.edge.network
+              </span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-[9px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 border border-indigo-500/40 backdrop-blur-md">
+                ● 60FPS MOTION
+              </span>
+              <span class="text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 backdrop-blur-md">
+                ● 312 PoPs
+              </span>
+            </div>
+          </div>
+
+          <!-- Central Live Edge Metric Overlay -->
+          <div class="absolute bottom-4 left-4 right-4 flex items-center justify-between pointer-events-none">
+            <div class="p-2.5 rounded-xl bg-black/60 backdrop-blur-md border border-white/15">
+              <span class="text-[9px] font-mono uppercase text-zinc-400 block">P99 Cold-Start</span>
+              <span class="text-base font-black text-emerald-400 font-mono">0.4ms Worldwide</span>
+            </div>
+            <div class="p-2.5 rounded-xl bg-black/60 backdrop-blur-md border border-white/15 text-right">
+              <span class="text-[9px] font-mono uppercase text-zinc-400 block">Throughput Rate</span>
+              <span class="text-base font-black text-indigo-300 font-mono">1.8M req/sec</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Live Code Stream Terminal */}
+        <div class="p-5 font-mono text-xs text-zinc-300 space-y-1.5 bg-zinc-950/95 border-t border-zinc-850">
+          <p><span class="text-indigo-400">$</span> nexacloud deploy --global --zero-config</p>
+          <p class="text-zinc-500">→ Propagating WASM isolates to Tokyo, Frankfurt, SFO...</p>
+          <p class="text-emerald-400 font-semibold">✔ Global sync complete in 3.2s [All 312 Edges Ready]</p>
+        </div>
+      </div>
+
+      {/* Floating Glass Badge 1: Top Right */}
+      <div class="absolute -top-6 -right-4 p-3.5 rounded-2xl glass-panel shadow-2xl border border-indigo-500/50 animate-float-slow hidden sm:flex items-center gap-3">
+        <div class="w-8 h-8 rounded-xl bg-indigo-600 flex items-center justify-center text-white text-sm font-bold shadow-md">
+          ⚡
+        </div>
+        <div>
+          <p class="text-[11px] font-bold text-white">Instant Edge Rollback</p>
+          <p class="text-[9px] text-zinc-400 font-mono">1-click Canary Deploy</p>
+        </div>
+      </div>
+
+      {/* Floating Glass Badge 2: Bottom Left */}
+      <div class="absolute -bottom-6 -left-4 p-3.5 rounded-2xl glass-panel shadow-2xl border border-emerald-500/50 animate-float-reverse hidden sm:flex items-center gap-3">
+        <div class="w-8 h-8 rounded-xl bg-emerald-600 flex items-center justify-center text-white text-xs font-bold shadow-md">
+          🛡️
+        </div>
+        <div>
+          <p class="text-[11px] font-bold text-white">SOC 2 Type II Certified</p>
+          <p class="text-[9px] text-zinc-400 font-mono">Zero-Trust Isolation</p>
+        </div>
+      </div>
+    </div>
+  )}
+
+  {/* ────────────────── AGENCY VARIANT: Editorial Design & Atelier Video Canvas ────────────────── */}
+  {variant === 'agency' && (
+    <div class="relative group">
+      <!-- Glow aura -->
+      <div class="absolute -inset-4 bg-gradient-to-r from-orange-500/30 to-amber-500/20 rounded-3xl blur-2xl opacity-70 animate-pulse-glow"></div>
+
+      <!-- Main Editorial Canvas -->
+      <div class="relative rounded-3xl border border-stone-700 bg-stone-950 text-white overflow-hidden shadow-2xl shadow-orange-950/50">
+        <MotionBorderBeam client:load colorFrom="#f97316" colorTo="#eab308" duration={8} />
+
+        <!-- High-res Studio Image/Video with subtle zoom -->
+        <div class="relative h-72 sm:h-80 w-full overflow-hidden bg-black">
+          <video
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="auto"
+            poster={MEDIA.agency.heroPoster}
+            class="w-full h-full object-cover opacity-75 group-hover:scale-105 transition-transform duration-700 ease-out"
+          >
+            <source src={MEDIA.agency.heroVideo} type="video/mp4" />
+            <img
+              src={MEDIA.agency.heroPoster}
+              alt="Forma Creative Design Studio"
+              class="w-full h-full object-cover opacity-75"
+              loading="eager"
+            />
+          </video>
+          <HeroParticleCanvas client:load accentColor="#f97316" particleCount={25} />
+          <div class="absolute inset-0 bg-gradient-to-t from-stone-950 via-stone-950/30 to-transparent pointer-events-none"></div>
+
+          <!-- Studio Header Badge -->
+          <div class="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none">
+            <span class="text-[10px] font-extrabold uppercase tracking-[0.2em] px-3 py-1 rounded-full bg-black/60 text-orange-400 border border-orange-500/40 backdrop-blur-md">
+              ✦ Studio Archive Est. 2018
+            </span>
+            <div class="flex items-center gap-2">
+              <span class="text-[9px] font-mono uppercase text-amber-300 bg-black/60 px-2 py-0.5 rounded backdrop-blur-md border border-amber-500/30">
+                ● 4K REEL
+              </span>
+              <span class="text-[10px] font-mono text-zinc-300 bg-black/60 px-2 py-0.5 rounded backdrop-blur-md">
+                Portfolio v4
+              </span>
+            </div>
+          </div>
+
+          <!-- Bottom Metric HUD on Image -->
+          <div class="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-black/75 backdrop-blur-md border border-white/10 flex items-center justify-between pointer-events-none">
+            <div>
+              <p class="text-[10px] uppercase font-bold tracking-wider text-orange-400">Featured Commission</p>
+              <h4 class="text-sm font-black text-white" style="font-family: var(--font-heading);">
+                Meridian Global FinTech System
+              </h4>
+            </div>
+            <span class="text-xs font-mono font-bold text-orange-400 bg-orange-950/80 px-2.5 py-1 rounded-lg border border-orange-500/40">
+              +210% Inbound
+            </span>
+          </div>
+        </div>
+
+        {/* Agency Awards Bar */}
+        <div class="p-5 bg-stone-950 flex items-center justify-between border-t border-stone-850 text-xs">
+          <div class="flex items-center gap-2">
+            <span class="text-amber-400 text-sm">🏆</span>
+            <span class="font-bold text-stone-200">14 International Honors</span>
+          </div>
+          <span class="text-[11px] text-stone-400 font-mono">Awwwards SOTD · Red Dot Gold · FWA</span>
+        </div>
+      </div>
+
+      {/* Floating Badge 1: Top Right */}
+      <div class="absolute -top-6 -right-4 p-3.5 rounded-2xl glass-panel shadow-2xl border border-orange-500/50 animate-float-slow hidden sm:flex items-center gap-3">
+        <div class="w-8 h-8 rounded-xl bg-orange-600 flex items-center justify-center text-white text-sm font-bold shadow-md">
+          ✦
+        </div>
+        <div>
+          <p class="text-[11px] font-bold text-white">Award-Winning Studio</p>
+          <p class="text-[9px] text-stone-400">Awwwards Site of the Year</p>
+        </div>
+      </div>
+    </div>
+  )}
+
+  {/* ────────────────── ECOMMERCE VARIANT: Luxury Boutique Showcase & Zoom ────────────────── */}
+  {variant === 'ecommerce' && (
+    <div class="relative group">
+      <!-- Glow aura -->
+      <div class="absolute -inset-4 bg-gradient-to-r from-emerald-500/30 to-teal-500/20 rounded-3xl blur-2xl opacity-70 animate-pulse-glow"></div>
+
+      <!-- Main Showcase Frame -->
+      <div class="relative rounded-3xl border border-emerald-500/40 bg-zinc-950 text-white overflow-hidden shadow-2xl shadow-emerald-950/50">
+        <MotionBorderBeam client:load colorFrom="#10b981" colorTo="#06b6d4" duration={8} />
+
+        <!-- High-res Minimalist Product Photo / Video -->
+        <div class="relative h-72 sm:h-80 w-full overflow-hidden bg-black">
+          <video
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="auto"
+            poster={MEDIA.ecommerce.heroPoster}
+            class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700 ease-out"
+          >
+            <source src={MEDIA.ecommerce.heroVideo} type="video/mp4" />
+            <img
+              src={MEDIA.ecommerce.heroPoster}
+              alt="Curated Luxury Apparel"
+              class="w-full h-full object-cover opacity-80"
+              loading="eager"
+            />
+          </video>
+          <HeroParticleCanvas client:load accentColor="#10b981" particleCount={25} />
+          <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent pointer-events-none"></div>
+
+          <!-- Product Badges Over Photo -->
+          <div class="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none">
+            <span class="text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-md bg-emerald-600 text-white shadow-md">
+              ★ Spring Collection Live
+            </span>
+            <span class="text-xs font-semibold text-emerald-300 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10">
+              ⚡ Only 3 Left in Stock
+            </span>
+          </div>
+
+          <!-- Bottom Product Quick Pill -->
+          <div class="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-black/75 backdrop-blur-md border border-white/10 flex items-center justify-between pointer-events-none">
+            <div>
+              <span class="text-[10px] font-bold uppercase text-emerald-400 tracking-wider">Curated Outerwear</span>
+              <h4 class="text-sm font-bold text-white">Merino Structured Minimalist Coat</h4>
+            </div>
+            <span class="text-base font-black text-white font-mono">$340</span>
+          </div>
+        </div>
+
+        {/* Live Social Proof Strip */}
+        <div class="p-4 bg-zinc-950 flex items-center justify-between border-t border-zinc-850 text-xs">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            <span class="text-zinc-300">Bought by customer in London 4m ago</span>
+          </div>
+          <span class="text-emerald-400 font-bold font-mono">4.9★ (2M+ Sold)</span>
+        </div>
+      </div>
+
+      {/* Floating Badge: Top Right */}
+      <div class="absolute -top-6 -right-4 p-3.5 rounded-2xl glass-panel shadow-2xl border border-emerald-500/50 animate-float-slow hidden sm:flex items-center gap-3">
+        <div class="w-8 h-8 rounded-xl bg-emerald-600 flex items-center justify-center text-white text-xs font-bold shadow-md">
+          🚚
+        </div>
+        <div>
+          <p class="text-[11px] font-bold text-white">Free Express Shipping</p>
+          <p class="text-[9px] text-zinc-400">Carbon-neutral delivery</p>
+        </div>
+      </div>
+    </div>
+  )}
+
+  {/* ────────────────── HEALTH VARIANT: Clinical Sanctuary & Physician Care ────────────────── */}
+  {variant === 'health' && (
+    <div class="relative group">
+      <!-- Glow aura -->
+      <div class="absolute -inset-4 bg-gradient-to-r from-cyan-500/30 to-teal-500/20 rounded-3xl blur-2xl opacity-70 animate-pulse-glow"></div>
+
+      <!-- Main Clinical Visual Frame -->
+      <div class="relative rounded-3xl border border-cyan-500/40 bg-zinc-950 text-white overflow-hidden shadow-2xl shadow-cyan-950/50">
+        <MotionBorderBeam client:load colorFrom="#06b6d4" colorTo="#10b981" duration={8} />
+
+        <!-- High-res Modern Sanctuary Photo / Video -->
+        <div class="relative h-72 sm:h-80 w-full overflow-hidden bg-black">
+          <video
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="auto"
+            poster={MEDIA.health.heroPoster}
+            class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700 ease-out"
+          >
+            <source src={MEDIA.health.heroVideo} type="video/mp4" />
+            <img
+              src={MEDIA.health.heroPoster}
+              alt="Vitality Integrative Medical Suite"
+              class="w-full h-full object-cover opacity-80"
+              loading="eager"
+            />
+          </video>
+          <HeroParticleCanvas client:load accentColor="#06b6d4" particleCount={25} />
+          <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/30 to-transparent pointer-events-none"></div>
+
+          <!-- Header Pill -->
+          <div class="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none">
+            <span class="text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-md bg-cyan-600 text-white shadow-md">
+              🧬 Precision Epigenetics
+            </span>
+            <span class="text-xs font-semibold text-cyan-300 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10">
+              ● Accepting Patients Today
+            </span>
+          </div>
+
+          <!-- Bottom Doctor Profile on Image -->
+          <div class="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-black/75 backdrop-blur-md border border-white/10 flex items-center gap-3.5 pointer-events-none">
+            <img
+              src={MEDIA.health.drElena}
+              alt="Dr. Elena Vance MD"
+              class="w-12 h-12 rounded-xl object-cover border-2 border-cyan-400 shadow-md"
+            />
+            <div>
+              <p class="text-sm font-bold text-white">Dr. Elena Rostova, MD</p>
+              <p class="text-[11px] text-cyan-400">Head of Longevity & Cellular Medicine</p>
+            </div>
+          </div>
+        </div>
+
+        {/* Clinical Diagnostics Bar */}
+        <div class="p-4 bg-zinc-950 flex items-center justify-between border-t border-zinc-850 text-xs">
+          <span class="text-zinc-300">18 Board-Certified Physicians</span>
+          <span class="text-cyan-400 font-mono font-bold">99.2% Clinical Satisfaction</span>
+        </div>
+      </div>
+
+      {/* Floating Badge: Top Right */}
+      <div class="absolute -top-6 -right-4 p-3.5 rounded-2xl glass-panel shadow-2xl border border-cyan-500/50 animate-float-slow hidden sm:flex items-center gap-3">
+        <div class="w-8 h-8 rounded-xl bg-cyan-600 flex items-center justify-center text-white text-xs font-bold shadow-md">
+          ★
+        </div>
+        <div>
+          <p class="text-[11px] font-bold text-white">Zero Wait Times</p>
+          <p class="text-[9px] text-zinc-400">&lt;10 Min Direct Specialist Intake</p>
+        </div>
+      </div>
+    </div>
+  )}
+
+  {/* ────────────────── RESTAURANT VARIANT: Michelin 3-Star Gastronomy & Sommelier ────────────────── */}
+  {variant === 'restaurant' && (
+    <div class="relative group">
+      <!-- Glow aura -->
+      <div class="absolute -inset-4 bg-gradient-to-r from-red-500/30 to-amber-500/20 rounded-3xl blur-2xl opacity-70 animate-pulse-glow"></div>
+
+      <!-- Main Culinary Frame -->
+      <div class="relative rounded-3xl border border-amber-500/40 bg-zinc-950 text-white overflow-hidden shadow-2xl shadow-red-950/50">
+        <MotionBorderBeam client:load colorFrom="#f59e0b" colorTo="#ef4444" duration={8} />
+
+        <!-- High-res Gastronomy Culinary Photo / Video -->
+        <div class="relative h-72 sm:h-80 w-full overflow-hidden bg-black">
+          <video
+            autoplay
+            loop
+            muted
+            playsinline
+            preload="auto"
+            poster={MEDIA.restaurant.heroPoster}
+            class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700 ease-out"
+          >
+            <source src={MEDIA.restaurant.heroVideo} type="video/mp4" />
+            <img
+              src={MEDIA.restaurant.heroPoster}
+              alt="Chef Laurent Beaumont Fine Dining Plating"
+              class="w-full h-full object-cover opacity-80"
+              loading="eager"
+            />
+          </video>
+          <HeroParticleCanvas client:load accentColor="#f59e0b" particleCount={25} />
+          <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/30 to-transparent pointer-events-none"></div>
+
+          <!-- Michelin Stars Header Pill -->
+          <div class="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none">
+            <span class="text-[10px] font-serif font-bold uppercase tracking-[0.2em] px-3 py-1 rounded-full bg-red-600/90 text-white border border-red-400/40 shadow-md">
+              ◈ Michelin Three Stars
+            </span>
+            <span class="text-xs font-serif text-amber-300 bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-full border border-white/10">
+              Est. 2009
+            </span>
+          </div>
+
+          <!-- Bottom Plating HUD on Image -->
+          <div class="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-black/75 backdrop-blur-md border border-white/10 flex items-center justify-between pointer-events-none">
+            <div>
+              <p class="text-[10px] uppercase font-bold text-amber-400 tracking-wider">Seasonal Degustation</p>
+              <h4 class="text-sm font-serif font-black text-white">Brittany Blue Lobster & Oscietra Caviar</h4>
+            </div>
+            <span class="text-xs font-serif text-amber-400 bg-amber-950/80 px-2 py-1 rounded border border-amber-500/30">
+              Course I
+            </span>
+          </div>
+        </div>
+
+        {/* Sommelier Cellar Bar */}
+        <div class="p-4 bg-zinc-950 flex items-center justify-between border-t border-zinc-850 text-xs font-serif">
+          <div class="flex items-center gap-2">
+            <span class="text-amber-400 text-sm">🍷</span>
+            <span class="text-zinc-200">450+ Rare Cellar Vintages</span>
+          </div>
+          <span class="text-amber-400">Grand Cru Pairings</span>
+        </div>
+      </div>
+
+      {/* Floating Badge: Top Right */}
+      <div class="absolute -top-6 -right-4 p-3.5 rounded-2xl glass-panel shadow-2xl border border-amber-500/50 animate-float-slow hidden sm:flex items-center gap-3">
+        <div class="w-8 h-8 rounded-xl bg-red-600 flex items-center justify-center text-white text-xs font-bold shadow-md">
+          ◈
+        </div>
+        <div>
+          <p class="text-[11px] font-serif font-bold text-white">Grand Tasting Carte</p>
+          <p class="text-[9px] text-zinc-400">9-Course Seasonal Journey</p>
+        </div>
+      </div>
+    </div>
+  )}
+
+</div>
+
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('video').forEach((v) => {
+      v.muted = true;
+      v.playsInline = true;
+      const playPromise = v.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          window.addEventListener('click', () => v.play(), { once: true });
+        });
+      }
+    });
+  });
+</script>

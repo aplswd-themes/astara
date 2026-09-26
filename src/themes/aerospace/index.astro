@@ -1,0 +1,18 @@
+---
+import '../../styles/global.css';
+import LandingPage from './LandingPage.tsx';
+---
+
+<html lang="en" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Aerospace | Next-Gen Space & Aviation</title>
+    <meta name="description" content="A premium aerospace and deep space technology theme built with Astro and Tailwind CSS." />
+  </head>
+  <body class="bg-black text-white antialiased selection:bg-cyan-500/30">
+    <LandingPage client:load />
+  </body>
+</html>

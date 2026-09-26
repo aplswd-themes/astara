@@ -1,0 +1,80 @@
+---
+/**
+ * EditorialServiceAccordion.astro
+ * ───────────────────────────────
+ * Bespoke luxury agency service list with hover reveals, deliverable tags,
+ * and high-end typographic hierarchy.
+ */
+
+const disciplines = [
+  {
+    num: '01',
+    name: 'Brand Strategy & Visual Identity Systems',
+    desc: 'We define the strategic narrative, category positioning, typographic scales, and design tokens that allow ambitious companies to command industry authority.',
+    deliverables: ['Brand Architecture', 'Custom Typography & Logo', 'Design Guidelines', 'Motion Systems'],
+  },
+  {
+    num: '02',
+    name: 'Bespoke Digital Product & Web Architecture',
+    desc: 'From zero-downtime marketing flagships to interactive SaaS applications, we engineer high-performance web platforms built on modern frameworks like Astro and React.',
+    deliverables: ['Full-Stack Astro/React', 'Micro-Interactions & GL', 'Design System Library', 'Technical SEO & Core Vitals'],
+  },
+  {
+    num: '03',
+    name: 'Creative Direction & Campaign Production',
+    desc: 'Cinematic brand films, generative 3D assets, and cross-channel campaign art direction designed to capture audience imagination and drive measurable inbound scale.',
+    deliverables: ['CGI & 3D Spatial Scenes', 'Broadcast Brand Films', 'Creative Copywriting', 'Editorial Direction'],
+  },
+  {
+    num: '04',
+    name: 'Fractional Design Leadership & Advisory',
+    desc: 'Embed senior creative directors and design leads directly within executive boards and product squads to steer high-stakes capital raises, IPOs, and market launches.',
+    deliverables: ['Executive Advisory', 'Design Team Mentorship', 'Pitch & Investor Decks', 'Design Sprints'],
+  },
+];
+---
+
+<section id="services" class="section py-24 bg-[var(--color-bg)] border-t border-stone-200">
+  <div class="container mx-auto px-4 max-w-5xl">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-16 gap-6">
+      <div>
+        <span class="text-xs font-bold uppercase tracking-[0.25em] text-orange-600 block mb-2">Capabilities</span>
+        <h2 class="text-4xl sm:text-5xl font-bold text-stone-900" style="font-family: var(--font-heading);">
+          Our Core Disciplines
+        </h2>
+      </div>
+      <p class="text-xs text-stone-500 max-w-xs leading-relaxed">
+        Strictly 4 projects per quarter. Uncompromising craftsmanship and senior partner involvement at every phase.
+      </p>
+    </div>
+
+    <div class="divide-y divide-stone-200 border-y border-stone-200">
+      {disciplines.map(d => (
+        <div class="py-10 group transition-all duration-300 hover:bg-stone-50/70 px-4 rounded-xl -mx-4">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            <span class="lg:col-span-1 text-sm font-mono font-bold text-orange-600">
+              {d.num}
+            </span>
+            <div class="lg:col-span-5">
+              <h3 class="text-2xl font-bold text-stone-900 group-hover:text-orange-600 transition-colors" style="font-family: var(--font-heading);">
+                {d.name}
+              </h3>
+            </div>
+            <div class="lg:col-span-6 space-y-4">
+              <p class="text-sm text-stone-600 leading-relaxed">
+                {d.desc}
+              </p>
+              <div class="flex flex-wrap gap-2 pt-2">
+                {d.deliverables.map(tag => (
+                  <span class="text-[11px] font-medium px-2.5 py-1 rounded-md bg-stone-200/60 text-stone-700">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

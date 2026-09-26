@@ -1,0 +1,52 @@
+---
+/**
+ * Card.astro
+ * ───────────
+ * Surface container with border, shadow, and optional hover lift.
+ *
+ * Props:
+ * @prop padding  - 'none' | 'sm' | 'md' | 'lg'
+ * @prop hover    - Whether to show hover lift effect
+ * @prop bordered - Whether to show border
+ * @prop class    - Additional CSS classes
+ *
+ * @example
+ * <Card padding="lg" hover>
+ *   <h3>Feature Title</h3>
+ *   <p>Description text here.</p>
+ * </Card>
+ */
+
+interface Props {
+  padding?: 'none' | 'sm' | 'md' | 'lg';
+  hover?: boolean;
+  bordered?: boolean;
+  class?: string;
+}
+
+const {
+  padding = 'md',
+  hover = false,
+  bordered = true,
+  class: className = '',
+} = Astro.props;
+
+const paddingStyles = {
+  none: '',
+  sm:   'p-4',
+  md:   'p-6',
+  lg:   'p-8',
+};
+---
+
+<div
+  class={[
+    'rounded-[var(--radius-xl)] bg-[var(--color-bg-subtle)]',
+    bordered ? 'border border-[var(--color-border)]' : '',
+    hover ? 'transition-all duration-[var(--transition-slow)] hover:-translate-y-1 hover:shadow-[var(--shadow-xl)]' : 'shadow-[var(--shadow-md)]',
+    paddingStyles[padding],
+    className,
+  ].join(' ')}
+>
+  <slot />
+</div>

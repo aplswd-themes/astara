@@ -1,43 +1,53 @@
-# Astro Starter Kit: Minimal
+# Astara - Premium Astro Multi-Purpose Template
 
-```sh
-npm create astro@latest -- --template minimal
+A highly modular, production-ready Astro 4 template designed for agencies, SaaS, eCommerce, and modern digital businesses. Built with strict typing, zero bloat, and instant re-theming capabilities.
+
+Created with 🤍 by **aPLS Web Development**.
+
+## 🚀 Features
+
+- **6 Niche Themes in One:** Includes specialized landing pages for Agency, SaaS, eCommerce, Health, Restaurant/Gastronomy, and Aerospace/Deep Tech.
+- **Astro 7 Core Engine:** Ultra-fast, zero-JS by default, and optimized for 100% Lighthouse scores.
+- **React 19 Islands:** Hydrated interactive components exactly where you need them.
+- **Tailwind CSS v4:** Fully responsive, modern styling using utility classes and design tokens.
+- **22+ Modular Components:** Fully documented, easily customizable UI components including headers, footers, bento grids, and hero sections.
+- **11+ Inner Pages:** Includes pre-built layouts for Blog, FAQ, Pricing, Contact, Privacy, and Terms.
+- **TypeScript Strict:** 100% type-safe codebase for robust development.
+
+## ⚡ Quick Start
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/your-username/your-repo-name.git
+cd your-repo-name
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+### 2. Install dependencies
+```bash
+npm install
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+### 3. Start the development server
+```bash
+npm run dev
+```
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Visit `http://localhost:4321` in your browser to see the live theme hub.
 
-Any static assets, like images, can be placed in the `public/` directory.
+## 💻 Commands
 
-## 🧞 Commands
+| Command | Action |
+| :--- | :--- |
+| `npm run dev` | Starts local dev server at `localhost:4321` |
+| `npm run build` | Builds your production site to `./dist/` |
+| `npm run preview` | Previews your build locally |
 
-All commands are run from the root of the project, from a terminal:
+## 🎨 Customization
+Global styles and Tailwind configurations can be found in `src/styles/global.css`. 
+To switch out the primary branding, you can adjust the Tailwind color palette and swap the logos located in the `src/components/layout` files.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## 📜 License
+[Insert License Here - e.g., MIT License or Commercial License]
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+---
+*For support or inquiries, please contact aPLS Web Development.*

@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { PreviewNavbar } from '../components/layout/PreviewNavbar';
+import Footer from '../components/layout/Footer.astro';
+
+const privacyVariants = [
+  { label: 'Privacy (Main)', href: '/privacy' },
+  { label: 'Dark Mode Tech v2', href: '/privacy-v2' },
+  { label: 'Terms of Service', href: '/terms' },
+];
+---
+
+<BaseLayout themeSlug="software">
+  <PreviewNavbar client:load variationName="Privacy (Main)" variations={privacyVariants} />
+  
+  <div class="bg-zinc-50 min-h-screen">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      
+      <header class="mb-16 border-b border-zinc-200 pb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-indigo-100/50 border border-indigo-200 mb-6">
+          <span class="text-[10px] font-bold uppercase tracking-widest text-indigo-700">Legal Documentation</span>
+        </div>
+        <h1 class="text-4xl md:text-6xl font-black tracking-tight text-zinc-900 mb-6">Privacy Policy</h1>
+        <p class="text-xl text-zinc-500 font-medium max-w-2xl">We care about your privacy and are committed to protecting your personal data. Last updated: January 15, 2024</p>
+      </header>
+
+      <div class="flex flex-col lg:flex-row gap-16 items-start">
+        <!-- Sticky Sidebar Navigation -->
+        <aside class="hidden lg:block w-64 flex-shrink-0 sticky top-32">
+          <nav class="space-y-2 relative before:absolute before:inset-y-0 before:left-0 before:w-px before:bg-zinc-200">
+            <a href="#section-1" class="block pl-4 py-1 text-sm font-semibold text-zinc-900 border-l-2 border-indigo-600 transition-colors">1. Information We Collect</a>
+            <a href="#section-2" class="block pl-4 py-1 text-sm font-medium text-zinc-500 hover:text-zinc-900 border-l-2 border-transparent transition-colors">2. How We Use It</a>
+            <a href="#section-3" class="block pl-4 py-1 text-sm font-medium text-zinc-500 hover:text-zinc-900 border-l-2 border-transparent transition-colors">3. Information Sharing</a>
+            <a href="#section-4" class="block pl-4 py-1 text-sm font-medium text-zinc-500 hover:text-zinc-900 border-l-2 border-transparent transition-colors">4. Data Security</a>
+            <a href="#section-5" class="block pl-4 py-1 text-sm font-medium text-zinc-500 hover:text-zinc-900 border-l-2 border-transparent transition-colors">5. Your Rights</a>
+            <a href="#section-6" class="block pl-4 py-1 text-sm font-medium text-zinc-500 hover:text-zinc-900 border-l-2 border-transparent transition-colors">6. Cookie Policy</a>
+            <a href="#section-7" class="block pl-4 py-1 text-sm font-medium text-zinc-500 hover:text-zinc-900 border-l-2 border-transparent transition-colors">7. Changes to Policy</a>
+            <a href="#section-8" class="block pl-4 py-1 text-sm font-medium text-zinc-500 hover:text-zinc-900 border-l-2 border-transparent transition-colors">8. Contact Us</a>
+          </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 bg-white p-8 md:p-12 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-zinc-100">
+          <div class="prose prose-lg prose-zinc max-w-none">
+            
+            <section id="section-1" class="mb-12 scroll-mt-32">
+              <h2 class="text-2xl font-bold text-zinc-900 mb-4 pb-2 border-b border-zinc-100">1. Information We Collect</h2>
+              <p class="text-zinc-600 leading-relaxed">We collect information that you provide directly to us, including personal information such as your name, email address, and billing details when you create an account or make a purchase. Additionally, we automatically collect usage data such as your IP address, browser type, and interactions with our website through cookies and similar tracking technologies.</p>
+            </section>
+
+            <section id="section-2" class="mb-12 scroll-mt-32">
+              <h2 class="text-2xl font-bold text-zinc-900 mb-4 pb-2 border-b border-zinc-100">2. How We Use Your Information</h2>
+              <p class="text-zinc-600 leading-relaxed">We use the collected information to deliver and maintain our services, process transactions, and provide customer support. Furthermore, we analyze usage data to improve our platform's functionality and user experience, and we may use your email address to send you service updates, promotional content, or other communications relevant to your interests.</p>
+            </section>
+
+            <section id="section-3" class="mb-12 scroll-mt-32">
+              <h2 class="text-2xl font-bold text-zinc-900 mb-4 pb-2 border-b border-zinc-100">3. Information Sharing</h2>
+              <p class="text-zinc-600 leading-relaxed">We do not sell your personal information. We may share your data with trusted third-party service providers who assist us in operating our website and conducting our business, provided they agree to keep this information confidential. We may also disclose information when required by law, to enforce our site policies, or to protect our or others' rights, property, or safety.</p>
+            </section>
+
+            <section id="section-4" class="mb-12 scroll-mt-32">
+              <h2 class="text-2xl font-bold text-zinc-900 mb-4 pb-2 border-b border-zinc-100">4. Data Security</h2>
+              <p class="text-zinc-600 leading-relaxed">We implement a variety of security measures, including encryption and secure server hosting, to maintain the safety of your personal information. While we strive to use commercially acceptable means to protect your personal data, no method of transmission over the Internet or electronic storage is 100% secure, and we cannot guarantee its absolute security.</p>
+            </section>
+
+            <section id="section-5" class="mb-12 scroll-mt-32">
+              <h2 class="text-2xl font-bold text-zinc-900 mb-4 pb-2 border-b border-zinc-100">5. Your Rights</h2>
+              <p class="text-zinc-600 leading-relaxed">You have the right to access, update, or delete the personal information we hold about you. You may also request a copy of your data in a portable format or restrict how we process your information. To exercise these rights, please contact us using the details provided at the end of this policy.</p>
+            </section>
+
+            <section id="section-6" class="mb-12 scroll-mt-32">
+              <h2 class="text-2xl font-bold text-zinc-900 mb-4 pb-2 border-b border-zinc-100">6. Cookie Policy</h2>
+              <p class="text-zinc-600 leading-relaxed">Our website uses essential cookies required for site operation and functional cookies that enhance your experience. We also use analytics and advertising cookies to understand how visitors interact with our site and to deliver tailored marketing. You can manage or disable cookies through your browser settings, though some site features may not function properly without them.</p>
+            </section>
+
+            <section id="section-7" class="mb-12 scroll-mt-32">
+              <h2 class="text-2xl font-bold text-zinc-900 mb-4 pb-2 border-b border-zinc-100">7. Changes to This Policy</h2>
+              <p class="text-zinc-600 leading-relaxed">We reserve the right to update this Privacy Policy at any time. Any changes will be posted on this page with an updated revision date. We encourage you to review this policy periodically to stay informed about how we are protecting your information.</p>
+            </section>
+
+            <section id="section-8" class="mb-12 scroll-mt-32">
+              <h2 class="text-2xl font-bold text-zinc-900 mb-4 pb-2 border-b border-zinc-100">8. Contact Us</h2>
+              <p class="text-zinc-600 leading-relaxed">If you have any questions, concerns, or requests regarding this Privacy Policy or how we handle your personal data, please contact our data protection team at <a href="mailto:privacy@nexus.com" class="text-indigo-600 font-semibold hover:underline">privacy@nexus.com</a>.</p>
+            </section>
+
+          </div>
+        </main>
+      </div>
+    </div>
+  </div>
+  
+  <Footer />
+</BaseLayout>

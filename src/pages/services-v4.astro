@@ -1,0 +1,60 @@
+﻿---
+import { PreviewNavbar } from '../components/layout/PreviewNavbar';
+import { PageVariantSwitcher } from '../components/interactive/PageVariantSwitcher';
+import '../styles/global.css';
+
+const serviceVariants = [
+  { label: 'Main', path: '/services' },
+  { label: 'Minimalist v1', path: '/services-v1' },
+  { label: 'Creative v2', path: '/services-v2' },
+  { label: 'Dark Tech v3', path: '/services-v3' },
+  { label: 'Editorial v4', path: '/services-v4' },
+];
+---
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>Services - V4</title>
+</head>
+<body class="bg-[#F9F8F6] text-[#2C2B29] font-serif antialiased">
+  <PreviewNavbar client:load variationName="Editorial v4" variations={[{label:'Services (Main)',href:'/services'},{label:'Minimalist v1',href:'/services-v1'},{label:'Creative v2',href:'/services-v2'},{label:'Dark Tech v3',href:'/services-v3'},{label:'Editorial v4',href:'/services-v4'}]} />
+  <div class="max-w-screen-2xl mx-auto px-8 sm:px-12 lg:px-24 py-32">
+    <header class="mb-32 flex flex-col md:flex-row md:items-end justify-between gap-12 border-b border-[#E5E4E2] pb-12">
+      <h1 class="text-6xl md:text-8xl font-normal tracking-tight leading-none">Practices</h1>
+      <p class="font-sans text-sm tracking-widest uppercase max-w-xs leading-relaxed text-[#5A5956]">Carefully calibrated disciplines for enduring structural integrity.</p>
+    </header>
+    
+    <div class="space-y-40">
+      <!-- Section 1 -->
+      <section class="group flex flex-col lg:flex-row items-center gap-16 lg:gap-32">
+        <div class="w-full lg:w-1/2 overflow-hidden aspect-[4/3] bg-[#EAE8E3]">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000&auto=format&fit=crop" alt="Abstract architectural detail" class="w-full h-full object-cover filter grayscale opacity-90 group-hover:scale-105 group-hover:grayscale-0 transition-all duration-1000 ease-out" />
+        </div>
+        <div class="w-full lg:w-1/2">
+          <span class="font-sans text-xs tracking-[0.2em] text-[#8C8B88] mb-6 block">01</span>
+          <h2 class="text-4xl md:text-5xl mb-8 leading-tight">Physical Design</h2>
+          <p class="font-sans text-lg text-[#5A5956] leading-relaxed max-w-lg mb-10">Spatial planning and material selection for commercial interiors. We focus on natural light optimization and tactile surfaces.</p>
+          <a href="#" class="inline-block font-sans text-sm uppercase tracking-widest border-b border-[#2C2B29] pb-1 hover:text-[#8C8B88] hover:border-[#8C8B88] transition-colors">Read Case Studies</a>
+        </div>
+      </section>
+      
+      <!-- Section 2 -->
+      <section class="group flex flex-col lg:flex-row-reverse items-center gap-16 lg:gap-32">
+        <div class="w-full lg:w-1/2 overflow-hidden aspect-[4/3] bg-[#EAE8E3]">
+          <img src="https://images.unsplash.com/photo-1541888001429-450f3b890ccb?q=80&w=2000&auto=format&fit=crop" alt="Abstract texture detail" class="w-full h-full object-cover filter grayscale opacity-90 group-hover:scale-105 group-hover:grayscale-0 transition-all duration-1000 ease-out" />
+        </div>
+        <div class="w-full lg:w-1/2">
+          <span class="font-sans text-xs tracking-[0.2em] text-[#8C8B88] mb-6 block">02</span>
+          <h2 class="text-4xl md:text-5xl mb-8 leading-tight">Visual Identity</h2>
+          <p class="font-sans text-lg text-[#5A5956] leading-relaxed max-w-lg mb-10">Typographic systems, color theory, and brand guidelines. Establishing visual coherence across all organizational touchpoints.</p>
+          <a href="#" class="inline-block font-sans text-sm uppercase tracking-widest border-b border-[#2C2B29] pb-1 hover:text-[#8C8B88] hover:border-[#8C8B88] transition-colors">View Portfolio</a>
+        </div>
+      </section>
+    </div>
+  </div>
+</body>
+</html>
+
+
+

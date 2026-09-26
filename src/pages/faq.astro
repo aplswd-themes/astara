@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { PreviewNavbar } from '../components/layout/PreviewNavbar';
+import Footer from '../components/layout/Footer.astro';
+import { FAQ } from '../components/sections/FAQ';
+
+const faqVariants = [
+  { label: 'FAQ (Main)', href: '/faq' },
+  { label: 'Animated Split v2', href: '/faq-v2' },
+  { label: 'Modern Grid v3', href: '/faq-v3' }
+];
+
+const generalFaqs = [
+  { question: "What is Nexus?", answer: "Nexus is a comprehensive digital platform designed to help businesses manage their operations and online presence. It provides all the essential tools you need in one unified dashboard." },
+  { question: "How do I get started?", answer: "Getting started is simple. Just create an account, choose your preferred template, and follow our step-by-step onboarding guide to set up your first project within minutes." },
+  { question: "What industries do you serve?", answer: "We serve a wide variety of industries including e-commerce, software development, creative agencies, and professional services. Our flexible platform adapts to different business models easily." },
+];
+
+const pricingFaqs = [
+  { question: "How does pricing work?", answer: "Our pricing is subscription-based, offering monthly and annual billing cycles. You only pay for the features and capacity you need, with transparent tiering that scales with your business." },
+  { question: "Do you offer a free trial?", answer: "Yes, we offer a 14-day full-featured free trial so you can evaluate the platform. No credit card is required to start your trial." },
+];
+
+---
+
+<BaseLayout themeSlug="software">
+  <PreviewNavbar client:load variationName="FAQ (Main)" variations={faqVariants} />
+  
+  <div class="min-h-screen bg-zinc-50 relative overflow-hidden">
+    <!-- Animated background elements -->
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute -top-40 -right-40 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl animate-pulse"></div>
+      <div class="absolute top-40 -left-40 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+    </div>
+
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24 relative z-10">
+      <header class="text-center mb-24 animate-fade-in-up">
+        <h1 class="text-6xl md:text-8xl font-black tracking-tighter text-zinc-900 mb-6 bg-clip-text text-transparent bg-gradient-to-r from-zinc-900 via-indigo-900 to-zinc-900">FAQ</h1>
+        <p class="text-xl text-zinc-500 max-w-2xl mx-auto font-medium">Everything you need to know about the product and billing.</p>
+      </header>
+
+      <div class="space-y-12">
+        <div class="group transform transition-all duration-500 hover:-translate-y-1">
+          <FAQ title="General" subtitle="The Basics" items={generalFaqs} client:load />
+        </div>
+        <div class="group transform transition-all duration-500 hover:-translate-y-1">
+          <FAQ title="Pricing & Billing" subtitle="Plans" items={pricingFaqs} client:load />
+        </div>
+      </div>
+    </main>
+  </div>
+  
+  <Footer />
+</BaseLayout>
+
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+</style>

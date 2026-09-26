@@ -1,0 +1,112 @@
+---
+/**
+ * BentoFeatureGrid.astro
+ * ──────────────────────
+ * Highly modern, asymmetric Bento-box feature grid designed for high-end SaaS & tech sites.
+ * Features code previews, metric callouts, and multi-span grid architecture.
+ */
+---
+
+<section class="section py-20 bg-zinc-50 relative overflow-hidden border-t border-zinc-200">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span class="text-xs font-semibold uppercase tracking-widest text-zinc-500 mb-2 block">Platform Features</span>
+      <h2 class="text-3xl sm:text-4xl font-bold text-zinc-900 tracking-tight">Built for modern software teams</h2>
+      <p class="text-base text-zinc-600 mt-4 leading-relaxed">
+        Everything you need to build, deploy, and scale web applications reliably without managing infrastructure.
+      </p>
+    </div>
+
+    {/* Asymmetric Bento Box Grid */}
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 max-w-6xl mx-auto">
+      
+      {/* Bento Item 1: Large Span 8 */}
+      <div class="md:col-span-8 rounded-2xl border border-zinc-200 bg-white p-8 flex flex-col justify-between relative overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <span class="text-xs font-semibold uppercase text-zinc-500">Global Deployment</span>
+          </div>
+          <h3 class="text-2xl font-bold text-zinc-900 mb-2">Automated CI/CD Workflows</h3>
+          <p class="text-sm text-zinc-600 max-w-xl leading-relaxed">
+            Connect your GitHub repository and we'll automatically build and deploy your code to our global content delivery network whenever you push changes.
+          </p>
+        </div>
+
+        {/* Mockup inside Bento */}
+        <div class="mt-8 rounded-xl border border-zinc-200 bg-zinc-50 p-4 font-mono text-xs text-zinc-600 shadow-inner">
+          <div class="flex items-center justify-between pb-3 mb-3 border-b border-zinc-200 text-[11px] text-zinc-500">
+            <span>build-logs.txt</span>
+            <span class="text-emerald-600 font-medium">Build Successful</span>
+          </div>
+          <p class="text-zinc-500">$ npm run build</p>
+          <p class="text-zinc-700 mt-1">> Building production optimized assets...</p>
+          <p class="text-zinc-700">> ✓ Compiled successfully in 1.2s</p>
+          <p class="text-zinc-700">> Deploying to global edge network...</p>
+          <p class="text-emerald-600 font-medium mt-1">> ✓ Deployment live at production URL</p>
+        </div>
+      </div>
+
+      {/* Bento Item 2: Span 4 Metric Counter */}
+      <div class="md:col-span-4 rounded-2xl border border-zinc-200 bg-white p-8 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+        <div>
+          <span class="text-xs font-semibold uppercase text-zinc-500">Reliability</span>
+          <h3 class="text-5xl font-bold text-zinc-900 mt-4 tracking-tight">99.99%</h3>
+          <p class="text-sm text-zinc-600 mt-4 leading-relaxed">
+            Enterprise-grade uptime backed by a comprehensive service level agreement.
+          </p>
+        </div>
+        <div class="pt-6 border-t border-zinc-100 mt-6 flex items-center justify-between">
+          <span class="text-xs font-medium text-emerald-600">✓ SLA Guarantee</span>
+          <span class="text-xs font-medium text-zinc-500 border border-zinc-200 px-2 py-1 rounded bg-zinc-50">SOC2 Certified</span>
+        </div>
+      </div>
+
+      {/* Bento Item 3: Span 4 */}
+      <div class="md:col-span-4 rounded-2xl border border-zinc-200 bg-white p-8 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+        <div>
+          <span class="text-xs font-semibold uppercase text-zinc-500">Preview Environments</span>
+          <h3 class="text-xl font-bold text-zinc-900 mt-3">Shareable Deployments</h3>
+          <p class="text-sm text-zinc-600 mt-3 leading-relaxed">
+            Every pull request automatically generates a secure preview URL to share with your team.
+          </p>
+        </div>
+        <div class="mt-6 p-3 rounded-lg bg-zinc-50 border border-zinc-200 text-xs font-mono text-zinc-500 flex flex-col gap-2">
+          <div class="flex items-center gap-2">
+            <span class="text-zinc-400">commit</span>
+            <span class="text-zinc-700">Update hero component</span>
+          </div>
+          <div class="flex items-center gap-2 text-emerald-600">
+            <span>↳ preview-env.url</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Bento Item 4: Span 8 */}
+      <div class="md:col-span-8 rounded-2xl border border-zinc-200 bg-white p-8 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow relative overflow-hidden">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
+          <div>
+            <span class="text-xs font-semibold uppercase text-zinc-500">Scalability</span>
+            <h3 class="text-2xl font-bold text-zinc-900 mt-2">Elastic Resource Management</h3>
+          </div>
+        </div>
+        <p class="text-sm text-zinc-600 leading-relaxed mb-8">
+          Our platform automatically provisions additional capacity during traffic spikes and scales down when idle to ensure consistent performance.
+        </p>
+        <div class="grid grid-cols-3 gap-4 text-center text-xs font-medium">
+          <div class="p-4 rounded-xl bg-zinc-50 border border-zinc-200 flex flex-col justify-center items-center">
+            <p class="text-zinc-500 text-[10px] uppercase mb-1">Global Network</p>
+            <p class="text-zinc-900 font-bold text-lg">35+ Regions</p>
+          </div>
+          <div class="p-4 rounded-xl bg-zinc-50 border border-zinc-200 flex flex-col justify-center items-center">
+            <p class="text-zinc-500 text-[10px] uppercase mb-1">DDoS Protection</p>
+            <p class="text-zinc-900 font-bold text-lg">Included</p>
+          </div>
+          <div class="p-4 rounded-xl bg-zinc-50 border border-zinc-200 flex flex-col justify-center items-center">
+            <p class="text-zinc-500 text-[10px] uppercase mb-1">Load Balancing</p>
+            <p class="text-zinc-900 font-bold text-lg">Automated</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

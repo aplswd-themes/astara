@@ -1,0 +1,63 @@
+﻿---
+import { PreviewNavbar } from '../components/layout/PreviewNavbar';
+import '../styles/global.css';
+
+const featuredPost = {
+  title: "Building the Next Generation of E-commerce Experiences",
+  excerpt: "The landscape of online shopping is shifting. We explore how headless architecture, personalization algorithms, and immersive 3D product views are fundamentally changing how consumers interact with brands online.",
+  category: "Engineering",
+  date: "March 20, 2024",
+  readTime: "10 min read",
+  author: { name: "David Kim" },
+  href: "/blog/future-of-ai-design",
+};
+
+const blogPosts = [
+  { title: 'The Future of AI in Product Design', excerpt: 'How generative AI is augmenting the design process.', category: 'Design', date: 'March 15, 2024', href: '/blog/future-of-ai-design' },
+  { title: 'Building Scalable APIs with Node.js', excerpt: 'Best practices for structuring your backend services.', category: 'Engineering', date: 'March 10, 2024', href: '/blog/future-of-ai-design' },
+  { title: '10 UX Principles Every Designer Should Know', excerpt: 'A comprehensive guide to foundational psychology.', category: 'Design', date: 'March 05, 2024', href: '/blog/future-of-ai-design' }
+];
+---
+<html lang="en">
+<head><title>Blog - Editorial</title></head>
+<body class="bg-[#f4f4f0] text-zinc-900 font-serif antialiased selection:bg-orange-200">
+  <PreviewNavbar client:load variationName="Editorial v4" variations={[{label:'Blog (Main)',href:'/blog'},{label:'Minimalist v1',href:'/blog-v1'},{label:'Creative v2',href:'/blog-v2'},{label:'Dark Tech v3',href:'/blog-v3'},{label:'Editorial v4',href:'/blog-v4'}]} />
+  
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <header class="text-center border-b-2 border-zinc-900 pb-12 mb-12">
+      <div class="font-sans text-xs font-bold uppercase tracking-widest text-zinc-500 mb-6">Vol. IV &mdash; 2024</div>
+      <h1 class="text-6xl md:text-8xl font-normal tracking-tight text-zinc-900 italic mb-6">The Chronicle</h1>
+      <p class="text-lg text-zinc-600 font-sans max-w-2xl mx-auto">Essays, stories, and musings from the frontier of technology and design.</p>
+    </header>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-16 border-b border-zinc-300 pb-16">
+      <div class="lg:col-span-8">
+        <a href={featuredPost.href} class="block group">
+          <div class="w-full aspect-video bg-zinc-200 mb-8 overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-700">
+            <img src="https://images.unsplash.com/photo-1455390582262-044cdead27d8?auto=format&fit=crop&q=80" alt="Cover" class="w-full h-full object-cover mix-blend-multiply opacity-80" />
+          </div>
+          <div class="flex items-center gap-4 mb-4 font-sans text-xs font-bold uppercase tracking-widest text-zinc-500">
+            <span>{featuredPost.category}</span>
+            <span>&bull;</span>
+            <span>{featuredPost.date}</span>
+          </div>
+          <h2 class="text-4xl md:text-5xl font-normal text-zinc-900 mb-6 leading-tight group-hover:text-zinc-600 transition-colors">{featuredPost.title}</h2>
+          <p class="text-lg text-zinc-700 mb-6 leading-relaxed first-letter:text-5xl first-letter:float-left first-letter:mr-3 first-letter:font-bold first-letter:text-zinc-900">{featuredPost.excerpt}</p>
+          <div class="font-sans text-sm font-bold uppercase tracking-wider text-zinc-900">By {featuredPost.author.name}</div>
+        </a>
+      </div>
+      
+      <div class="lg:col-span-4 flex flex-col gap-8 divide-y divide-zinc-300">
+        <div class="font-sans text-sm font-bold uppercase tracking-widest text-zinc-400 pb-2">More Stories</div>
+        {blogPosts.map((post) => (
+          <a href={post.href} class="block group pt-8">
+            <div class="font-sans text-xs font-bold uppercase tracking-widest text-zinc-500 mb-3">{post.category}</div>
+            <h3 class="text-2xl font-normal text-zinc-900 mb-3 leading-snug group-hover:text-zinc-600 transition-colors">{post.title}</h3>
+            <p class="text-sm text-zinc-600 font-sans line-clamp-3">{post.excerpt}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </main>
+</body>
+</html>
