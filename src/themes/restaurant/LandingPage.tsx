@@ -268,7 +268,7 @@ const Footer = () => (
     </div>
     <div className="absolute bottom-6 left-0 w-full flex flex-col md:flex-row justify-between items-center px-8 z-20">
         <div className="text-[10px] text-zinc-500 uppercase tracking-widest mb-4 md:mb-0 w-full md:w-1/3 text-left">
-          &copy; {new Date().getFullYear()} L'ÉTOILE
+          &copy; {new Date().getFullYear()} Astara theme.
         </div>
         
         <div className="flex items-center justify-center gap-3 w-full md:w-1/3">

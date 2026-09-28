@@ -547,7 +547,7 @@ const LandingPage = () => {
             </div>
           </div>
           <div className="pt-8 border-t border-zinc-800 flex flex-col md:flex-row justify-between items-center text-sm text-zinc-500 font-medium">
-            <p>&copy; {new Date().getFullYear()} aPLS Web Development. All rights reserved.</p>
+            <p>&copy; {new Date().getFullYear()} Astara theme.</p>
           {/* Creator Badge */}
           <div className="flex items-center gap-3 mt-4 md:mt-0">
             <span className="text-sm text-gray-500 font-medium">Creator</span>
