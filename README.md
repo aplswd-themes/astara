@@ -1,25 +1,25 @@
 # Astara - Premium Astro Multi-Purpose Template
 
-A highly modular, production-ready Astro 4 template designed for agencies, SaaS, eCommerce, and modern digital businesses. Built with strict typing, zero bloat, and instant re-theming capabilities.
+A highly modular, production-ready Astro template designed for agencies, SaaS, eCommerce, and modern digital businesses. Built with strict typing, zero bloat, and instant re-theming capabilities.
 
-Created with 🤍 by **aPLS Web Development**.
+Created by **aPLS Web Development**.
 
-## 🚀 Features
+## Features
 
-- **6 Niche Themes in One:** Includes specialized landing pages for Agency, SaaS, eCommerce, Health, Restaurant/Gastronomy, and Aerospace/Deep Tech.
-- **Astro 7 Core Engine:** Ultra-fast, zero-JS by default, and optimized for 100% Lighthouse scores.
-- **React 19 Islands:** Hydrated interactive components exactly where you need them.
-- **Tailwind CSS v4:** Fully responsive, modern styling using utility classes and design tokens.
+- **5 Niche Themes in One:** Includes specialized landing pages for Agency, SaaS, eCommerce, Health, Restaurant, and Aerospace.
+- **Astro Core Engine:** Ultra-fast, zero-JS by default, and optimized for perfect Lighthouse scores.
+- **React Islands:** Hydrated interactive components exactly where you need them.
+- **Tailwind CSS:** Fully responsive, modern styling using utility classes and design tokens.
 - **22+ Modular Components:** Fully documented, easily customizable UI components including headers, footers, bento grids, and hero sections.
 - **11+ Inner Pages:** Includes pre-built layouts for Blog, FAQ, Pricing, Contact, Privacy, and Terms.
 - **TypeScript Strict:** 100% type-safe codebase for robust development.
 
-## ⚡ Quick Start
+## Quick Start
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/aplswd-themes/astara.git
+cd astara
 ```
 
 ### 2. Install dependencies
@@ -34,7 +34,7 @@ npm run dev
 
 Visit `http://localhost:4321` in your browser to see the live theme hub.
 
-## 💻 Commands
+## Commands
 
 | Command | Action |
 | :--- | :--- |
@@ -42,12 +42,12 @@ Visit `http://localhost:4321` in your browser to see the live theme hub.
 | `npm run build` | Builds your production site to `./dist/` |
 | `npm run preview` | Previews your build locally |
 
-## 🎨 Customization
+## Customization
 Global styles and Tailwind configurations can be found in `src/styles/global.css`. 
 To switch out the primary branding, you can adjust the Tailwind color palette and swap the logos located in the `src/components/layout` files.
 
-## 📜 License
-[Insert License Here - e.g., MIT License or Commercial License]
+## License
+MIT License
 
 ---
 *For support or inquiries, please contact aPLS Web Development.*
